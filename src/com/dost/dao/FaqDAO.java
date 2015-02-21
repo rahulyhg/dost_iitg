@@ -13,4 +13,6 @@ public interface FaqDAO {
 	public List<DbFaq> getAllFaq();
 
 	public DbFaq addFaq(DbFaq dbFaq);
+	
+	public boolean deleteFaqById(Long id);
 }

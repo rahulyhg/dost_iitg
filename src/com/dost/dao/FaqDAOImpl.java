@@ -53,5 +53,12 @@ public class FaqDAOImpl implements FaqDAO {
 		return dbFaq;
 	}
 	
-	
+	public boolean deleteFaqById(Long id) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("delete from DbFaq where faqId = :id");
+		query.setParameter("id", id);
+		
+		query.executeUpdate();
+		return true;
+	}	
 }

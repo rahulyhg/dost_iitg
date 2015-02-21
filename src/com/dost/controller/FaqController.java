@@ -1,11 +1,16 @@
 package com.dost.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,7 +63,7 @@ public class FaqController {
 	
 	@RequestMapping(value="/faq/add", method=RequestMethod.POST)  
 	@ResponseBody
-	public Faq addFaq(Faq faq) {
+	public Faq addFaq(@RequestBody Faq faq, HttpServletRequest request){
 		DbFaqCategory dbFaqCategory = categoryService.findCategoryByName(faq.getCategory());
 		DbFaq dbFaq = new DbFaq();
 		dbFaq.setQuestion(faq.getQuestion());
@@ -67,5 +72,26 @@ public class FaqController {
 		faq.setCategoryId(""+dbFaqCategory.getFaqCategoryId());
 		faqService.addFaq(dbFaq);
 		return faq;
+	}
+	
+	@RequestMapping(value="/faq/update", method=RequestMethod.PUT)  
+	@ResponseBody
+	public Faq updateFaq(@RequestBody Faq faq, HttpServletRequest request) {
+		DbFaqCategory dbFaqCategory = categoryService.findCategoryByName(faq.getCategory());
+		DbFaq dbFaq = faqService.getFaqById(faq.getId());
+		dbFaq.setQuestion(faq.getQuestion());
+		dbFaq.setAnswer(faq.getAnswer());
+		dbFaq.setCategory(dbFaqCategory);
+		faq.setCategoryId(""+dbFaqCategory.getFaqCategoryId());
+		faqService.addFaq(dbFaq);
+		return faq;
+	}
+	
+	@RequestMapping(value="/faq/{id}/delete", method=RequestMethod.DELETE)  
+	public Map<String, String> deleteFaqById(@PathVariable Long id) {
+		Map<String, String> response = new HashMap<String, String>();
+		boolean output = faqService.deleteFaqById(id);
+		response.put("status", output+"");
+		return response;
 	}
 }

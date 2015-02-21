@@ -33,5 +33,8 @@ public class FaqServiceImpl implements FaqService {
 		return faqDAO.addFaq(dbFaq);
 	}
 
+	public boolean deleteFaqById(Long id) {
+		return faqDAO.deleteFaqById(id);
+	}
 	
 }
