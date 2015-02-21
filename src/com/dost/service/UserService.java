@@ -24,6 +24,7 @@ public interface UserService {
 	public DbUser updateUser(DbUser dbUser);
 	
 	public int getUsersCount();
+	public List<DbUser> searchUserByUserName(String username);
 	
 
 }

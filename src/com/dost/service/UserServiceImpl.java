@@ -58,5 +58,9 @@ public class UserServiceImpl implements UserService {
 	public int getUsersCount() {
 		return userDAO.getUsersCount();
 	}
+	
+	public List<DbUser> searchUserByUserName(String username) {
+		return userDAO.searchUserByUserName(username);
+	}
 
 }

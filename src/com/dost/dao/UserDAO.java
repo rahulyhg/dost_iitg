@@ -19,5 +19,6 @@ public interface UserDAO {
 	public DbUser updatePassword(String username, String password);
 	public DbUser updateUser(DbUser dbUser);
 	public int getUsersCount();
+	public List<DbUser> searchUserByUserName(String username);
 
 }

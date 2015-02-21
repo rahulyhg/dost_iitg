@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.dost.hibernate.DbUser;
 import com.dost.model.User;
@@ -48,6 +47,14 @@ public class UserController {
 	@ResponseBody
 	public DbUser getUserByUsername(@PathVariable String username) {
 		return userService.getUserByUsername(username);
+	}
+	
+	
+	@RequestMapping(value="/user/{username}/search", method=RequestMethod.GET)  
+	@ResponseBody
+	public List<DbUser> getSearchUserByUsername(@PathVariable String username) {
+		List<DbUser> searchedUsers = userService.searchUserByUserName(username);
+		return searchedUsers;
 	}
 	
 	@RequestMapping(value="/userdetail/add", method=RequestMethod.POST)  

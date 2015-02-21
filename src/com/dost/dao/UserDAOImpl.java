@@ -162,4 +162,14 @@ public class UserDAOImpl implements UserDAO {
 		return count.intValue();
 	}
 
+	public List<DbUser> searchUserByUserName(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from DbUser u where u.username like :username");
+		query.setParameter("username", "%"+username+"%");
+		List<DbUser> users = query.list();
+		if(users == null) {
+			users = new ArrayList<DbUser>();
+		}
+		return users;
+	}	
 }
