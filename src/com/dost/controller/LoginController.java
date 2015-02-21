@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dost.hibernate.DbUser;
+import com.dost.hibernate.DbUserLog;
 import com.dost.hibernate.Role;
+import com.dost.model.User;
+import com.dost.service.UserLogService;
 import com.dost.service.UserService;
 
 // Adding more comments
@@ -25,6 +28,9 @@ public class LoginController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserLogService userLogService;
 
 	@RequestMapping("user/conversations")
 	public ModelAndView showMessage() {
@@ -96,7 +102,8 @@ public class LoginController {
 	model.addObject("title",
 	"Spring Security Login Form - Database Authentication");
 	model.addObject("message", "This is default page!");
-
+	// Creating UserLog Entry, same code is in SignupController
+	createUserLogEntry(request.getUserPrincipal().getName(), request);
 	if(request.isUserInRole("ROLE_ADMIN")){
 			//return "redirect:/forums/show/1.page";
 		return "redirect:/conversations";
@@ -105,6 +112,20 @@ public class LoginController {
 //			return "redirect:/forums/show/1.page";
 		return "redirect:/conversations";
 	}
+	
+	}
+	
+	private void createUserLogEntry(String userName, HttpServletRequest request) {
+		DbUserLog userLog = new DbUserLog();
+		userLog.setUserName(userName);
+		userLog.setUserId(0L);
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		if (ipAddress == null) {  
+		   ipAddress = request.getRemoteAddr();  
+		}
+		userLog.setIp(ipAddress);
+		
+		userLogService.saveUserLog(userLog);
 	}
 
 	@RequestMapping(value = { "/", "/admin**" }, method = RequestMethod.GET)

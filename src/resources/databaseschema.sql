@@ -284,3 +284,21 @@ insert into jforum_forums values (2, 2, 'Relationship', 'Relationship', 1, 0, 0,
 insert into jforum_forums values (3, 3, 'Career', 'Career', 1, 0, 0, 0)
 insert into jforum_forums values (4, 4, 'Education', 'Education', 1, 0, 0, 0)
 insert into jforum_forums values (5, 5, 'Personality', 'Personality', 1, 0, 0, 0)
+
+
+CREATE TABLE `dost_userlog` (
+    `logid` INTEGER NOT NULL AUTO_INCREMENT,
+    `userid` INTEGER NOT NULL,
+    `username` VARCHAR(255) NOT NULL,
+    `ip` varchar(255) DEFAULT NULL,
+	`logintime` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`logid`)
+);
+
+CREATE TRIGGER dost_userlog_OnInsert BEFORE INSERT ON `dost_userlog`
+    FOR EACH ROW SET NEW.logintime = NOW();

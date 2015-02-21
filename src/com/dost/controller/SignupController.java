@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dost.hibernate.DbMessage;
 import com.dost.hibernate.DbMessageRecipient;
 import com.dost.hibernate.DbUser;
+import com.dost.hibernate.DbUserLog;
 import com.dost.hibernate.DbUserRole;
 import com.dost.hibernate.DbUserSecurity;
 import com.dost.model.Message;
@@ -33,6 +34,7 @@ import com.dost.model.User;
 import com.dost.service.MessageService;
 import com.dost.service.SecurityQuestionService;
 import com.dost.service.SignupService;
+import com.dost.service.UserLogService;
 import com.dost.service.UserService;
 
 @Controller
@@ -54,6 +56,9 @@ public class SignupController {
 	
 	@Autowired
 	SecurityQuestionService questionService; 
+	
+	@Autowired
+	UserLogService userLogService;
 	
 	@RequestMapping(value="/su/{id}", method=RequestMethod.GET)  
 	@ResponseBody
@@ -95,6 +100,9 @@ public class SignupController {
 			  // Adding this because new signup user after going to discussion page was getting header as logged out user.
 			HttpSession session = request.getSession();
 			session.setAttribute("myAppUser", user.getUsername());
+			
+			// Creating UserLog Entry, same code is in LoginController
+			createUserLogEntry(user, request);
 			  
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 		    return "redirect:/conversations";
@@ -106,6 +114,19 @@ public class SignupController {
 			return "redirect:/signupNow"; 
 		}
 		return "redirect:/conversations";
+	}
+
+	private void createUserLogEntry(User user, HttpServletRequest request) {
+		DbUserLog userLog = new DbUserLog();
+		userLog.setUserName(user.getUsername());
+		userLog.setUserId(0L);
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		if (ipAddress == null) {  
+		   ipAddress = request.getRemoteAddr();  
+		}
+		userLog.setIp(ipAddress);
+		
+		userLogService.saveUserLog(userLog);
 	}
 
 	private DbUser populateDbUser(User user, HttpServletRequest request) {

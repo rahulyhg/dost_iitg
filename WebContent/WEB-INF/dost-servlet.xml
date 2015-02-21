@@ -64,6 +64,7 @@
 				<value>com.dost.hibernate.DbChatHistory</value>
 				<value>com.dost.hibernate.DbNote</value>
 				<value>com.dost.hibernate.DbDostEmail</value>
+				<value>com.dost.hibernate.DbUserLog</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
