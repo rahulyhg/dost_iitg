@@ -23,11 +23,16 @@ public class MessageDAOImpl implements MessageDAO {
 	
 	public List<DbMessage> getAllUserMessagesById(Long id, String pageNo, String per_page, String sort, String order) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from DbMessage m where m.msgId in (select mi.msgId from DbMessage mi where mi.sender.userId = ?) order by " + sort + " " + order;
+		String hql = "from DbMessage m where m.msgId in (select mi.msgId from DbMessage mi where mi.sender.userId = ?)";
+		if(sort != null && order != null) {
+			hql = hql +  "order by " + sort + " " + order;
+		}
         Query query = session.createQuery(hql);
         query.setParameter(0, id);
-        query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
-        query.setMaxResults(Integer.parseInt(per_page));
+        if(pageNo != null && per_page != null) {
+            query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+            query.setMaxResults(Integer.parseInt(per_page));
+        }
         List<DbMessage> messages = query.list();
         if(messages == null) {
         	return new ArrayList<DbMessage>();
@@ -53,22 +58,26 @@ public class MessageDAOImpl implements MessageDAO {
 		Session session = sessionFactory.getCurrentSession();
 //		String hql = "from DbMessage m join fetch m.recipients r where r.recipient.userId = ? and m.deleted = 0 and r.deleted = 0";
 //		String hql = "from DbMessage where msgId in (select distinct m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m." + sort + " " + order + ")";
-		String hql = "select m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m.messageId " + order;
+		String hql = "select m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m.messageId desc";// + order;
 		Query query = session.createQuery(hql);
         query.setParameter(0, userId);
-        query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+        if(pageNo != null && per_page != null) {
+        	query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+        }
         List<Long> msgIdList = query.list();
         if(msgIdList == null) {
         	return new ArrayList<DbMessage>();
         }
         Set<Long> msgIdSet = new LinkedHashSet<Long>(msgIdList);
         msgIdList = new ArrayList<Long>(msgIdSet);
-        if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
-//        	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
-        	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
-        }
-        else {
-        	msgIdList = msgIdList.subList(0, msgIdList.size());
+        if(pageNo != null && per_page != null) {
+            if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
+//            	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
+            	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
+            }
+            else {
+            	msgIdList = msgIdList.subList(0, msgIdList.size());
+            }        	
         }
         List<DbMessage> msgList = new ArrayList<DbMessage>();
         if(msgIdList.size() > 0) {
@@ -95,7 +104,7 @@ public class MessageDAOImpl implements MessageDAO {
 //		String hql = "select m from DbMessage m left outer join fetch m.recipients r where m.sender.userId = ? and m.deleted = 0";
 //		String hql = "select m from DbMessage m left outer join fetch m.recipients r where m.sender.userId = ?";
 
-		String hql = "select m.msgId from DbMessage m where m.sender.userId = ? order by m.messageId " + order;
+		String hql = "select m.msgId from DbMessage m where m.sender.userId = ? order by m.messageId desc";// + order;
 		Query query = session.createQuery(hql);
         query.setParameter(0, userId);
         query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
