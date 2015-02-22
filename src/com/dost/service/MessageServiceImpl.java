@@ -19,24 +19,24 @@ public class MessageServiceImpl implements MessageService {
 
 	
 	
-	public List<DbMessage> getAllUserMessages(Long id) {
-		return messageDAO.getAllUserMessagesById(id);
+	public List<DbMessage> getAllUserMessages(Long id, String pageNo, String per_page, String sort, String order) {
+		return messageDAO.getAllUserMessagesById(id, pageNo, per_page, sort, order);
 	}
 
 	public List<DbMessage> getMessagesById(Long id) {
 		return messageDAO.getMessagesById(id);
 	}
 	
-	public List<DbMessage> getUserMessages(Long userId) {
-		return messageDAO.getUserMessages(userId);
+	public List<DbMessage> getUserMessages(Long userId, String pageNo, String per_page, String sort, String order) {
+		return messageDAO.getUserMessages(userId, pageNo, per_page, sort, order);
 	}
 
 	public List<DbMessage> getDraftUserMessages(Long userId) {
 		return messageDAO.getDraftUserMessages(userId);
 	}
 
-	public List<DbMessage> getSentUserMessages(Long userId) {
-		return messageDAO.getSentUserMessages(userId);
+	public List<DbMessage> getSentUserMessages(Long userId, String pageNo, String per_page, String sort, String order) {
+		return messageDAO.getSentUserMessages(userId, pageNo, per_page, sort, order);
 	}
 
 	public DbMessage getMessageDetails(Long id) {

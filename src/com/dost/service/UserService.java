@@ -12,7 +12,7 @@ public interface UserService {
 	
 	public DbUser getUser(Long userId);
 	
-	public List<DbUser> getAllUsers(String role);
+	public List<DbUser> getAllUsers(String role, String pageNo, String per_page, String sort, String order, String username);
 	
 	public List<DbUser> getAllCounselors();
 	

@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUser(userId);
 	}
 
-	public List<DbUser> getAllUsers(String role) {
-		return userDAO.getAllUsers(role);
+	public List<DbUser> getAllUsers(String role, String pageNo, String per_page, String sort, String order, String username) {
+		return userDAO.getAllUsers(role, pageNo, per_page, sort, order, username);
 	}
 
 	public List<DbUser> getAllCounselors() {

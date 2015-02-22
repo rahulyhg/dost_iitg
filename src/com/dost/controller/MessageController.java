@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,8 +59,13 @@ public class MessageController {
 	/*messages received*/
 	@RequestMapping(value="/user/{id}/messages/all", method=RequestMethod.GET)  
 	@ResponseBody
-	public Map<Long, List<DbMessage>> getAllUserMessagesForHistory(@PathVariable Long id) {
-		List<DbMessage> messages = messageService.getAllUserMessages(id);
+	public Map<Long, List<DbMessage>> getAllUserMessagesForHistory(HttpServletRequest request, @PathVariable Long id) {
+		String pageNo = request.getParameter("page");
+		String per_page = request.getParameter("per_page");
+		String sort = request.getParameter("sort");
+		String order = request.getParameter("order");
+		
+		List<DbMessage> messages = messageService.getAllUserMessages(id, pageNo, per_page, sort, order);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate(msg.getSentDateDb()));
 		}
@@ -104,8 +111,13 @@ public class MessageController {
 	/*messages received*/
 	@RequestMapping(value="/user/{id}/messages", method=RequestMethod.GET)  
 	@ResponseBody
-	public List<DbMessage> getAllUserMessages(@PathVariable Long id) {
-		List<DbMessage> messages = messageService.getUserMessages(id);
+	public List<DbMessage> getAllUserMessages(HttpServletRequest request, @PathVariable Long id) {
+		String pageNo =  request.getParameter("page");
+		String per_page = request.getParameter("per_page");
+		String sort = request.getParameter("sort");
+		String order = request.getParameter("order");
+		
+		List<DbMessage> messages = messageService.getUserMessages(id, pageNo, per_page, sort, order);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate(msg.getSentDateDb()));
 		}
@@ -165,8 +177,14 @@ public class MessageController {
 	
 	@RequestMapping(value="/user/{id}/sentmessages", method=RequestMethod.GET)  
 	@ResponseBody
-	public List<DbMessage> getSentUserMessages(@PathVariable Long id) {
-		List<DbMessage> messages =  messageService.getSentUserMessages(id);
+	public List<DbMessage> getSentUserMessages(HttpServletRequest request, @PathVariable Long id) {
+		
+		String pageNo =  request.getParameter("page");
+		String per_page = request.getParameter("per_page");
+		String sort = request.getParameter("sort");
+		String order = request.getParameter("order");
+		
+		List<DbMessage> messages =  messageService.getSentUserMessages(id, pageNo, per_page, sort, order);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate(msg.getSentDateDb()));
 		}

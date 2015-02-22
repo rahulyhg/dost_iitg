@@ -40,7 +40,13 @@ public class UserController {
 		if(role == null || role.length() == 0) {
 			role = "ROLE_USER";
 		}
-		return userService.getAllUsers(role);
+		String pageNo =  request.getParameter("page");
+		String per_page = request.getParameter("per_page");
+		String sort = request.getParameter("sort");
+		String order = request.getParameter("order");
+		String username = request.getParameter("searchtext");
+		
+		return userService.getAllUsers(role, pageNo, per_page, sort, order, username);
 	}
 	
 	@RequestMapping(value="/user/{username}", method=RequestMethod.GET)  
