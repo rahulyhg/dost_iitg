@@ -78,15 +78,19 @@ public class UserDAOImpl implements UserDAO {
 		if(username != null) {
 			hqlQuery.append(" and u.username like :username");
 		}
-		hqlQuery.append(" order by u.userId " + order);
+		if(order != null) {
+			hqlQuery.append(" order by u.userId " + order);
+		}
 		
 		Query query = session.createQuery(hqlQuery.toString());
 		query.setParameter("role", role);
 		if(username != null) {
 			query.setParameter("username", "%"+ username +"%");
 		}
-		query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
-		query.setMaxResults(Integer.parseInt(per_page));
+		if(per_page != null) {
+			query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+			query.setMaxResults(Integer.parseInt(per_page));			
+		}
 		List<DbUser> users = query.list();
 		if(users == null) {
 			users = new ArrayList<DbUser>();
