@@ -107,19 +107,23 @@ public class MessageDAOImpl implements MessageDAO {
 		String hql = "select m.msgId from DbMessage m where m.sender.userId = ? order by m.messageId desc";// + order;
 		Query query = session.createQuery(hql);
         query.setParameter(0, userId);
-        query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+        if(pageNo != null) {
+        	query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+        }
         List<Long> msgIdList = query.list();
         if(msgIdList == null) {
         	return new ArrayList<DbMessage>();
         }
         Set<Long> msgIdSet = new LinkedHashSet<Long>(msgIdList);
         msgIdList = new ArrayList<Long>(msgIdSet);
-        if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
-//        	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
-        	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
-        }
-        else {
-        	msgIdList = msgIdList.subList(0, msgIdList.size());
+        if(pageNo != null) {
+            if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
+//            	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
+            	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
+            }
+            else {
+            	msgIdList = msgIdList.subList(0, msgIdList.size());
+            }        	
         }
         
         List<DbMessage> msgList = new ArrayList<DbMessage>();
