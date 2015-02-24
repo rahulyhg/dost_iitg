@@ -96,9 +96,14 @@ public class UserController {
 		for (Object principal : sessionRegistry.getAllPrincipals()) {
 			UserDetails userDetail = (UserDetails)principal;
 			if(username.equals(userDetail.getUsername())) {
-		        for (SessionInformation session : sessionRegistry.getAllSessions(principal, false)) {
+		        // Expiring user to block session
+				for (SessionInformation session : sessionRegistry.getAllSessions(principal, false)) {
 		            session.expireNow();
 		        }
+				// Reset password to null in DB
+				DbUser user = userService.getUserByUsername(username);
+				user.setPassword("");
+				userService.updateUser(user);
 		        statusMap.put("status", "true");
 			}
 		}
