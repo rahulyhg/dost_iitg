@@ -223,9 +223,9 @@
 							chatLinesToShowForMainPage = chatLinesToShowForMainPage + inner.userChats[k].body;
 						}
 					}
-
+					debugger;
 					$(".conversationsUser").append('<li class="well media conversation_topic">'+
-							'<div class="each_conversation" id="conversationsExpanded?='+index+'">'+
+							'<div class="each_conversation" id="chatExpanded?='+index+'">'+
 								'<div class="pull-left col-md-2" href="#">'+
 									'<div class="friend_name"><img class="avatar" id='+value.user.avatar+' src=avatar/'+value.user.avatar+'.png name='+value.user.avatar+ '/></div>'+
 									'<div class="friend_name">'+value.user.username+'</div>'+
@@ -236,7 +236,7 @@
 										'<div class="wrapperConversations">'+ chatLinesToShowForMainPage +'</div>'+
 								'</div>'+
 								'<div class="pull-right col-md-1">'+
-									'<div title="view complete conversation" href="conversationsExpanded?='+123+'">View'+
+									'<div title="view complete conversation" href="chatExpanded?='+14+'">View'+
 										'<span class="glyphicon glyphicon-chevron-right"></span>'+
 									'</div>'+
 								'</div>'+
@@ -245,7 +245,7 @@
 						'</li>');
 					
 					$(".conversationsCounselor").append('<li class="well media conversation_topic">'+
-							'<div class="each_conversation" id="conversationsExpanded?='+index+'">'+
+							'<div class="each_conversation" id="chatExpanded?='+index+'">'+
 								'<div class="pull-left col-md-2" href="#">'+
 									'<div class="friend_name"><img class="avatar" id='+value.user.avatar+' src=avatar/'+value.user.avatar+'.png name='+value.user.avatar+ '/></div>'+
 									'<div class="friend_name">'+value.user.username+'</div>'+
@@ -256,13 +256,18 @@
 										'<div class="wrapperConversations">'+ chatLinesToShowForMainPage +'</div>'+
 								'</div>'+
 								'<div class="pull-right col-md-1">'+
-									'<div title="view complete conversation" href="conversationsExpanded?='+123+'">View'+
+									'<div title="view complete conversation" href="chatExpanded?='+14+'">View'+
 										'<span class="glyphicon glyphicon-chevron-right"></span>'+
 									'</div>'+
 								'</div>'+
 								'<div class="clearfix"></div>'+
 							'</div>'+
 						'</li>');
+					
+					$(".each_conversation").click(function(){
+						var link = $(this).attr("id");
+						window.open(link,"_self");
+					});
 				});
 				if(chatMessageLength == 0) {
 					$(".conversations").html('<div class="noConversationsText">There are no chats <br/> <a class="leaveMessageLink">Leave a message</a></div>');

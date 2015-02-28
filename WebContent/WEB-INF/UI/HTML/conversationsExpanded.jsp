@@ -121,7 +121,7 @@
 						}
 						else{
 							
-							$.post('http://54.209.217.90:80/dost/api/userdetail/add', datatosend, function(response) {							
+							$.post('http://localhost:8800/dost/api/userdetail/add', datatosend, function(response) {							
 								if(response = ""){
 										$(".status").show().html("sending..");
 								}

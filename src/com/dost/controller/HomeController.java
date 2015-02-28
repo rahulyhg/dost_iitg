@@ -135,6 +135,12 @@ public class HomeController {
 	public ModelAndView counselor_conversationsExpanded() {
 		return new ModelAndView("conversationsExpanded"); 
 	}
+	
+	@RequestMapping("chatExpanded")  
+	public ModelAndView chatExpanded() {
+		return new ModelAndView("chatExpanded"); 
+	}
+	
 	@RequestMapping("patientList")  
 	public ModelAndView counselor_patientList() {
 		return new ModelAndView("patientList"); 
