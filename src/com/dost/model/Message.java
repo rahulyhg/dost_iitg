@@ -10,6 +10,9 @@ public class Message {
 	private Long important;
 	private Long msgId;
 	private String recipients;
+	// This is added later to handle tagging of counselors
+	private String counselorTag;
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +60,12 @@ public class Message {
 	}
 	public void setRecipients(String recipients) {
 		this.recipients = recipients;
+	}
+	public String getCounselorTag() {
+		return counselorTag;
+	}
+	public void setCounselorTag(String counselorTag) {
+		this.counselorTag = counselorTag;
 	}
 
 	

@@ -27,4 +27,8 @@ public interface MessageDAO {
 	public Long getMsgCount(Long id);
 
 	public int getUnreadMessageCount(Long id);
+	
+	public List<Long> getRecipientIdsBySenderId(Long senderId);
+	
+	public List<Long> getSenderIdsByRecipientId(Long recipientId);
 }

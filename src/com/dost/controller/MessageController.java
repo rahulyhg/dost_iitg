@@ -1,6 +1,7 @@
 package com.dost.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -17,12 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dost.hibernate.DbCounselor;
 import com.dost.hibernate.DbMessage;
 import com.dost.hibernate.DbMessageRecipient;
 import com.dost.hibernate.DbUser;
 import com.dost.model.Faq;
 import com.dost.model.Message;
 import com.dost.service.ChatHistoryService;
+import com.dost.service.CounselorService;
 import com.dost.service.MessageService;
 import com.dost.service.UserService;
 import com.dost.util.MessageUtil;
@@ -40,6 +43,9 @@ public class MessageController {
 	
 	@Autowired
 	ChatHistoryService chatHistoryService;
+	
+	@Autowired
+	CounselorService counselorService;
 	
 	@RequestMapping(value="/user/{id}/unreadcount", method=RequestMethod.GET)  
 	@ResponseBody
@@ -297,12 +303,17 @@ public class MessageController {
 		if(!recipientIds.equals("all")){
 			recipientArray = recipientIds.split(",");	
 		}
-		// If UI didnt send the recipient id then get list of available couselors
+		// If UI didnt send the recipient id then get list of available counselors
 		else {
-			List<DbUser> counselors = userService.getAllCounselors();
+			// Earlier we used to send messages to all counselors, now after 02/28 for IITG we send messages messages to only counselor having TAG sent by user
+//			List<DbUser> counselors = userService.getAllCounselors();
+			String selectedCounselorTag = message.getCounselorTag();
+			//TODO: Hardcoding it for now. It should come from UI
+			Long selectedCounselorTagId = 1l;
+			List<DbCounselor> counselors = counselorService.getCounselorsByCodeIds(Arrays.asList(selectedCounselorTagId));
 			recipientArray = new String[counselors.size()];
 			for(int i = 0; i < counselors.size(); i++) {
-				recipientArray[i] = ""+counselors.get(i).getUserId();
+				recipientArray[i] = ""+counselors.get(i).getCounselorId();
 			}
 		}
 		for(String userId : recipientArray) {

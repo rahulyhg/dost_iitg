@@ -197,4 +197,26 @@ public class MessageDAOImpl implements MessageDAO {
 		Long count = (Long)query.uniqueResult();
 		return count.intValue();
 	}
+
+	public List<Long> getRecipientIdsBySenderId(Long senderId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select recipient.userId from DbMessageRecipient mr where mr.message.sender.userId = :id and recipient.dbUserRole.role = 'ROLE_USER'");
+		query.setParameter("id", senderId);
+		List<Long> recipients = query.list();
+		if(recipients == null) {
+			recipients = new ArrayList<Long>();
+		}
+		return recipients;
+	}
+
+	public List<Long> getSenderIdsByRecipientId(Long recipientId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("select mr.message.sender.userId from DbMessageRecipient mr where mr.recipient.userId = :id and recipient.dbUserRole.role = 'ROLE_USER'");
+		query.setParameter("id", recipientId);
+		List<Long> recipients = query.list();
+		if(recipients == null) {
+			recipients = new ArrayList<Long>();
+		}
+		return recipients;
+	}
 }

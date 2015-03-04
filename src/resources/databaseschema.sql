@@ -302,3 +302,52 @@ CREATE TABLE `dost_userlog` (
 
 CREATE TRIGGER dost_userlog_OnInsert BEFORE INSERT ON `dost_userlog`
     FOR EACH ROW SET NEW.logintime = NOW();
+    
+    
+CREATE TABLE `dost_codes` (
+    `codeid` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` varchar(255) NOT NULL,
+	`value` varchar(1000) NOT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`codeid`)
+);
+
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('1', 'TAG', 'Relationship', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('2', 'TAG', 'Career', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('3', 'TAG', 'Education', '0');
+
+CREATE TABLE `dost_counselors` (
+    `counselorid` INTEGER NOT NULL AUTO_INCREMENT,
+	`username` varchar(1000) NOT NULL,
+    `password` varchar(1000) NOT NULL,
+	`name` varchar(1000) NOT NULL,
+    `description` varchar(10000) NOT NULL,
+	`profilename` varchar(1000) NOT NULL,
+    `timing` varchar(255) DEFAULT NULL,
+    `gender` varchar(255) DEFAULT NULL,
+    `location` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`counselorid`)
+);
+
+CREATE TABLE `dost_counselortags` (
+    `tagid` INTEGER NOT NULL AUTO_INCREMENT,
+    `counselorid` INTEGER NOT NULL,
+	`tagname` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`tagid`)
+);
+-- Add data in dost_counselortags
+-- Going forward we need to add data in dost_counselors also apart from users table

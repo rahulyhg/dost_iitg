@@ -62,4 +62,12 @@ public class MessageServiceImpl implements MessageService {
 	public int getUnreadMessageCount(Long id) {
 		return messageDAO.getUnreadMessageCount(id);
 	}
+
+	public List<Long> getRecipientIdsBySenderId(Long senderId) {
+		return messageDAO.getRecipientIdsBySenderId(senderId);
+	}
+
+	public List<Long> getSenderIdsByRecipientId(Long recipientId) {
+		return messageDAO.getSenderIdsByRecipientId(recipientId);
+	}
 }

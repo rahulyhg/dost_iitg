@@ -60,6 +60,7 @@ public class UserDAOImpl implements UserDAO {
 		return user;
 	}
 	
+
 	public List<DbUser> getUsers(List<Long> ids) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("from DbUser u where u.userId in (:ids)");

@@ -7,7 +7,7 @@
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<script>
 	$("document").ready(function() {
-		$.getJSON("/dost/api/users", function(user) {
+		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}/clients", function(user) {
 			$(".loading").hide();
 			for(i=0; i<user.length; i++){
 				$(".patient_list").append('<li class="media ceac_patient">'+

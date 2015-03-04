@@ -2,9 +2,13 @@ package com.dost.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dost.hibernate.DbMessage;
+import com.dost.hibernate.DbUser;
 import com.dost.model.ChatHistory;
 import com.dost.model.UserChat;
 import com.dost.service.ChatHistoryService;
 import com.dost.service.MessageService;
+import com.dost.service.UserService;
 import com.dost.util.Utils;
 
 @Controller
@@ -29,6 +35,9 @@ public class PatientHistoryController {
 
 	@Autowired
 	ChatHistoryService chatHistoryService;
+	
+	@Autowired
+	UserService userService;
 
 	/**
 	 * Nobody is using it.
@@ -113,11 +122,25 @@ public class PatientHistoryController {
 	//
 	// return historyData;
 	// }
+	
+	@RequestMapping(value="/user/{username}/clients", method=RequestMethod.GET)  
+	@ResponseBody
+	public List<DbUser> getClientList(@PathVariable String username, HttpServletRequest request) {
+		
+		Set<Long> userIds = new HashSet<Long>();
+		DbUser inputUser = userService.getUserByUsername(username);
+		List<Long> recipientIds = messageService.getRecipientIdsBySenderId(inputUser.getUserId());
+		List<Long> senderIds = messageService.getSenderIdsByRecipientId(inputUser.getUserId());
+		userIds.addAll(recipientIds);
+		userIds.addAll(senderIds);
+		
+		return userService.getUsers(new ArrayList<Long>(userIds));
+	}
 
 	@RequestMapping(value = "/user/{id}/patienthistory/all", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getAllUserMessagesForHistory(@PathVariable Long id) {
-		List<DbMessage> messages = messageService.getAllUserMessages(id);
+		List<DbMessage> messages = messageService.getAllUserMessages(id, null, null, null, null);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate("yyyy-MM-dd hh:mm:s", msg.getSentDateDb()));
 			System.out.println(msg.getSentDate());

@@ -65,6 +65,9 @@
 				<value>com.dost.hibernate.DbNote</value>
 				<value>com.dost.hibernate.DbDostEmail</value>
 				<value>com.dost.hibernate.DbUserLog</value>
+				<value>com.dost.hibernate.DbCode</value>
+				<value>com.dost.hibernate.DbCounselor</value>
+				<value>com.dost.hibernate.DbCounselorTag</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
