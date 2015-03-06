@@ -96,7 +96,7 @@
 			<div class="col-md-8">
 				<ul>
 					<li class="exploration_option well col-md-6" id="discussions">
-							<h3 class="categoryName"><a href="forums/show/1.page">Discussions</a></h3>
+							<h3 class="categoryName"><a href="forums/show/6.page">Discussions</a></h3>
 							<ul class="discussions_list details_box">
 								<li class="loadingIndex" id="loading">
 									<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />

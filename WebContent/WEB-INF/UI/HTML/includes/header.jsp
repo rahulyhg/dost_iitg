@@ -31,7 +31,7 @@
 					  
 					  <li id="patientHistory"><a href="${pageContext.request.contextPath}/patientList">Client History</a></li>
 					  <!-- <li id="onlineCounseling"><a href="onlineCounseling">Online Counseling</a></li> -->
-					  <li id="forums"><a href="${pageContext.request.contextPath}/forums/show/1.page">Discussions</a></li>
+					  <li id="forums"><a href="${pageContext.request.contextPath}/forums/show/6.page">Discussions</a></li>
 					  <li id="faqs"><a href="${pageContext.request.contextPath}/faqs">FAQs</a></li>
 					  <li id="quotes"><a href="${pageContext.request.contextPath}/quotes">Quotes</a></li>
 					  <li class="dropdown" id="blog">
@@ -76,7 +76,7 @@
 				  <sec:authorize access="hasRole('ROLE_USER')">
 					<li style="" id="conversations"><a href="${pageContext.request.contextPath}/conversations">My Conversations</a></li>
 				  </sec:authorize>
-				  <li style="" id="discussions"><a href="${pageContext.request.contextPath}/forums/show/1.page">Discussions</a></li>
+				  <li style="" id="discussions"><a href="${pageContext.request.contextPath}/forums/show/6.page">Discussions</a></li>
 				  <sec:authorize access="hasRole('ROLE_USER')">
 				  	<li style="" id="talkToFriend"><a href="${pageContext.request.contextPath}/talkToFriend">Talk To a Friend</a></li>
 				  </sec:authorize>

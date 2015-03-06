@@ -32,7 +32,8 @@ public class ForumDAOImpl implements ForumDAO {
 	
 	public List<DbForumForum> getForumList() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select ff from DbForumForum ff ");
+		// TODO: Satya: this is the all forum in live forumId = 6
+		Query query = session.createQuery("select ff from DbForumForum ff where ff.forumId not in (6)");
 		
 		List<DbForumForum> forums = query.list();
 		if(forums == null) {

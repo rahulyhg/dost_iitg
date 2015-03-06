@@ -476,16 +476,31 @@ public class GenericTopicDAO extends AutoKeys implements TopicDAO
 	 */
 	public List selectAllByForumByLimit(int forumId, int startFrom, int count)
 	{
-		String sql = SystemGlobals.getSql("TopicModel.selectAllByForumByLimit");
+		String sql;
+		//TODO: Satya: this is the all forum in live forumId = 6
+		if(forumId == 6) {
+			sql = SystemGlobals.getSql("TopicModel.selectAllForGenericForumByLimit");
+		}
+		else {
+			sql = SystemGlobals.getSql("TopicModel.selectAllByForumByLimit");
+		}
 
 		PreparedStatement p = null;
 
 		try {
 			p = JForumExecutionContext.getConnection().prepareStatement(sql);
-			p.setInt(1, forumId);
-			p.setInt(2, forumId);
-			p.setInt(3, startFrom);
-			p.setInt(4, count);
+			//TODO: Satya: this is the all forum in live forumId = 6
+			if(forumId == 6) {
+				p.setInt(1, forumId);
+				p.setInt(2, startFrom);
+				p.setInt(3, count);
+			}
+			else {
+				p.setInt(1, forumId);
+				p.setInt(2, forumId);
+				p.setInt(3, startFrom);
+				p.setInt(4, count);				
+			}
 
 			return this.fillTopicsData(p);
 		}

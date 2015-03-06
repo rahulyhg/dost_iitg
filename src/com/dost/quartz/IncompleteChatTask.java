@@ -48,7 +48,7 @@ public class IncompleteChatTask {
 		content.append("<br><br>");
 		content.append("I can assure you we will not judge you and you can share anything with us. You are completely anonymous. ");
 		content.append("You can chat with us online (through <a href='http://www.yourdost.com/talkToFriend'>talk to friend</a> on top) or reply to this and we will get back to you.");
-		content.append("Additionally, you can also start a <a href='http://www.yourdost.com/forums/show/1.page'>public discussion</a> and get the community to share their thoughts.");
+		content.append("Additionally, you can also start a <a href='http://www.yourdost.com/forums/show/6.page'>public discussion</a> and get the community to share their thoughts.");
 		content.append("<br><br>");
 		content.append("All the best");
 		content.append("<br><br>");
