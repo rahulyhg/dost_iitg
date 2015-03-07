@@ -140,7 +140,11 @@ public class PatientHistoryController {
 	@RequestMapping(value = "/user/{id}/patienthistory/all", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getAllUserMessagesForHistory(@PathVariable Long id) {
-		List<DbMessage> messages = messageService.getAllUserMessages(id, null, null, null, null);
+		List<DbMessage> senderMessages = messageService.getAllUserMessages(id, null, null, null, null);
+		List<DbMessage> recipientMessages = messageService.getUserMessages(id, null, null, null, null);
+		Set<DbMessage> messages = new HashSet<DbMessage>();
+		messages.addAll(senderMessages);
+		messages.addAll(recipientMessages);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate("yyyy-MM-dd hh:mm:s", msg.getSentDateDb()));
 			System.out.println(msg.getSentDate());
