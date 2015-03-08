@@ -4,12 +4,12 @@
 	<div class="like_box">
 			<iframe  src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com/yourtruedost&amp;layout=standard&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp" style="overflow:hidden;max-width:600px;height:80px;" scrolling="no" frameborder="0" allowTransparency="true"><a href="http://www.trivoo.net" class="fbook">trivoo.net</a></iframe>
 	<div>
-	<a href="termsOfService" class="footer_link">Terms of Service</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="team"  class="footer_link">Our Team</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="testimonials"  class="footer_link">What users say about us?</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="contact"  class="footer_link">Contact Us</a>
+	<a href="termsOfService" class="footer_link">Terms of Service</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="team"  class="footer_link">Our Team</a>&nbsp;&nbsp; <!--| &nbsp;&nbsp;<a href="testimonials"  class="footer_link">What users say about us?</a>&nbsp;&nbsp; | &nbsp;&nbsp;  <a href="contact"  class="footer_link">Contact Us</a>-->
 	<br/><br/>
 	Copyright 2015, D.O.S.T. All rights reserved | Contact us at <strong><a title="Contact for enquiries" target="_blank" href="mailto:customersupport@yourdost.com">customersupport@yourdost.com</a></strong> for any queries, we respond really fast!
 </footer>
 
-<script src="http://d2g9qbzl5h49rh.cloudfront.net/static/feedback2.js?3.2.4748" type="text/javascript">
+<!-- <script src="http://d2g9qbzl5h49rh.cloudfront.net/static/feedback2.js?3.2.4748" type="text/javascript">
   new JotformFeedback({
      formId		: "43353828159462",
      buttonText	: "Feedback",
@@ -22,7 +22,7 @@
      width		: 700,
      height		: 500
   });
-</script>
+</script> -->
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-549e8fe81b2546da" async="async"></script>
