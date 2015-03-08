@@ -5,6 +5,7 @@
 <html lang="en">
 
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 	<script>
 	$( document ).ready(function() {
 		var pageUrl=window.location.href;
@@ -119,7 +120,12 @@
 	});
 	
 
-
+	function updateEncPass () {
+		var pass = $("#password").val();
+		var encPass = CryptoJS.SHA3(pass);
+		$("#password").val(encPass);
+		return true;
+	}
 	</script>
 	
 	<body class="container-fluid theme-default">
@@ -127,7 +133,7 @@
 				
 		<div class="container">
 			
-			<form  class="form-signin" action="http://localhost:8800/dost/api/signup" >
+			<form  onsubmit="return updateEncPass();"  method='POST' class="form-signin" action="http://localhost:8800/dost/api/signup" >
 				<div class="col-md-7 col-md-offset-2 form-signin-heading">
 					<p>Hi,</p>
 					<p>Don't worry, whatever it is.. we can fix it together. <em>Get Started!</em></p>

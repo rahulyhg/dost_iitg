@@ -3,7 +3,7 @@
 <html>
 
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
-
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 	<script>
 	$(document).ready( function() {
 	$('#forgot').click(function() {
@@ -17,6 +17,12 @@
 	    $('form').submit();  // submit the form
 	});
 	});
+	function updateEncPass () {
+		var pass = $("#password").val();
+		var encPass = CryptoJS.SHA3(pass);
+		$("#password").val(encPass);
+		return true;
+	}
 	</script>
 	
 		
@@ -27,7 +33,7 @@
 
 
 				
-			<form name='loginForm' action="<c:url value='/j_spring_security_check' />" method='POST'>
+			<form name='loginForm' onsubmit="return updateEncPass();" action="<c:url value='/j_spring_security_check' />" method='POST'>
 				<h3 class="col-md-offset-2 form-signin-heading">
 					<p>Hi,</p>
 					<p>Don't worry, whatever it is.. we can fix it together. <em>Get Started!</em></p>
