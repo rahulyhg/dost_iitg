@@ -83,3 +83,14 @@ function check_if_contains_space( value ){
 	}
 	
 }
+function blockUser(name,ele) {
+	$.getJSON("/dost/api/user/"+name+"/block", function(data) {
+		$(ele).parent().remove();
+	});
+}
+function showButton(ele) {
+	$(ele).find("input").show();
+}
+function hideButton(ele) {
+	$(ele).find("input").hide();
+}
