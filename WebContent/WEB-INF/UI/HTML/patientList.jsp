@@ -10,13 +10,13 @@
 		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}/clients", function(user) {
 			$(".loading").hide();
 			for(i=0; i<user.length; i++){
-				$(".patient_list").append('<li class="media ceac_patient">'+
+				$(".patient_list").append('<li onmouseover="showButton(this);" onmouseout="hideButton(this);" class="media ceac_patient">'+
 											'<a class="pull-left col-md-6" href="patientDetails?='+user[i].username+"+"+user[i].userId+'">'+
 												'<img class="avatar" id='+user[i].avatar+' src="avatar/'+user[i].avatar+'.png" name='+user[i].avatar+'/>'+
 												'<span class="patient_name">'+user[i].username+'</span>'+
 												'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+
 											'</a>'+
-											
+										'<input type="button" value="BLOCK" style="float:right;display:none;" onclick="blockUser(\''+user[i].username+'\',this)">'+	
 										'</li>');
 			}
 			
@@ -26,7 +26,9 @@
 			$(".col-md-11").prev("div").addClass("searchBox");
 			/*end of adding search for patient*/
 		});	
-		
+			
+			
+	
 		
 	});
 	</script>
