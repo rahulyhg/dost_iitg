@@ -77,7 +77,7 @@
 	<body class="container-fluid   theme-default welcome">
 		<jsp:include page="includes/header.jsp"></jsp:include>
 		<div class="container row-fluid welcomePage">
-			<div  class="col-md-12 banner well"> 
+			<!-- <div  class="col-md-12 banner well"> 
 				<div class="col-md-8 testimonial" >
 					<h5>What users say about us?</h5>
 					<p><strong>&ldquo;</strong>i was thinking to personally meet a professional life coach or something because i was getting overwhelmed with my recursive thoughts but since i have you guys helping me... i think my search has ended here</p>
@@ -92,7 +92,7 @@
 					<a href="https://milaap.org/campaigns/dost" target="_blank">SUPPORT THE CAUSE</a>
 				</div>
 				<div class="clearfix"></div>
-			</div>
+			</div> -->
 			<div class="col-md-8">
 				<ul>
 					<li class="exploration_option well col-md-6" id="discussions">
