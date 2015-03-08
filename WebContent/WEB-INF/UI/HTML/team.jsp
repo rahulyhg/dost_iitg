@@ -68,7 +68,7 @@
 					
 				});
 				
-				$.each(campus, function( index, elem ){
+				/* $.each(campus, function( index, elem ){
 					var html = return_team_html() ;
 					
 					$("#campusAmbassador .details").append(html) ;
@@ -94,7 +94,7 @@
 						$(this_list_html).css("margin-top","40px" ) ;
 					}
 					
-				});
+				}); */
 
 		});
 
@@ -151,13 +151,13 @@
 				<h2 class="pull-left pageHeading">
                     VOLUNTEERS <em>(People who make this work seamlessly)</em>
 				</h2>
-				<a href="https://www.surveymonkey.com/s/FP6Z6QN" target="_blank" class="pull-left become_a_volunteer">Do you want to volunteer too?</a>
+				<!--  <a href="https://www.surveymonkey.com/s/FP6Z6QN" target="_blank" class="pull-left become_a_volunteer">Do you want to volunteer too?</a>-->
 			</div>
 			<div class="details well"></div>
 			
 		</div>
 	
-	  <div id="campusAmbassador" class="row" >	
+	 <!--  <div id="campusAmbassador" class="row" >	
 			<div class="row">
 				<h2 class="pull-left pageHeading">
 					CAMPUS AMBASSADOR
@@ -165,7 +165,7 @@
 				<a href="https://www.surveymonkey.com/s/FP6Z6QN" target="_blank" class="pull-left become_a_volunteer">Do you want to volunteer too?</a>
 			</div>
 			<div class="details well"></div>
-	</div>		
+	</div>	 -->	
 </div>
 
 		<jsp:include page="includes/commonFooter.jsp"></jsp:include>
