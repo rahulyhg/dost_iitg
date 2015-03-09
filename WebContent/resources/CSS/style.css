@@ -76,6 +76,9 @@
 		padding:0;
 		margin: 5px;
 	}
+	.chatContainer{
+		margin-top:40px;
+	}
 	.quotesBg{
 		background:url("../img/background_hand.png") no-repeat scroll 0 0 #fff;
 		margin-top: 70px;

@@ -91,12 +91,14 @@
 	
 	<body class="theme-default">
 		<jsp:include page="includes/header.jsp"></jsp:include>
-		<div class="col-md-8 well">
-			<ul class="conversations conversation_History_details">
-				<li class="loading" id="loading">
-						<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
-				</li>
-			</ul>
+		<div class="container">
+			<div class="col-md-8 well chatContainer" style="">
+				<ul class="conversations conversation_History_details">
+					<li class="loading" id="loading">
+							<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
+					</li>
+				</ul>
+			</div>
 		</div>
 		<jsp:include page="includes/commonFooter.jsp"></jsp:include>
 	</body>
