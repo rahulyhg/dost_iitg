@@ -40,6 +40,8 @@
 	      			<br/>
 	      			<label>Message</label>
 	      			<textarea required id="messageContent"  rows="3" class="well form-control" placeholder="Type your query"></textarea>
+	      			<label>Tags</label>
+	      			<select name="userTags" id="userTags" class="form-control"></select>
 	      		</form>
 	      		</sec:authorize>
 	    </div>

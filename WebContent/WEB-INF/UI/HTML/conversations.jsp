@@ -86,7 +86,7 @@
 						if( messages[i].recipients.length == 0 ) continue ;
 						
 						var ismessagenew = 0;
-						debugger;
+					//	debugger;
 						if(messages[i].recipients == 'undefined') {
 							ismessagenew = 0;
 						}
@@ -135,7 +135,7 @@
 			
 					for (var j = 0 ; j < messages.length; j++) {
 						var ismessagenew = 0;
-						debugger;
+					//	debugger;
 						if(messages[j].recipients == 'undefined') {
 							ismessagenew = 0;
 						}
@@ -206,7 +206,7 @@
 					var chatLength = inner.userChats.length; // We want to show 3-4-5 lines of chat
 					if(chatLength < 3) {
 						for(var k in inner.userChats) {
-							debugger;
+				//			debugger;
 							chatLinesToShowForMainPage = chatLinesToShowForMainPage + '<br>';
 							chatLinesToShowForMainPage = chatLinesToShowForMainPage + inner.userChats[k].body;
 						}						
@@ -223,7 +223,7 @@
 							chatLinesToShowForMainPage = chatLinesToShowForMainPage + inner.userChats[k].body;
 						}
 					}
-					debugger;
+				//	debugger;
 					$(".conversationsUser").append('<li class="well media conversation_topic">'+
 							'<div class="each_conversation" id="chatExpanded?='+index+'">'+
 								'<div class="pull-left col-md-2" href="#">'+
@@ -338,6 +338,19 @@
 		$(".leaveMessage").click(function(){
 			$("#dialogMessage").dialog("open");
 			$('.ui-widget-overlay').css('background', 'white');
+			if( $("#userTags") ){
+				$.getJSON("/dost/api/codes/TAG", function(tags){
+					
+					$.each( tags, function( index, tag ){
+						var codeID = tag.codeId ;
+						var tagValue = tag.value ;
+						
+						$("#userTags").append('<option value="'+ codeID +'">'+ tagValue +'</option>') ;
+						
+					});
+					
+				});
+			}
 		});
 		
 		$("#dialogMessage").dialog({
@@ -362,7 +375,14 @@
 							}
 														
 							var datatosend = 'subject='+$("#subject").val()+'&content=' + $("#messageContent").val()+ '&recipients='+ selected_recipient +'&senderId=' + userid;
-							//alert(datatosend);						 
+
+							if( $("#userTags").val() ){
+								console.log( "enteres" ) ;
+								datatosend += '&counselorTag=' + $("#userTags").val() ;
+							}	
+							
+							
+							console.log(datatosend);						 
 							if($("#recipient").val()== '' || $("#subject").val()== '' || $("#messageContent").val() =='') {
 								$(".error").show().text("Please fill in details");
 							}
@@ -422,7 +442,7 @@
 	
 		// Code from Druveen to handle space and link url
 		function Linkify(inputText) {
-			debugger;
+	//		debugger;
 			if (inputText && inputText.indexOf("href=") != -1) {
 			  return inputText;
 			} 
