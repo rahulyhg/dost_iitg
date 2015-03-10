@@ -309,7 +309,8 @@ public class MessageController {
 //			List<DbUser> counselors = userService.getAllCounselors();
 			String selectedCounselorTag = message.getCounselorTag();
 			//TODO: Hardcoding it for now. It should come from UI
-			Long selectedCounselorTagId = 1l;
+//			Long selectedCounselorTagId = 1l;
+			Long selectedCounselorTagId = Long.parseLong(selectedCounselorTag);
 			List<DbCounselor> counselors = counselorService.getCounselorsByCodeIds(Arrays.asList(selectedCounselorTagId));
 			recipientArray = new String[counselors.size()];
 			for(int i = 0; i < counselors.size(); i++) {
