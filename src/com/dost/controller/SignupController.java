@@ -68,7 +68,7 @@ public class SignupController {
 	}
 	
 	// Method to handle initial signup
-	@RequestMapping(value="/signup", method=RequestMethod.GET)  
+	@RequestMapping(value="/signup", method=RequestMethod.POST)  
 	public String signup(HttpServletRequest request) {
 		
 		User user = new User();
