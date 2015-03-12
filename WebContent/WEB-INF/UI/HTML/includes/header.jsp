@@ -53,6 +53,7 @@
 		</div>
 	  </div>
 	</header>
+	
 </sec:authorize>
 <sec:authorize access="!hasRole('ROLE_ADMIN')">
 	<header id="main-navbar" class="navbar navbar-inverse navbar-fixed-top">
@@ -101,6 +102,12 @@
 		            <li style="" id="team"><a href="${pageContext.request.contextPath}/team">Team</a></li>
 				</ul>
 			  </div><!--/.nav-collapse -->
+			  <!-- Alert message start-->
+				<div style="position:absolute;left:35%;padding-left:25px;padding-right:25px;background-color:#FFE390;"> 
+						<p>It is not a suicide prevention support portal. If you are feeling suicidal,<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please call suicide prevention helpline at +91 88788 88998</p>
+				</div>
+			 <!-- Alert message end-->
 			</div>
 		  </div>
 	</header>
