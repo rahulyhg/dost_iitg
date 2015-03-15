@@ -319,6 +319,7 @@ CREATE TABLE `dost_codes` (
 INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('1', 'TAG', 'Relationship', '0');
 INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('2', 'TAG', 'Career', '0');
 INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('3', 'TAG', 'Education', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('8', 'TAG', 'Others', '0');
 
 CREATE TABLE `dost_counselors` (
     `counselorid` INTEGER NOT NULL AUTO_INCREMENT,
