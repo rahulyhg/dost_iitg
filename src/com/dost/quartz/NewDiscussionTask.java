@@ -35,7 +35,7 @@ public class NewDiscussionTask {
 		// Do this only if genericEmail is not null
 		if(genericEmail != null) {
 			// Explode this generic email and create entry for all users
-			List<DbUser> users = userService.getAllUsers("ROLE_USER");
+			List<DbUser> users = userService.getAllUsers("ROLE_USER", null, null, null, null, null);
 			// Create entry for each user now
 			for(DbUser user : users) {
 				if(user.getEmail() != null) {
