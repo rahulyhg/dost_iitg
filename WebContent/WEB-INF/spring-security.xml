@@ -62,7 +62,7 @@
 		</authentication-provider>
 	</authentication-manager>
 	
-	<!-- Scheduled Task Entries Start -->
+	<!-- Scheduled Task Entries Start 
 
 	<beans:bean id="chatFeedbackTask" class="com.dost.quartz.ChatFeedbackTask" />	
 	<beans:bean id="incompleteChatTask" class="com.dost.quartz.IncompleteChatTask" />	
@@ -71,7 +71,7 @@
 	<beans:bean id="newPostOnYourDiscussionTask" class="com.dost.quartz.NewPostOnYourDiscussionTask" />	
 	<beans:bean id="noActivityInTwoWeeksTask" class="com.dost.quartz.NoActivityInTwoWeeksTask" />	
 	<beans:bean id="signupOnlyTask" class="com.dost.quartz.SignupOnlyTask" />	
-	
+	-->
 	<!-- Scheduled Task Entries End -->
 	
 	<!-- Code segment for block user -->
