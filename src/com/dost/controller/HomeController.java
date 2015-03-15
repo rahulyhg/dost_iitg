@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dost.util.Utils;
+
 @Controller
 public class HomeController {
 
@@ -96,8 +98,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping("signupNow")  
-	public ModelAndView signupNow() {
-		return new ModelAndView("signupNow"); 
+	public ModelAndView signupNow(HttpServletRequest request) {
+		if(Utils.showSignUpPage(request)) {
+			return new ModelAndView("signupNow"); 
+		}
+		else {
+			return new ModelAndView("login"); 
+		}
 	}
 	
 	@RequestMapping("user/discussionsAll")  

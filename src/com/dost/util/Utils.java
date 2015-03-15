@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Utils {
 
 	public static String formatDate(Date date) {
@@ -52,5 +54,21 @@ public class Utils {
 	    localDate.setHours(localDate.getHours() - 4);
 //	    return localDate.getTime() / 1000L;
 	    return localDate.getTime();
+	}
+	
+	public static boolean showSignUpPage(HttpServletRequest request) {
+		boolean showSignUpPage = false;
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		if (ipAddress == null) {  
+		   ipAddress = request.getRemoteAddr();  
+		}
+		try {
+			showSignUpPage = NetMaskLookupService.ValidateIP(ipAddress);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			showSignUpPage = false;
+		}
+		return showSignUpPage;
 	}
 }
