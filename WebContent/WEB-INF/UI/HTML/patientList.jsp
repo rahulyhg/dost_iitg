@@ -32,7 +32,9 @@
 					var searchText = $("#patientSearch").val();
 					if(searchText.length >= 3) {
 						loadingImage();
-						$(".patient_list").empty();
+						if(gloablSearchPage <= 1) {
+							$(".patient_list").empty();	
+						}
 						var url = '/dost/api/users?searchtext='+searchText+'&page='+gloablSearchPage+'&per_page='+globalPerPage+'&sort_by=userId&order=desc';
 						loadPatientList(url, true);	
 					}else if(searchText.length == 0){
@@ -70,7 +72,7 @@
 																	'<span class="patient_name">'+user[i].username+'</span>'+
 																	'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+
 																'</a>'+
-															'<input type="button" value="BLOCK" style="float:right;display:none;" onclick="blockUser(\''+user[i].username+'\',this)">'+	
+																'<button class="pull-right btn btn-large btn-primary" style="display:none;" type="button" onclick="blockUser(\''+user[i].username+'\',this)">Block</button>'+	
 															'</li>');
 									
 								}
