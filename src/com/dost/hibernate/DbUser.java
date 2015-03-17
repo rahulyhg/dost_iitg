@@ -70,6 +70,8 @@ public class DbUser extends DbGeneric implements Serializable {
 	private String branch;
 	@Column(name = "email")
 	private String email;	
+	@Column(name = "blocked")
+	private String blocked;	
 	
 	public Long getUserId() {
 		return userId;
@@ -154,6 +156,12 @@ public class DbUser extends DbGeneric implements Serializable {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getBlocked() {
+		return blocked;
+	}
+	public void setBlocked(String blocked) {
+		this.blocked = blocked;
 	}
 	
 	

@@ -14,6 +14,7 @@ public class User {
 	private String year = "";
 	private String branch = "";
 	private String email = "";
+	private String blocked = "";
 	
 	public Long getUserId() {
 		return userId;
@@ -80,6 +81,12 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getBlocked() {
+		return blocked;
+	}
+	public void setBlocked(String blocked) {
+		this.blocked = blocked;
 	}
 	
 	

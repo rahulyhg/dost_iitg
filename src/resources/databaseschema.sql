@@ -352,3 +352,6 @@ CREATE TABLE `dost_counselortags` (
 );
 -- Add data in dost_counselortags
 -- Going forward we need to add data in dost_counselors also apart from users table
+
+ALTER TABLE user
+ADD COLUMN `blocked` VARCHAR(10) DEFAULT false AFTER `email`;

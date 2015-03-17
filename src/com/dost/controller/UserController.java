@@ -26,6 +26,9 @@ import com.dost.service.UserService;
 @RequestMapping("api")
 public class UserController {
 
+//	@Value("${test}")
+//	private String test;
+	
 	@Autowired
 	UserService userService;
 	
@@ -100,13 +103,21 @@ public class UserController {
 				for (SessionInformation session : sessionRegistry.getAllSessions(principal, false)) {
 		            session.expireNow();
 		        }
-				// Reset password to null in DB
-				DbUser user = userService.getUserByUsername(username);
-				user.setPassword("");
-				userService.updateUser(user);
-		        statusMap.put("status", "true");
+//				// Reset password to null in DB
+//				DbUser user = userService.getUserByUsername(username);
+//				user.setPassword("");
+//				user.setBlocked("1");
+//				userService.updateUser(user);
+//		        statusMap.put("status", "true");
 			}
 		}
+		// Reset password to null in DB
+		// Do this even when user is not loggedin
+		DbUser user = userService.getUserByUsername(username);
+		user.setPassword("");
+		user.setBlocked("1");
+		userService.updateUser(user);
+        statusMap.put("status", "true");
 		return statusMap;
 	}	
 	

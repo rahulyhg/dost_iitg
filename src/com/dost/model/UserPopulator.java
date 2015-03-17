@@ -13,6 +13,8 @@ public class UserPopulator {
 		user.setYear(dbUser.getYear());
 		user.setHostel(dbUser.getHostel());
 		user.setBranch(dbUser.getBranch());
+		user.setEmail(dbUser.getEmail());
+		user.setBlocked(dbUser.getBlocked());
 	}
 	
 	public static void populateDbUser(User user, DbUser dbUser) {
@@ -23,5 +25,7 @@ public class UserPopulator {
 		dbUser.setYear(user.getYear());
 		dbUser.setHostel(user.getHostel());
 		dbUser.setBranch(user.getBranch());
+		dbUser.setEmail(user.getEmail());
+		dbUser.setBlocked(user.getBlocked());
 	}
 }
