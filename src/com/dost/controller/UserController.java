@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dost.hibernate.DbUser;
 import com.dost.model.User;
 import com.dost.model.UserPopulator;
+import com.dost.model.UserProfile;
 import com.dost.service.UserService;
 
 @Controller
@@ -64,6 +65,26 @@ public class UserController {
 	public List<DbUser> getSearchUserByUsername(@PathVariable String username) {
 		List<DbUser> searchedUsers = userService.searchUserByUserName(username);
 		return searchedUsers;
+	}
+
+	@RequestMapping(value="/user/{username}/emailpassword", method=RequestMethod.POST)  
+	@ResponseBody
+	public Map<String, String> sendPasswordResetLinkToUser(@PathVariable String username, UserProfile userProfile) {
+		
+		//TODO: perform business logic 
+		Map<String, String> response = new HashMap<String, String>();
+		response.put("status", "success");
+		return response;
+	}
+	
+	@RequestMapping(value="/user/{username}/resetpassword", method=RequestMethod.POST)  
+	@ResponseBody
+	public Map<String, String> resetUserPassword(@PathVariable String username, UserProfile userProfile) {
+
+		//TODO: perform business logic 
+		Map<String, String> response = new HashMap<String, String>();
+		response.put("status", "success");
+		return response;
 	}
 	
 	@RequestMapping(value="/userdetail/add", method=RequestMethod.POST)  
