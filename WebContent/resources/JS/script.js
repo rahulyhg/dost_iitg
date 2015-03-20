@@ -85,7 +85,10 @@ function check_if_contains_space( value ){
 }
 function blockUser(name,ele) {
 	$.getJSON("/dost/api/user/"+name+"/block", function(data) {
-		$(ele).parent().remove();
+		if(data.status == "true") {
+			$(ele).parent().parent().css({"background-color":"#E2E2E2"});
+			$(ele).parent().html('<p class="pull-right">BLOCKED</p>');
+		}
 		
 	});
 }
@@ -94,4 +97,24 @@ function showButton(ele) {
 }
 function hideButton(ele) {
 	$(ele).find("button").hide();
+}
+
+function showForgotEmailText(show,hide) {
+	$("#"+show).show();
+	$("#"+hide).hide();
+}
+
+function submitForgotEmail() {
+	var email = $("email").val();
+	$("#emailSentMsg").show();
+	$("#forgotBlock").hide();
+	
+	/*$.ajax({
+		  method: "POST",
+		  url: "",
+		  data: { email: email }
+		}).done(function( msg ) {
+		    $("#emailSentMsg").show();
+		    
+		});*/
 }

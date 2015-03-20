@@ -66,14 +66,25 @@
 					    	  
 					    	  $(".loading").hide();
 								for(i=0; i<user.length; i++){
-									$(".patient_list").append('<li onmouseover="showButton(this);" onmouseout="hideButton(this);" class="media ceac_patient">'+
+									var blocked = user[i].blocked;
+									var html = "";
+									var mainStyle = "";
+									if (blocked == "0") {
+										html = '<button class="pull-right btn btn-large btn-primary" style="display:none;" type="button" onclick="blockUser(\''+user[i].username+'\',this)">Block</button>';	
+									} else {
+										html = '<p class="pull-right">BLOCKED</p>';
+										mainStyle = "style='background-color:#E2E2E2;'";
+									}
+									
+									$(".patient_list").append('<li '+mainStyle+' onmouseover="showButton(this);" onmouseout="hideButton(this);" class="media ceac_patient">'+
 																'<a class="pull-left col-md-6" href="patientDetails?='+user[i].username+"+"+user[i].userId+'">'+
 																	'<img class="avatar" id='+user[i].avatar+' src="avatar/'+user[i].avatar+'.png" name='+user[i].avatar+'/>'+
 																	'<span class="patient_name">'+user[i].username+'</span>'+
 																	'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+
-																'</a>'+
-																'<button class="pull-right btn btn-large btn-primary" style="display:none;" type="button" onclick="blockUser(\''+user[i].username+'\',this)">Block</button>'+	
-															'</li>');
+																'</a><div class="insertBlock">'
+																+html+					
+																
+															'</div></li>');
 									
 								}
 								
