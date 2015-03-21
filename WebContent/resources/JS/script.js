@@ -105,16 +105,34 @@ function showForgotEmailText(show,hide) {
 }
 
 function submitForgotEmail() {
-	var email = $("email").val();
-	$("#emailSentMsg").show();
+	
+	var email = $("#email").val();
+	var userName = getUrlParameter("username");
+	
+	$("#emailSentMsg").show().html("We have sent an email to you at "+email+" with details about your username and link to update password.");
 	$("#forgotBlock").hide();
 	
-	/*$.ajax({
+	$.ajax({
 		  method: "POST",
-		  url: "",
-		  data: { email: email }
+		  url: '/dost/api/user/'+userName+'/emailpassword',
+		  data: { username :userName, email: email }
 		}).done(function( msg ) {
-		    $("#emailSentMsg").show();
-		    
-		});*/
+			if(msg.status == "success") {
+				$("#emailSentMsg").show();
+			} 
+		});
 }
+
+function getUrlParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}     
