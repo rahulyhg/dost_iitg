@@ -14,7 +14,162 @@
 	<script>
 	
 	var selected_recepient = "" ;
-	
+	var gloablFlag  = false;
+	var gloablePage = 1;
+	var globalPerPage = 10;
+	var globalScroll = true;
+	function triggerPagination() {
+	   if($(window).scrollTop() + $(window).height() > $(document).height() - 300 && globalScroll) {
+			if(gloablFlag) {
+				triggerPageLoadData();	
+			}		
+	   }
+	 }
+	 
+	function triggerPageLoadData() {
+		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
+			userid = user.userId;
+			//UrlForData = '/dost/api/user/'+userid+'/messages';
+			UrlForData = '/dost/api/user/'+userid+'/messages?page='+gloablePage+'&per_page='+globalPerPage+'&sort=messageId&order=desc';
+			showDataMsg(UrlForData);
+		});
+			
+	}
+
+	function showDataMsg(UrlForData) {
+		$(".loading").hide();
+		$.ajax({
+		      url: UrlForData,
+		      type: "GET",
+		      beforeSend: function( xhr ) {
+		    	  gloablFlag = false;
+		    	  loadingImage("conversations");
+		      },
+		      success: function(messages){
+		    	  gloablFlag = true;
+		    	  gloablePage++;  
+		    	  
+		    	  
+		    	  $(".loading").hide();
+					
+		    	  if(messages.length>0){
+						for (var i = 0 ; i < messages.length; i++) {
+							
+							if( messages[i].recipients.length == 0 ) continue ;
+							
+							var ismessagenew = 0;
+						//	debugger;
+							if(messages[i].recipients == 'undefined') {
+								ismessagenew = 0;
+							}
+							else {
+								ismessagenew = messages[i].recipients[0].viewed;
+							}
+							var messageHeading = '';
+							
+							// 1 means viewed
+							if(ismessagenew == 0) {
+								messageHeading = '<h4 class="media-heading unread" style="font-weight:bold">'+messages[i].subject+'</h4>';
+							}
+							else {
+								messageHeading = '<h4>'+messages[i].subject+'</h4>';
+							}						
+							
+							$(".conversationsUser").append('<li class="well media conversation_topic">'+
+								'<div class="each_conversation" id="conversationsExpanded?='+messages[i].msgId+'">'+
+									'<div class="pull-left col-md-2" href="#">'+
+										'<div class="friend_name"><img class="avatar" id='+messages[i].sender.avatar+' src=avatar/'+messages[i].sender.avatar+'.png name='+messages[i].sender.avatar+ '/></div>'+
+										'<div class="friend_name">'+messages[i].sender.username+'</div>'+
+										'<div class="date_of_conversation">'+messages[i].sentDate+'</div>'+
+									'</div>'+
+									'<div class="media-body col-md-8">'+
+											messageHeading +
+											'<div style="white-space: pre-line">'+Linkify(messages[i].content)+'</div>'+
+									'</div>'+
+									'<div class="pull-right col-md-1">'+
+										'<div title="view complete conversation" href="conversationsExpanded?='+messages[i].msgId+'">View'+
+											'<span class="glyphicon glyphicon-chevron-right"></span>'+
+										'</div>'+
+									'</div>'+
+									'<div class="clearfix"></div>'+
+								'</div>'+
+							'</li>');
+							
+							//open the conversation detail for user -->
+							
+							$(".each_conversation").click(function(){
+								var link = $(this).attr("id");
+								window.open(link,"_self");
+							});
+							//end of click to open the conversation for user-->
+							
+						}
+				
+						for (var j = 0 ; j < messages.length; j++) {
+							var ismessagenew = 0;
+						//	debugger;
+							if(messages[j].recipients == 'undefined') {
+								ismessagenew = 0;
+							}
+							else {
+								ismessagenew = messages[j].recipients[0].viewed;
+							}
+							//var ismessagenew = messages[j].recipients[0].viewed;
+							var messageHeading = '';
+							
+							// 1 means viewed
+							if(ismessagenew == 0) {
+								messageHeading = '<h4 class="media-heading unread" style="font-weight:bold">'+messages[j].subject+'</h4>';
+							}
+							else {
+								messageHeading = '<h4>'+messages[j].subject+'</h4>';
+							}
+													
+							
+							$(".conversationsCounselor").append('<li class="well media conversation_topic">'+
+								'<a class="each_conversation" href="conversationsExpanded?='+messages[j].msgId+'">'+
+									'<div class="pull-left col-md-2" >'+
+										'<div class="friend_name"><img class="avatar" id='+messages[j].sender.avatar+' src=avatar/'+messages[j].sender.avatar+'.png name='+messages[j].sender.avatar+ '/></div>'+
+										'<div class="friend_name">'+messages[j].sender.username+'</div>'+
+									'</div>'+
+									'<div class="pull-left media-body col-md-7">'+
+									messageHeading + 
+									'<span style="white-space: pre-line;">'+Linkify(messages[j].content)+'</span>'+
+									'</div>'+
+									'<div class="pull-left">'+messages[j].sentDate+'</div>'+
+									'<div class="pull-right col-md-1">'+
+										'<div title="view complete conversation" href="conversationsExpanded?='+messages[j].msgId+'">'+
+											'<span class="glyphicon glyphicon-chevron-right"></span>'+
+										'</div>'+
+									'</div>'+
+								'</a>'+
+								'<div class="clearfix"></div>'+
+							'</li>');
+						}
+						
+						/*for highlighting unread conversations*/
+						$(".unread").closest("li").addClass("unreadConversations");
+						
+						/*for highlighting unread conversations*/	
+					}
+					else{
+						$(".conversations").html('<div class="noConversationsText">There are no conversations <br/> <a class="leaveMessageLink">Leave a message</a></div>'); 
+					}
+					if(messages.length < globalPerPage) {
+						globalScroll = false;
+					} else {
+						globalScroll = true;
+					}
+					
+					$(".secondloading").remove();
+		      },
+		      error:function(){
+		          alert("failure");
+		          $("#result").append('Error Occurred while fetching data.');
+		      }   
+		    }); 
+	}	
+
 	/*Manipulating json for messages*/
 	$( document ).ready(function() {
 		$(".loading").show();
@@ -45,20 +200,18 @@
 			showChatData(UrlForData);
 		});
 		*/
+
+		
 		$(".inbox").click(function(){
 			$(".sentItems").removeClass("active");
 			$(this).addClass("active");
-			UrlForData = '/dost/api/user/'+userid+'/messages';
-			showData(UrlForData);
+			UrlForData = '/dost/api/user/'+userid+'/messages?page=1&per_page='+globalPerPage+'&sort=messageId&order=desc';
+			//UrlForData = '/dost/api/user/'+userid+'/messages';
+			showDataMsg(UrlForData);
 		});
 		/*End Of Sent messages and inbox toggle active class*/
 		
-		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
-			userid = user.userId;
-			 UrlForData = '/dost/api/user/'+userid+'/messages';
-			 showData(UrlForData);
-		});
-		
+				
 		/* Unread message count*/
 		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
 			userid = user.userId;
@@ -74,6 +227,8 @@
 				});
 		});
 		
+		
+			
 		function showData(UrlForData){
 			$.getJSON(UrlForData, function(messages) {	
 				$(".loading").hide();
@@ -123,13 +278,13 @@
 							'</div>'+
 						'</li>');
 						
-						<!-- open the conversation detail for user -->
+						//open the conversation detail for user -->
 						
 						$(".each_conversation").click(function(){
 							var link = $(this).attr("id");
 							window.open(link,"_self");
 						});
-						<!-- end of click to open the conversation for user-->
+						//end of click to open the conversation for user-->
 						
 					}
 			
@@ -377,12 +532,9 @@
 							var datatosend = 'subject='+$("#subject").val()+'&content=' + $("#messageContent").val()+ '&recipients='+ selected_recipient +'&senderId=' + userid;
 
 							if( $("#userTags").val() ){
-								console.log( "enteres" ) ;
 								datatosend += '&counselorTag=' + $("#userTags").val() ;
 							}	
-							
-							
-							console.log(datatosend);						 
+												 
 							if($("#recipient").val()== '' || $("#subject").val()== '' || $("#messageContent").val() =='') {
 								$(".error").show().text("Please fill in details");
 							}
@@ -423,7 +575,7 @@
 			$(this).addClass("active");
 		});
 		/*End Of Sent messages and inbox toggle active class*/
-		
+		triggerPageLoadData()
 	});
 	/*End of manipulating json for messages*/	
 	
@@ -438,35 +590,13 @@
 			  var sec = a.getSeconds();
 			  var time = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec ;
 			  return time;
-		}
-	
-		// Code from Druveen to handle space and link url
-		function Linkify(inputText) {
-	//		debugger;
-			if (inputText && inputText.indexOf("href=") != -1) {
-			  return inputText;
-			} 
-			    //URLs starting with http://, https://, or ftp://
-			    var replacePattern1 = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-			    var replacedText = inputText.replace(replacePattern1, '<a href="$1" target="_blank">$1</a>');
-
-			    //URLs starting with www. (without // before it, or it'd re-link the ones done above)
-			    var replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-			    var replacedText = replacedText.replace(replacePattern2, '$1<a href="http://$2" target="_blank">$2</a>');
-
-			    //Change email addresses to mailto:: links
-			    var replacePattern3 = /(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/gim;
-			    var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
-
-			    return replacedText
-			}
-	
+		}	
 	</script>
 	
 	
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	
-	<body class="theme-default theme-default-counselor" >
+	<body onscroll="triggerPagination();" class="theme-default theme-default-counselor" >
 	</sec:authorize>
 	<sec:authorize access="!hasRole('ROLE_ADMIN')">
 	<body class="theme-default">
@@ -563,19 +693,16 @@
             url: "/dost/api/users",
             dataType: "json",
             success: function(data) {
-            	console.log(1) ;
             	var arr =  $.map(data, function(users) {
                   return {
                     label: users.username,
                     name: users.userId,
                     };
                 });   
-            	console.log( arr ) ;	
             	$("#recipient" ).autocomplete({
         			source: arr,
         			minLength: 0,
         			select: function( event, ui ) {
-        				console.log( ui ) ;
         				$("#recipient").val( ui.item.label ) ;
         				$("#selected_recipient").val( ui.item.name ) ;
         			}
