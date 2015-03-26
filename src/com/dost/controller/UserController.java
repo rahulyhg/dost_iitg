@@ -59,6 +59,20 @@ public class UserController {
 		return userService.getUserByUsername(username);
 	}
 	
+	@RequestMapping(value="/user/{username}/exists", method=RequestMethod.GET)  
+	@ResponseBody
+	public Map<String, Boolean> checkIfUsernameExists(@PathVariable String username) {
+		DbUser user = userService.getUserByUsername(username);
+		boolean exists = false;
+		if(user != null) {
+			exists = true;
+		}
+		Map<String, Boolean> responseMap = new HashMap<String, Boolean>();
+		responseMap.put("status", exists);
+		
+		return responseMap;
+	}
+
 	
 	@RequestMapping(value="/user/{username}/search", method=RequestMethod.GET)  
 	@ResponseBody
