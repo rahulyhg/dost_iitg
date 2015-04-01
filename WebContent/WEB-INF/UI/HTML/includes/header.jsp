@@ -81,9 +81,11 @@
 				  <sec:authorize access="hasRole('ROLE_USER')">
 				  	<li style="" id="talkToFriend"><a href="${pageContext.request.contextPath}/talkToFriend">Talk To a Friend</a></li>
 				  </sec:authorize>
+<!-- 
 				  <sec:authorize access="hasRole('ROLE_USER')">
 				  	<li style="" id="talkToSpecificFriend"><a href="${pageContext.request.contextPath}/chat2">Talk To Specific Friend</a></li>
 				  </sec:authorize>				  
+ -->
 				  <li id="faqs"><a href="${pageContext.request.contextPath}/faqs">FAQs</a></li>
 				  <li style="" id="quotes"><a href="${pageContext.request.contextPath}/quotes">Quotes</a></li>
 				  <!-- <li id="blogs"><a href="http://blog.yourdost.com" target="_blank">Blog</a></li>-->
