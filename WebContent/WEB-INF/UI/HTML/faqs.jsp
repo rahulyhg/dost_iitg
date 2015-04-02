@@ -48,7 +48,8 @@
 				var thisCategory = $(this).closest(".categoryList");
 				$(".categoryList").not(thisCategory).hide();
 				$(this).siblings(".answer").show();
-				$(".searchBox").hide();		
+				$(".searchBox").hide();	
+				$("#deletebutton, #editbutton").removeClass("hide");
 				
 		});
 		/*end of click on FAQs*/
@@ -65,6 +66,7 @@
 				$(".question").show();
 				$(".answer").hide();
 				$(".searchBox").show();
+				$("#deletebutton, #editbutton").addClass("hide");
 		});
 		/*End of Moving through FAQs*/
 		
@@ -145,15 +147,37 @@
 		/*End of for adding edit/delete options for a question*/
 		
 		/* for editing the Question/Answer */
-		$(".questionAnswer").on("click",".editQuestion", function(){
+				
+		$(".FAQList").on("click",".editQuestion", function(){
+			$("#dialog").dialog("option","title", "Edit this question/Answer");
+			$("#dialog").dialog("open");
+			$(".ui-dialog-buttonset button:last-child span").text("EDIT");
+			
+			var questionToBeEdited = $(".questionAnswer").find(".clickedQuestion").text();
+			var answerToBeEdited = $(".questionAnswer").find(".clickedQuestion").next().text();
+			$(".questionForm").val(questionToBeEdited);
+			$(".answerForm").val(answerToBeEdited);
+			$(".ui-dialog-buttonset button").show();
+			$(".ui-dialog-buttonset button").eq(1).hide();
+			$(".ui-dialog-buttonset button").eq(3).hide();
+		});
+		
+		
+		$(".FAQList").on("click","#deletebutton", function(){
 			$("#dialog").dialog("option","title", "Edit this question/Answer");
 			$("#dialog").dialog("open");
 			
-			var questionToBeEdited = $(this).closest(".editDeleteOptions").siblings(".question").text();
-			var answerToBeEdited = $(this).closest(".editDeleteOptions").siblings(".answer").text();
+			var questionToBeEdited = $(".questionAnswer").find(".clickedQuestion").text();
+			var answerToBeEdited = $(".questionAnswer").find(".clickedQuestion").next().text();
 			$(".questionForm").val(questionToBeEdited);
 			$(".answerForm").val(answerToBeEdited);
+			$(".ui-dialog-buttonset button").show();
+			$(".ui-dialog-buttonset button").eq(1).hide();
+			$(".ui-dialog-buttonset button").eq(2).hide();
+			$(".ui-dialog-buttonset button").eq(3).find("span").text("DELETE");
 		});
+		
+		
 		
 		/* end of for editing the Question/Answer */
 
@@ -172,11 +196,54 @@
 			}, {
 				text : "ADD",
 				click : function() {
-					debugger;
-					var datatosend = 'answer='+$("#answer").val()+'&question=' + $("#question").val()/*+'&category=' + $("#categoryid: selected").val()*/;
-					$.post('http://localhost:8800/dost/api/faq/add', $("#faq").serialize(), function(response) {
-						//$('#visitFormResponse').text(response);
-					});
+					
+					var datastring = $("#faq").serializeArray();
+				      var formData = {};
+				      $.map(datastring, function(n, i){
+				          formData[n['name']] = n['value'];
+				      });
+					$.ajax({
+	              		type: "POST",
+	              		url: "http://localhost:8800/dost/api/faq/add",
+	              		contentType: "application/json",
+	              		data:JSON.stringify(formData),
+	                      dataType: "jsonP"
+	              	}).done(function(response){
+	              	});
+					$("#dialog").html('<h2 style="color:#5a5; text-align:center">Added Successfully</h2>')
+					window.setTimeout('location.reload()', 1000);
+				}
+			}, {
+				text : "EDIT",
+				click : function() {
+					var datastring = $("#faq").serializeArray();
+				      var formData = {};
+				      $.map(datastring, function(n, i){
+				          formData[n['name']] = n['value'];
+				      });
+
+				      formData["id"]=$(".clicked").attr("id");
+				      formData["categoryId"]=$('select#categoryid option:selected').attr("id");
+					$.ajax({
+                		type: "PUT",
+                		url: "http://localhost:8800/dost/api/faq/update",
+                		contentType: "application/json",
+                		data:JSON.stringify(formData),
+                        dataType: "jsonP"
+                	}).done(function(response){
+                	});
+					$("#dialog").html('<h2 style="color:#5a5; text-align:center">Edited Successfully</h2>')
+					window.setTimeout('location.reload()', 1000);
+				}
+			}, {
+				text : "DELETE",
+				click : function() {					
+					$.ajax({
+                		type: "DELETE",
+                		url: "http://localhost:8800/dost/api/faq/"+$('.clicked').attr('id')+"/delete"
+                	}).done(function(response){
+                	});
+					$("#dialog").html('<h2 style="color:#5a5; text-align:center">Deleted Successfully</h2>')
 					window.setTimeout('location.reload()', 1000);
 				}
 			} ]
@@ -190,6 +257,9 @@
 			
 			$(".questionForm").val("");
 			$(".answerForm").val("");
+			$(".ui-dialog-buttonset button").show();
+			$(".ui-dialog-buttonset button").eq(2).hide();
+			$(".ui-dialog-buttonset button").eq(3).hide();
 		});
 		
 		
@@ -222,7 +292,9 @@
 					<span id="next" class="next">Next</span>
 				</div>
 				<div class="clearfix"></div>
-				<div class="FAQList">	
+				<div class="FAQList">
+				<button type="button" id="editbutton" class="editQuestion btn btn-primary pull-right hide">EDIT</button>
+				<button type="button" id="deletebutton" class="addFAQs btn btn-primary pull-right hide">DELETE</button>	
 				</div>
 				
 				
@@ -257,9 +329,9 @@
 				Select Category : <select id="categoryid" name="category">
 									  <option id="1" name="career" value="career">Career</option>
 									  <option id="2" name="Love-Relationships" value="relationship">Love/Relationship</option>
-									  <option id="2" name="family" value="family">Family</option>
-									  <option id="3" name="friends" value="friends">Friends</option>
-									  <option id="3" name="other" value="other">Other</option>
+									  <option id="3" name="family" value="family">Family</option>
+									  <option id="4" name="friends" value="friends">Friends</option>
+									  <option id="5" name="other" value="other">Other</option>
 									</select> </br>
 				
 			
