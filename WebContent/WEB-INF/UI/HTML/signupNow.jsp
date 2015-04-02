@@ -31,6 +31,7 @@
 		});
 		
 		$('input[name="username"]').blur( function(){
+			alert("blurred");
 			var valid_user = validate_username();
 		});
 		

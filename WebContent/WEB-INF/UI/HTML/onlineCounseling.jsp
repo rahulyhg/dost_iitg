@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="col-md-11">
 				<div class="pageTop">
-					<h2 class="pull-left pageHeading">Online patients</h2>
+					<h2 class="pull-left pageHeading">Online clients</h2>
 					<div class="clearfix"></div>
 				</div>
 				

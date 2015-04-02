@@ -13,7 +13,7 @@
 		padding:0;
 	}
 	.addthis_horizontal_follow_toolbox{
-		width: 230px;
+		width: 270px;
 		margin: auto;
 		margin-bottom: 10px;
 	}
@@ -536,8 +536,24 @@
 	.wrapperConversations{
 		max-height:75px;
 	}
+	.theme-default .media{height:104px;
+	text-overflow:ellipsis;
+	-o-text-overflow: ellipsis; 
+        white-space: nowrap;
+        overflow: hidden;}
+        .media-body span{  
+        width: 100%;
+        display:block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
 	/*end of for ellipsis*/
-	
+	.notes-well{  margin: 0;
+  min-height: 0;
+  padding: 10px;
+  border: 0;
+}
+.notes-well ul{padding:15px 10px;}
 	.discussion_topic{
 		cursor:pointer;
 	}
@@ -1173,6 +1189,18 @@ div.medical_warning{
 .TOSContent li{
 	margin-bottom:30px;
 }
-.more-link {
+.more-link {}
 /*end of styling for more*/
+/*compose model styling*/
+
+.ui-dialog
+{overflow-y:hidden;}
+
+.ui-autocomplete {
+		max-height:300px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+	
+	}
 

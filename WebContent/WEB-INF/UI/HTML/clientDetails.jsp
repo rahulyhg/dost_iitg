@@ -63,7 +63,7 @@
 			
 			function timeConverter(UNIX_timestamp){
 				  var a = new Date(UNIX_timestamp * 1);
-				  debugger;
+				 // debugger;
 				  var months = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 				  var year = a.getFullYear();
 				  var month = months[a.getMonth()];
@@ -76,7 +76,7 @@
 				}
 			
 			$.getJSON('/dost/api/user/'+userId[0], function(user_details) {
-				debugger;
+				//debugger;
 				$(".summary_patient").append(
 						'<div class="user_actual_details">'+
 						'<span>'+user_details.fname +'&nbsp'+ user_details.lname+'</span>'+
@@ -122,16 +122,16 @@
 		<div class="container">
 			<div class="pageTop">
 					<h2 class="pull-left pageHeading">
-						<a  href="patientList">&larr; Back to all Patients</a>
+						<a  href="clientList">&larr; Back to all clients</a>
 					</h2>
-					<div class="clearfix"></div>
+					<!-- <div class="clearfix"></div>  -->
 			</div>
 						
-			<div class="col-md-8 well">
+			<div class="col-md-7 well">
 				
 				<div class="summary_patient">
 					<h2 class="pageHeading patientName"></h2>
-					<label>Relationship</label> | <label>Repeat</label>
+					<!--   <label>Relationship</label> | <label>Repeat</label> -->
 					<div class="clearfix"></div>
 				</div>
 				<br/>
