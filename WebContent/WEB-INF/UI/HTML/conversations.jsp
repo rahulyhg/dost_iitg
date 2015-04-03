@@ -183,9 +183,13 @@
 			},2000);
 		}
 		
+		setInterval(function() {
+            window.location.reload();
+          }, 60000);
+		
 		/*Sent messages and inbox toggle active class*/
 		$(".sentItems").click(function(){
-			$(".sentItems").removeClass("active");
+			$(".active").removeClass("active");
 			$(this).addClass("active");
 			UrlForData = '/dost/api/user/'+userid+'/sentmessages';
 			
@@ -203,7 +207,7 @@
 
 		
 		$(".inbox").click(function(){
-			$(".sentItems").removeClass("active");
+			$(".active").removeClass("active");
 			$(this).addClass("active");
 			UrlForData = '/dost/api/user/'+userid+'/messages?page=1&per_page='+globalPerPage+'&sort=messageId&order=desc';
 			//UrlForData = '/dost/api/user/'+userid+'/messages';
@@ -343,7 +347,7 @@
 		
 		
 		$(".chats").click(function(){
-			$(".chats").removeClass("active");
+			$(".active").removeClass("active");
 			$(this).addClass("active");
 			var chatMessageLength = 0;
 			$.getJSON('/dost/api/chathistory/user/' + userid, function(messages) {	
@@ -567,11 +571,11 @@
 		
 		/*Sent messages and inbox toggle active class*/
 		$(".sentItems").click(function(){
-			$(".inbox").removeClass("active");
+			$(".active").removeClass("active");
 			$(this).addClass("active");
 		});
 		$(".Inbox").click(function(){
-			$(".sentItems").removeClass("active");
+			$(".active").removeClass("active");
 			$(this).addClass("active");
 		});
 		/*End Of Sent messages and inbox toggle active class*/
