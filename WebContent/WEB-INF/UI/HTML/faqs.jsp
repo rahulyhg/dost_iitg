@@ -293,8 +293,10 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="FAQList">
-				<button type="button" id="editbutton" class="editQuestion btn btn-primary pull-right hide">EDIT</button>
-				<button type="button" id="deletebutton" class="addFAQs btn btn-primary pull-right hide">DELETE</button>	
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<button type="button" id="editbutton" class="editQuestion btn btn-primary pull-right hide">EDIT</button>
+					<button type="button" id="deletebutton" class="addFAQs btn btn-primary pull-right hide">DELETE</button>
+				</sec:authorize>		
 				</div>
 				
 				
