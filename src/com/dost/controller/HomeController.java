@@ -156,6 +156,16 @@ public class HomeController {
 	public ModelAndView patientDetails() {
 		return new ModelAndView("patientDetails"); 
 	}
+	
+	@RequestMapping("clientList")  
+	public ModelAndView counselor_clientList() {
+		return new ModelAndView("clientList"); 
+	}
+	@RequestMapping("clientDetails")  
+	public ModelAndView clientDetails() {
+		return new ModelAndView("clientDetails"); 
+	}
+	
 	@RequestMapping("onlineCounseling")  
 	public ModelAndView counselor_onlineCounseling() {
 		return new ModelAndView("onlineCounseling"); 
