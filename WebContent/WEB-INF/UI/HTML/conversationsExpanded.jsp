@@ -32,7 +32,7 @@
 //														messages[i].content+
 //													'</li>');
 						// From Druveen
-						$(".conversation_history").append('<li style="white-space: pre-line;">'+'<h4 class="media-heading">'+ messages[i].sender.username+ '<span> &nbsp' +
+						$(".conversation_history").append('<li style="white-space: pre-wrap;">'+'<h4 class="media-heading">'+ messages[i].sender.username+ '<span> &nbsp' +
 							messages[i].sentDate +'</span></h4>'+Linkify(messages[i].content)+'</li>');						
 			
 						// Richa?? I am not sure if this is the correct way of getting Sohil
@@ -156,7 +156,7 @@
 		
 		// Code from Druveen to handle space and link url
 		function Linkify(inputText) {
-			debugger;
+			//debugger;
 			if (inputText && inputText.indexOf("href=") != -1) {
 			  return inputText;
 			} 

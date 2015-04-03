@@ -8,7 +8,7 @@
 	<%-- <script src="${pageContext.request.contextPath}/resources/JS/jquery.jscroll.min.js"></script> --%>
 	<script>
 	$("document").ready(function() {
-		loadPatientList();
+		loadclientList();
 	});
 
 		var gloablFlag  = false;
@@ -23,7 +23,7 @@
 					if(searchText.length > 0) {
 						searchPatient();
 					} else {
-						loadPatientList();	
+						loadclientList();	
 					}
 				}		
 		   }
@@ -36,16 +36,16 @@
 							$(".patient_list").empty();	
 						}
 						var url = '/dost/api/users?searchtext='+searchText+'&page='+gloablSearchPage+'&per_page='+globalPerPage+'&sort_by=userId&order=desc';
-						loadPatientList(url, true);	
+						loadclientList(url, true);	
 					}else if(searchText.length == 0){
 						gloablePage = 1;
 						gloablSearchPage = 1;
 						loadingImage();
 						$(".patient_list").empty();
-						loadPatientList();
+						loadclientList();
 					}
 				}
-				function loadPatientList(url, isSearch) {
+				function loadclientList(url, isSearch) {
 					if (!url) {
 						url = '/dost/api/users?page='+gloablePage+'&per_page='+globalPerPage+'&sort_by=userId&order=desc';
 					}
@@ -77,7 +77,7 @@
 									}
 									
 									$(".patient_list").append('<li '+mainStyle+' onmouseover="showButton(this);" onmouseout="hideButton(this);" class="media ceac_patient">'+
-																'<a class="pull-left col-md-6" href="patientDetails?='+user[i].username+"+"+user[i].userId+'">'+
+																'<a class="pull-left col-md-6" href="clientDetails?='+user[i].username+"+"+user[i].userId+'">'+
 																	'<img class="avatar" id='+user[i].avatar+' src="avatar/'+user[i].avatar+'.png" name='+user[i].avatar+'/>'+
 																	'<span class="patient_name">'+user[i].username+'</span>'+
 																	'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+

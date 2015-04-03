@@ -11,12 +11,25 @@
 	<title>Your D.O.S.T Team</title>
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/teams.css"> 
-		
+		<script>
+		$(document).ready(function(){
+		    $(document).ajaxStart(function(){
+		        $(".loading").css("display", "block");
+		    });
+		    
+		    
+		});
+		</script>
 	<script>
 		$.getJSON( "${pageContext.request.contextPath}/resources/JSON/teams.json", function( data ){
 				var core_team  = data[ "core_team"  ] ;
 				var volunteers = data[ "volunteers" ] ;	
 				var campus = data[ "campus" ] ;	
+				//ajax loading done
+				$(document).ajaxComplete(function(){
+			        $(".loading").css("display", "none");
+			        alert("loading done");
+			    });
 				
 				$.each( core_team, function( index, elem ){
 					var html = return_team_html() ;
@@ -133,11 +146,15 @@
 	<body class="container-fluid   theme-default">
 
 	<jsp:include page="includes/header.jsp"></jsp:include>
+	<li class="loading" id="loading">
+							<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
+						</li>
 				
 	<div class="container row-fluid pageMainContainer" >
 	
 	
 		<div id="coreTeam" class="row">	
+		
 			<div class="row">
 				<h2 class="col-md-3 pageHeading">
 					CORE TEAM
