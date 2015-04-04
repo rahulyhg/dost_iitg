@@ -3,29 +3,47 @@
 <html>
 
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 	
 	<script>
+		var identifier = getUrlParameter("identifier");
+		function resetSPassSubmit() {
+			var pass = $("#password").val();
+			var pass1 = $("#password1").val();
+			if(pass !== pass1) {
+				alert("Passwords typed do not match, please re-enter your passwords.");
+				return false;
+			}
+			var encPass = CryptoJS.SHA3(pass);
+			$.post( "/dost/api/user/resetpassword", {identifier: identifier , password: encPass.toString() })
+			  .done(function( data ) {
+			    if(data.status == "success") {
+			    	$("#resetForm").hide();
+			    	$("#succMsg").show();
+			    	setTimeout(function(){ window.location.href = "/dost/login";}, 3000);
+			    }
+			});
+		}
 	</script>
 	
-	<body class="container-fluid  theme-default" onload='document.loginForm.username.focus();'>
+	<body class="container-fluid  theme-default">
 			<jsp:include page="includes/header.jsp"></jsp:include>
 			<div class="container row-fluid welcomePage">
-				<form name='forgotPasswordSignupForm' action="/dost/api/resetPassword?username=${username}" method="POST">
 						<div class="well well-large row col-md-7 col-md-offset-2 forgotPasswordContainer">
-							<div class="col-md-offset-1">
+							<div id="resetForm" class="col-md-offset-1">
 								<label>Enter new password</label>
 								<input type="password" required id="password" name="password" class="input-block-level form-control" placeholder="password">
 								<br/><br/>
 								<label>Confirm password</label>
 								<input type="password" required id="password1" name="password1" class="input-block-level form-control" placeholder="password">
 								<br/><br/>
-								
+								<input type="hidden" id="identifier" name="identifier" value="">
 								<br/><br/>
-								<button class="pull-right btn btn-large btn-primary" type="submit">Proceed ></button>
+								<button onclick="resetSPassSubmit();" class="pull-right btn btn-large btn-primary" type="button">Submit ></button>
 							</div>
+							<div id="succMsg" style="display:none;" class="col-md-offset-1">You password is changed successfully. You will be redirected to loging page shortly.</div>
 						</div>
 						<div class="clearfix"></div>
-					</form>
 			</div>
 		<jsp:include page="includes/commonFooter.jsp"></jsp:include>
 
