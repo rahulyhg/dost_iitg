@@ -536,22 +536,17 @@
 	.wrapperConversations{
 		max-height:75px;
 	}
-	.theme-default .media{height:auto;
+	.theme-default .media{height:104px;
 	text-overflow:ellipsis;
 	-o-text-overflow: ellipsis; 
         white-space: nowrap;
         overflow: hidden;}
-       
-   .media-body span{  
-      width: 100%;
-	  display:block;
-	  overflow: hidden;
-	  white-space: nowrap;
-	  text-overflow: ellipsis;
-  }
-  .categoryList .media-body span{
-   white-space: pre-line;
-  }
+        .media-body span{  
+        width: 100%;
+        display:block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
 	/*end of for ellipsis*/
 	.notes-well{  margin: 0;
   min-height: 0;
@@ -857,7 +852,6 @@
 	}
 	.theme-default .media-body{
 		color: #333;
-		  white-space: pre-line;
 	}
 	.theme-default .well{
 		background-color: #FFFFFF;
@@ -1105,7 +1099,6 @@ div.most_popular_discussions{
 .theme-default  .discussion_summary{
 	margin-top: 10px;
 	text-align: left;
-	  white-space: pre-line;
 }
 .theme-default .formForPosting{
 	margin-top: 20px;	
