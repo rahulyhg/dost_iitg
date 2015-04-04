@@ -9,12 +9,13 @@
 	$('#forgot').click(function() {
 		    var x = document.forms["loginForm"]["username"].value;
 		    if (x == null || x == "") {
-		        alert("Username must be filled out");
+		        $("#errorAlert").show();
 		        return false;
 		    }
-	    $('form').attr("action", "forgotPassword");  //change the form action
-	    $('form').attr("method", "GET");  //change the form action
-	    $('form').submit();  // submit the form
+		    window.location.href = "/dost/forgotPassword?username="+x;
+	    //$('form').attr("action", "forgotPassword");  //change the form action
+	    //$('form').attr("method", "GET");  //change the form action
+	    //$('form').submit();  // submit the form
 	});
 	});
 	function updateEncPass () {
@@ -41,6 +42,7 @@
 				
 				<div class="well well-large row  col-md-offset-2 signinFormOuterContainer">
 					<div class="col-md-offset-1">
+					<div class="error alert alert-danger" id="errorAlert" role="alert" style="display: none;"><p>Username must be filled out.</p></div>
 						<label>Username</label>
 						<input type="text" required id="username" name="username" class="input-block-level form-control" placeholder="Username">
 						<br/><br/>
