@@ -134,7 +134,7 @@
 					<!--   <label>Relationship</label> | <label>Repeat</label> -->
 					<div class="clearfix"></div>
 				</div>
-				<br/>
+				
 				 
 				<ul class="conversations conversation_History_details">
 					<li class="loading" id="loading">
