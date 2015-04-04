@@ -46,15 +46,12 @@
 		    	  loadingImage("conversations");
 		      },
 		      success: function(messages){
-		    	  gloablFlag = true;
-		    	  gloablePage++;  
-		    	  
-		    	  
 		    	  $(".loading").hide();
-					
 		    	  if(messages.length>0){
+		    		  gloablFlag = true;
+			    	  gloablePage++;  
 						for (var i = 0 ; i < messages.length; i++) {
-							
+					
 							if( messages[i].recipients.length == 0 ) continue ;
 							
 							var ismessagenew = 0;
@@ -73,7 +70,7 @@
 							}
 							else {
 								messageHeading = '<h4>'+messages[i].subject+'</h4>';
-							}						
+							}
 							
 							$(".conversationsUser").append('<li class="well media conversation_topic">'+
 								'<div class="each_conversation" id="conversationsExpanded?='+messages[i].msgId+'">'+
@@ -92,7 +89,7 @@
 										'</div>'+
 									'</div>'+
 									'<div class="clearfix"></div>'+
-								'</div>'+
+										'</div>'+
 							'</li>');
 							
 							//open the conversation detail for user -->
@@ -104,7 +101,6 @@
 							//end of click to open the conversation for user-->
 							
 						}
-				
 						for (var j = 0 ; j < messages.length; j++) {
 							var ismessagenew = 0;
 						//	debugger;
@@ -152,7 +148,7 @@
 						
 						/*for highlighting unread conversations*/	
 					}
-					else{
+					else if(gloablePage == 1){
 						$(".conversations").html('<div class="noConversationsText">There are no conversations <br/> <a class="leaveMessageLink">Leave a message</a></div>'); 
 					}
 					if(messages.length < globalPerPage) {
@@ -160,7 +156,6 @@
 					} else {
 						globalScroll = true;
 					}
-					
 					$(".secondloading").remove();
 		      },
 		      error:function(){
