@@ -46,15 +46,12 @@
 		    	  loadingImage("conversations");
 		      },
 		      success: function(messages){
-		    	  gloablFlag = true;
-		    	  gloablePage++;  
-		    	  
-		    	  
 		    	  $(".loading").hide();
-					
 		    	  if(messages.length>0){
+		    		  gloablFlag = true;
+			    	  gloablePage++;  
 						for (var i = 0 ; i < messages.length; i++) {
-							
+					
 							if( messages[i].recipients.length == 0 ) continue ;
 							
 							var ismessagenew = 0;
@@ -73,7 +70,7 @@
 							}
 							else {
 								messageHeading = '<h4>'+messages[i].subject+'</h4>';
-							}						
+							}
 							
 							$(".conversationsUser").append('<li class="well media conversation_topic">'+
 								'<div class="each_conversation" id="conversationsExpanded?='+messages[i].msgId+'">'+
@@ -84,7 +81,7 @@
 									'</div>'+
 									'<div class="media-body col-md-8">'+
 											messageHeading +
-											'<div style="white-space: pre-line">'+Linkify(messages[i].content)+'</div>'+
+											'<div style="white-space: nowrap">'+Linkify(messages[i].content)+'</div>'+
 									'</div>'+
 									'<div class="pull-right col-md-1">'+
 										'<div title="view complete conversation" href="conversationsExpanded?='+messages[i].msgId+'">View'+
@@ -92,7 +89,7 @@
 										'</div>'+
 									'</div>'+
 									'<div class="clearfix"></div>'+
-								'</div>'+
+										'</div>'+
 							'</li>');
 							
 							//open the conversation detail for user -->
@@ -104,7 +101,6 @@
 							//end of click to open the conversation for user-->
 							
 						}
-				
 						for (var j = 0 ; j < messages.length; j++) {
 							var ismessagenew = 0;
 						//	debugger;
@@ -134,7 +130,7 @@
 									'</div>'+
 									'<div class="pull-left media-body col-md-7">'+
 									messageHeading + 
-									'<span style="white-space: pre-line;">'+Linkify(messages[j].content)+'</span>'+
+									'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
 									'</div>'+
 									'<div class="pull-left">'+messages[j].sentDate+'</div>'+
 									'<div class="pull-right col-md-1">'+
@@ -152,7 +148,7 @@
 						
 						/*for highlighting unread conversations*/	
 					}
-					else{
+					else if(gloablePage == 1){
 						$(".conversations").html('<div class="noConversationsText">There are no conversations <br/> <a class="leaveMessageLink">Leave a message</a></div>'); 
 					}
 					if(messages.length < globalPerPage) {
@@ -160,7 +156,6 @@
 					} else {
 						globalScroll = true;
 					}
-					
 					$(".secondloading").remove();
 		      },
 		      error:function(){
@@ -271,7 +266,7 @@
 								'</div>'+
 								'<div class="media-body col-md-8">'+
 										messageHeading +
-										'<div style="white-space: pre-line">'+Linkify(messages[i].content)+'</div>'+
+										'<div style="white-space: nowrap">'+Linkify(messages[i].content)+'</div>'+
 								'</div>'+
 								'<div class="pull-right col-md-1">'+
 									'<div title="view complete conversation" href="conversationsExpanded?='+messages[i].msgId+'">View'+
@@ -321,7 +316,7 @@
 								'</div>'+
 								'<div class="pull-left media-body col-md-7">'+
 								messageHeading + 
-								'<span style="white-space: pre-line;">'+Linkify(messages[j].content)+'</span>'+
+								'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
 								'</div>'+
 								'<div class="pull-left">'+messages[j].sentDate+'</div>'+
 								'<div class="pull-right col-md-1">'+
@@ -529,6 +524,7 @@
 							$(".error").hide();
 							
 							var selected_recipient = $("#selected_recipient").val() ;
+							alert(selected_recipient);
 							if( selected_recipient == undefined || selected_recipient == '' || !selected_recipient ){
 								selected_recipient = "all" ;
 							}
@@ -693,7 +689,7 @@
 		
 		<script>
 		
-		$.ajax({
+		/*	$.ajax({
             url: "/dost/api/users",
             dataType: "json",
             success: function(data) {
@@ -718,7 +714,98 @@
 		/*end of populating users*/
 		
 		</script>
+		<script>
 		
+		 /*$.ajax({
+            url: "/dost/api/users",
+            dataType: "json",
+            success: function(data) {
+            	console.log(1) ;
+            	var arr =  $.map(data, function(users) {
+                  return {
+                    label: users.username,
+                    name: users.userId,
+                    };
+                });   
+            	console.log( arr ) ;	
+            	$("#recipient" ).autocomplete({
+        			source: arr,
+        			minLength: 0,
+        			select: function( event, ui ) {
+        				console.log( ui ) ;
+        				$("#recipient").val( ui.item.label ) ;
+        				$("#selected_recipient").val( ui.item.name ) ;
+        			}
+            	});            	
+            	
+                }
+            }); */
+            $.ajax({
+                url: "/dost/api/users",
+                dataType: "json",
+                success: function(data) {
+                	console.log(1) ;
+                	var arr =  $.map(data, function(users) {
+                      return {
+                        label: users.username,
+                        name: users.userId,
+                        };
+                    });   
+                	console.log( arr ) ;	
+                	function split( val ) {
+            			return val.split( /,\s*/ );
+            		}
+            		function extractLast( term ) {
+            			return split( term ).pop();
+            		}
+
+            		$( "#recipient" )
+            			// don't navigate away from the field on tab when selecting an item
+            			.bind( "keydown", function( event ) {
+            				if ( event.keyCode === $.ui.keyCode.TAB &&
+            						$( this ).autocomplete( "instance" ).menu.active ) {
+            					event.preventDefault();
+            				}
+            			})
+            			.autocomplete({
+            				minLength: 0,
+            				source: function( request, response ) {
+            					// delegate back to autocomplete, but extract the last term
+            					response( $.ui.autocomplete.filter(
+            						arr, extractLast( request.term ) ) );
+            				},
+            				focus: function() {
+            					// prevent value inserted on focus
+            					return false;
+            				},
+            				select: function( event, ui ) {
+            					var terms = split( this.value );
+            					// remove the current input
+            					terms.pop();
+            					// add the selected item
+            					terms.push( ui.item.value );
+            					var ids=$("#selected_recipient").val()+","+ui.item.name;
+            					// add placeholder to get the comma-and-space at the end
+            					terms.push( "" );
+            					this.value = terms.join( ", " );
+            					//$("#recipient").val( ui.item.label ) ;
+            				      $("#selected_recipient").val( ids ) ;
+            				    //  alert($("#selected_recipient").val());
+            				     // debugger;
+            					return false;
+            				} 
+            				
+            				
+            				
+            			});            	
+                	
+                    }
+                }); 
+          
+		
+		/*end of populating users*/
+		
+		</script>
 		
 	</body>
 </html>

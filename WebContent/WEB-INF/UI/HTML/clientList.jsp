@@ -8,7 +8,7 @@
 	<%-- <script src="${pageContext.request.contextPath}/resources/JS/jquery.jscroll.min.js"></script> --%>
 	<script>
 	$("document").ready(function() {
-		loadPatientList();
+		loadclientList();
 	});
 
 		var gloablFlag  = false;
@@ -16,6 +16,7 @@
 		var gloablSearchPage = 1;
 		var globalPerPage = 25;
 		var globalScroll = true;
+		var gloablOldSearchValue = "";
 		 function triggerPagination() {
 		   if($(window).scrollTop() + $(window).height() > $(document).height() - 300 && globalScroll) {
 				if(gloablFlag) {
@@ -23,29 +24,37 @@
 					if(searchText.length > 0) {
 						searchPatient();
 					} else {
-						loadPatientList();	
+						loadclientList();	
 					}
 				}		
 		   }
 		 }
 				function searchPatient(ele) {
+					var x = event.which || event.keyCode;
+					if( x == 34 || x == 33) {
+						return;
+					}
 					var searchText = $("#patientSearch").val();
+					if(gloablOldSearchValue != searchText) {
+						gloablSearchPage = 1;
+					}
 					if(searchText.length >= 3) {
 						loadingImage();
 						if(gloablSearchPage <= 1) {
 							$(".patient_list").empty();	
 						}
 						var url = '/dost/api/users?searchtext='+searchText+'&page='+gloablSearchPage+'&per_page='+globalPerPage+'&sort_by=userId&order=desc';
-						loadPatientList(url, true);	
+						loadclientList(url, true);	
+						gloablOldSearchValue = searchText;
 					}else if(searchText.length == 0){
 						gloablePage = 1;
 						gloablSearchPage = 1;
 						loadingImage();
 						$(".patient_list").empty();
-						loadPatientList();
+						loadclientList();
 					}
 				}
-				function loadPatientList(url, isSearch) {
+				function loadclientList(url, isSearch) {
 					if (!url) {
 						url = '/dost/api/users?page='+gloablePage+'&per_page='+globalPerPage+'&sort_by=userId&order=desc';
 					}
@@ -77,7 +86,7 @@
 									}
 									
 									$(".patient_list").append('<li '+mainStyle+' onmouseover="showButton(this);" onmouseout="hideButton(this);" class="media ceac_patient">'+
-																'<a class="pull-left col-md-6" href="patientDetails?='+user[i].username+"+"+user[i].userId+'">'+
+																'<a class="pull-left col-md-6" href="clientDetails?='+user[i].username+"+"+user[i].userId+'">'+
 																	'<img class="avatar" id='+user[i].avatar+' src="avatar/'+user[i].avatar+'.png" name='+user[i].avatar+'/>'+
 																	'<span class="patient_name">'+user[i].username+'</span>'+
 																	'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+
@@ -94,6 +103,8 @@
 									globalScroll = true;
 								}
 								if(user.length == 0 && isSearch) {
+									$(".patient_list").empty();
+									gloablSearchPage = 1;
 									$("#noSearchResult").remove();
 									$(".patient_list").append("<div id='noSearchResult' >No Search result found.</div>")
 								} else {

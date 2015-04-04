@@ -209,3 +209,149 @@ ADD COLUMN `year` INT(10) UNSIGNED DEFAULT NULL AFTER `hostel`;
 
 ALTER TABLE user
 ADD COLUMN `branch` VARCHAR(100) DEFAULT NULL AFTER `year`;
+
+ALTER TABLE user MODIFY year VARCHAR(100) DEFAULT NULL;
+
+CREATE TRIGGER user_OnInsert BEFORE INSERT ON `user`
+    FOR EACH ROW SET NEW.createdate = NOW();
+    
+ALTER TABLE user
+ADD COLUMN `email` VARCHAR(100) DEFAULT NULL AFTER `branch`;
+
+--Table for storing emails after conversation with Shweta
+
+CREATE TABLE `dost_email` (
+    `emailid` INTEGER NOT NULL AUTO_INCREMENT,
+    `conversationid` INTEGER NOT NULL,
+    `email_type` VARCHAR(4500) DEFAULT NULL,
+    `sender` varchar(255) DEFAULT NULL,
+	`agent` varchar(255) DEFAULT NULL,
+    `recipient` varchar(255) DEFAULT NULL,
+    `recipient_email` VARCHAR(10000) DEFAULT NULL,
+    `status` varchar(255) DEFAULT NULL,
+    `error_message` varchar(4500) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`emailid`)
+);
+
+--Trigger to add data in chat_update table from ofConversation when chat ends
+delimiter |
+CREATE TRIGGER chat_update
+AFTER UPDATE ON ofConParticipant
+FOR EACH ROW
+BEGIN
+SET @countOfMessage = (select messageCount from ofConversation where conversationID = OLD.conversationID);
+SET @countOfemail = (select count(*) from dost_email where conversationid = OLD.conversationID);
+IF @countOfemail = 0 THEN
+insert into dost_email (conversationid, email_type, sender, agent, messagecount, recipient, recipient_email, status, createdate) 
+values(OLD.conversationID, 'CHAT_FEEDBACK', 'customersupport@yourdost.com', 
+(select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource in ('Spark 2.6.3')),
+@countOfMessage,
+(select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource not in ('Spark 2.6.3', 'demo')),
+(select email from user where username in( select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource not in ('Spark 2.6.3', 'demo'))), 
+'NOT_SENT', NOW());
+END IF;
+-- if message count is 2 or less
+SET @countOfMessage = (select messageCount from ofConversation where conversationID = OLD.conversationID);
+IF @countOfMessage < 5 and @countOfemail = 1 THEN -- there can be only one entry in dost_email table
+insert into dost_email (conversationid, email_type, sender, agent, messagecount, recipient, recipient_email, status, createdate) 
+values(OLD.conversationID, 'MESSAGE_COUNT', 'customersupport@yourdost.com', 
+(select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource in ('Spark 2.6.3')),
+@countOfMessage,
+(select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource not in ('Spark 2.6.3', 'demo')),
+(select email from user where username in( select nickname from ofConParticipant where conversationID = OLD.conversationID and jidResource not in ('Spark 2.6.3', 'demo'))), 
+'NOT_SENT', NOW());
+END IF;
+END |
+delimiter ;
+
+ALTER TABLE dost_email
+ADD COLUMN `messagecount` INTEGER DEFAULT 0 AFTER `agent`;
+
+
+--Adding new forums 
+
+insert into jforum_categories values (2, 'Category Relation', 2, 0)
+insert into jforum_categories values (3, 'Category Career', 3, 0)
+insert into jforum_categories values (4, 'Category Education', 4, 0)
+insert into jforum_categories values (5, 'Category Personality', 5, 0)
+
+insert into jforum_forums values (2, 2, 'Relationship', 'Relationship', 1, 0, 0, 0)
+insert into jforum_forums values (3, 3, 'Career', 'Career', 1, 0, 0, 0)
+insert into jforum_forums values (4, 4, 'Education', 'Education', 1, 0, 0, 0)
+insert into jforum_forums values (5, 5, 'Personality', 'Personality', 1, 0, 0, 0)
+
+
+CREATE TABLE `dost_userlog` (
+    `logid` INTEGER NOT NULL AUTO_INCREMENT,
+    `userid` INTEGER NOT NULL,
+    `username` VARCHAR(255) NOT NULL,
+    `ip` varchar(255) DEFAULT NULL,
+	`logintime` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`logid`)
+);
+
+CREATE TRIGGER dost_userlog_OnInsert BEFORE INSERT ON `dost_userlog`
+    FOR EACH ROW SET NEW.logintime = NOW();
+    
+    
+CREATE TABLE `dost_codes` (
+    `codeid` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` varchar(255) NOT NULL,
+	`value` varchar(1000) NOT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`codeid`)
+);
+
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('1', 'TAG', 'Relationship', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('2', 'TAG', 'Career', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('3', 'TAG', 'Education', '0');
+INSERT INTO `dost`.`dost_codes` (`codeid`, `type`, `value`, `deleted`) VALUES ('8', 'TAG', 'Others', '0');
+
+CREATE TABLE `dost_counselors` (
+    `counselorid` INTEGER NOT NULL AUTO_INCREMENT,
+	`username` varchar(1000) NOT NULL,
+    `password` varchar(1000) NOT NULL,
+	`name` varchar(1000) NOT NULL,
+    `description` varchar(10000) NOT NULL,
+	`profilename` varchar(1000) NOT NULL,
+    `timing` varchar(255) DEFAULT NULL,
+    `gender` varchar(255) DEFAULT NULL,
+    `location` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`counselorid`)
+);
+
+CREATE TABLE `dost_counselortags` (
+    `tagid` INTEGER NOT NULL AUTO_INCREMENT,
+    `counselorid` INTEGER NOT NULL,
+	`tagname` varchar(255) DEFAULT NULL,
+    `createdate` varchar(255) DEFAULT NULL,
+    `createby` bigint(20) DEFAULT NULL,
+    `updatedate` varchar(255) DEFAULT NULL,
+    `updateby` bigint(20) DEFAULT NULL,
+    `deleted` INTEGER DEFAULT 0,
+    PRIMARY KEY (`tagid`)
+);
+-- Add data in dost_counselortags
+-- Going forward we need to add data in dost_counselors also apart from users table
+
+ALTER TABLE user
+ADD COLUMN `blocked` VARCHAR(10) DEFAULT false AFTER `email`;

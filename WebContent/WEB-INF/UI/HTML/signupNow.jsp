@@ -30,9 +30,30 @@
 			});
 		});
 		
-		$('input[name="username"]').blur( function(){
+		$('#username').blur( function(){
+			
 			var valid_user = validate_username();
 		});
+		function validate_username(){
+			var text=$(" #username").val();
+			var hostname=$(location).attr('host');   
+			
+		$.ajax("http://"+hostname+"/dost/api/user/"+text+"/exists").done(function(response){
+			if(response.status){
+				
+				//$(" #username_check").css("background","url(images/cross.png)");
+				$("#username").css("border-color","red")
+				$(".exists").css("color","red")
+				$(".exists").removeClass("hidden")
+			}
+			else{
+				
+				//$("#username_check").css("background","url(images/tik.png)");
+				$(" #username").css("border-color","green")
+				$(".exists").addClass("hidden")
+			}
+		});
+		}; 
 		
 		$('input[name="password"]').blur( function(){
 			var valid_password = validate_password() ;			
@@ -49,7 +70,7 @@
 	
 	});
 	
-	function validate_username(){
+	/*function validate_username(){
 		var username = $('input[name="username"]').val() ;
 		if( !username.match( /[a-zA-Z]/ ) ){
 			$("#usernameError").show()           ;
@@ -62,7 +83,7 @@
 		}
 		
 		
-	}
+	}*/
 	
 	function validate_password(){
 		var password       = $('input[name="password"]').val()   ;
@@ -159,6 +180,7 @@
 						<input id="avatarinput" type="hidden" name="avatarinput">
 						<label>Username*</label>
 						<input id="username"  name="username" required type="text" class="form-control input-block-level" placeholder="Create a username">
+                        <label class="exists">Username already exists</label>
                         <!-- <div id="usernameError" class="errorMsg">Username should contain atleast one alphabet</div> -->
 						<br/>
 						
