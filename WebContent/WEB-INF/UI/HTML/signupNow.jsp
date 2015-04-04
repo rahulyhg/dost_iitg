@@ -30,8 +30,7 @@
 			});
 		});
 		
-		$('input[name="username"]').blur( function(){
-			alert("blurred");
+		/* $('input[name="username"]').blur( function(){
 			var valid_user = validate_username();
 		});
 		
@@ -45,14 +44,15 @@
 		
 		$('input[name="password"]').keyup( function(){
 			var valid_password = validate_password() ;			
-		});
+		}); */
 
 	
 	});
 	
 	function validate_username(){
+		
 		var username = $('input[name="username"]').val() ;
-		if( !username.match( /[a-zA-Z]/ ) ){
+		if( !username.match( /^[a-zA-Z0-9]+$/ ) ){
 			$("#usernameError").show()           ;
 			$("#signin").attr("disabled","true") ;
 			return  0                            ;	
@@ -61,8 +61,6 @@
 			$("#signin").removeAttr("disabled") ;
 			return 1                            ;
 		}
-		
-		
 	}
 	
 	function validate_password(){
@@ -83,9 +81,10 @@
 	function validateForm() {
 		$(".error").html("");
 		$(".error").hide();
-
+		var usernameRegex = /^[a-zA-Z0-9]+$/;
 		$(".alert-success").html("");
 		$(".alert-success").hide();
+		var userName = $("#username").val();
 		var checkAvatar = $(".avatar").hasClass("selectedImage");		
 		if(checkAvatar==false){
 			$(".error").show();
@@ -93,9 +92,27 @@
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}
-		else if($("#username").val()==false){
+		else if(userName == false){
 			$(".error").show();
 			$("<p>Please enter username</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if(userName.length < 4){
+			$(".error").show();
+			$("<p>Your username must be at least 4 characters long.</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if(isNaN(userName.substring(0,1)) === false){
+			$(".error").show();
+			$("<p>Your username must begin with a letter.</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if(userName.match(usernameRegex) === null){
+			$(".error").show();
+			$("<p>Please enter valid username. Only letters and numbers are allowed</p>").appendTo(".error");
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}
