@@ -179,7 +179,7 @@
 		}
 		
 		setInterval(function() {
-            window.location.reload();
+            //window.location.reload();
           }, 60000);
 		
 		/*Sent messages and inbox toggle active class*/
@@ -524,7 +524,6 @@
 							$(".error").hide();
 							
 							var selected_recipient = $("#selected_recipient").val() ;
-							alert(selected_recipient);
 							if( selected_recipient == undefined || selected_recipient == '' || !selected_recipient ){
 								selected_recipient = "all" ;
 							}
