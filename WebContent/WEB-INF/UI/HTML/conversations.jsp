@@ -180,6 +180,19 @@
 		
 		setInterval(function() {
             //window.location.reload();
+			$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
+				userid = user.userId;
+				 UrlForData = '/dost/api/user/'+userid+'/unreadcount';
+					$.getJSON(UrlForData, function(count) {	
+						var unreadcount = count[userid];
+						if(unreadcount > 0) {
+							$('#count').text('Inbox(' + unreadcount +  ')');
+						}
+						else {
+							$('#count').text('Inbox');
+						}
+					});
+			});
           }, 60000);
 		
 		/*Sent messages and inbox toggle active class*/
@@ -204,6 +217,8 @@
 		$(".inbox").click(function(){
 			$(".active").removeClass("active");
 			$(this).addClass("active");
+			$(".conversationsUser").html("");
+			$(".conversationsCounselor").html("");
 			UrlForData = '/dost/api/user/'+userid+'/messages?page=1&per_page='+globalPerPage+'&sort=messageId&order=desc';
 			//UrlForData = '/dost/api/user/'+userid+'/messages';
 			showDataMsg(UrlForData);
@@ -492,6 +507,7 @@
 		$(".leaveMessage").click(function(){
 			$("#dialogMessage").dialog("open");
 			$('.ui-widget-overlay').css('background', 'white');
+			$("#recipient, #subject, #messageContent").val("");
 			if( $("#userTags") ){
 				$.getJSON("/dost/api/codes/TAG", function(tags){
 					
