@@ -28,7 +28,6 @@
 				//ajax loading done
 				$(document).ajaxComplete(function(){
 			        $(".loading").css("display", "none");
-			        alert("loading done");
 			    });
 				
 				$.each( core_team, function( index, elem ){
