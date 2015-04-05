@@ -11,11 +11,12 @@ uri="http://www.springframework.org/security/tags"%>
 	<meta name="keywords" content="virtual counseling system, emotional support system, share your feelings, online counseling, share your problems, speak to counselor for free, free therapy, shre emotions, speak to a therapist, find a listener, your trusted friend, your supportive friend"/>
 	<meta name="author" content="Your D.O.S.T.">
 	<title>Your D.O.S.T - An Emotional Support System</title>
-	<link rel="shortcut icon" href="http://yourdost.com/favicon.ico" />
-	<link rel="image_src" href="http://yourdost.com/resources/img/dostLogo.jpg" />
+	<link rel="shortcut icon" href="http://iitg.yourdost.com/favicon.ico" />
+	<!-- <link rel="image_src" href="http://iitg.yourdost.com/resources/img/dostLogo.jpg" />
 	<meta property="og:image" content="http://yourdost.com/resources/img/dostLogo.jpg"/>
 	<meta property="og:title" content="Your D.O.S.T - An Emotional Support System"/>
 	<meta property="og:image" content="Is something bothering you - career, relationships, family, work, education, parents? Your D.O.S.T is a your emotional support system where you can be complete anonymous and vent out your feelings to special friends consiting of compassionate psychologists and others. You can privately discuss all your problems with special friends through one to one chat, explore self help and engage with others going through tough times on discussion forums"/>
+	 -->
 </head>
 
 <jsp:include page="includes/commonHeader.jsp"></jsp:include>
@@ -25,10 +26,7 @@ uri="http://www.springframework.org/security/tags"%>
 
 <script>
 $( document ).ready(function() {
-	$(".horoscopes a").click(function(){
-	var clickedZodiac =$(this).text();
-	$(this).attr("href","horoscope?="+clickedZodiac);
-	});
+	
 	/*FAQ listing on index page*/
 	$.getJSON("/dost/api/faqcategory/all", function(FAQ) {	
 	$("#faqs .loadingIndex").hide();
@@ -156,16 +154,16 @@ $( document ).ready(function() {
 				<a class="quotes_list" href="${pageContext.request.contextPath}/quotes">
 				<ul class="details_box">
 					<li>
-						If you tell the truth, you don't have to remember anything.<span class="secondary_information">~Mark Twain</span>
+						I may not be there yet, but I am closer than I was yesterday.
 					</li>
 					<li>
-						If an egg is broken by an outside force, LIFE ENDS. If broken by an inside force, LIFE BEGINS. Great things always begin from inside.
+						Do Not Pray For An Easy Life, Pray For The Strength To Endure A Difficult One.
 					</li>
 					<li>
-						Winners are not people who never fail, but people who never quit.
+						A bird sitting on a tree is never afraid of the branch breaking because her trust is not on the branch but on it's own wings					
 					</li>
 					<li>
-						One day you will wake up and there won't be any more time to do the things you've always wanted to do. DO IT NOW.
+						You have to fight to reach your dream, you have to sacrifice and work hard for it
 					</li>
 					<li>
 						Our greatest weekness lies in giving up. The more certain way to succeed is always to try just one more time  <span class="secondary_information">~Thomas A Edison</span>
@@ -182,6 +180,13 @@ $( document ).ready(function() {
 					<img src="${pageContext.request.contextPath}/resources/img/small-stress.png">
 				</a>
 				<ul class="details_box">
+					<li>
+						<a href="http://quotesdost.blogspot.in/2015/02/journey-within-guided-meditation-by-sri.html">
+							<h4>Journey Within - Guided meditationn</h4>
+							<span class="secondary_information">Experience timelessness and come out fresh to continue your work.</span>
+							<div class="clearfix"></div>
+						</a>
+					</li>
 					<li>
 						<a href="http://quotesdost.blogspot.in/2015/01/squeeze-away-tension-progressive-muscle.html">
 							<h4>Squeeze Away Tension</h4>
@@ -214,7 +219,7 @@ $( document ).ready(function() {
 			</li>
 			<li class="exploration_option well col-md-4" id="personalityTest">
 				<a class="card_heading">
-					<h3 class="categoryName ">Know your Persoanlity</h3>
+					<h3 class="categoryName ">Know your Personality</h3>
 					<img src="${pageContext.request.contextPath}/resources/img/small-personality.png">
 				</a>
 				<ul class="details_box">
@@ -231,28 +236,28 @@ $( document ).ready(function() {
 				<ul class="details_box">
 				<li>
 				<li>
-					<a href="http://blog.yourdost.com/2015/01/you-are-not-alone.html">
-						<h4>You are not Alone!</h4>
+					<a href="http://yourdostiitg.blogspot.in/2015/04/it-is-never-too-late-to-make-it-happen.html">
+						<h4>It is never too late to make it happen! </h4>
 					</a>
 				</li>
 				<li>
-					<a href="http://blog.yourdost.com/2014/12/iit-jee-preparation-marathon.html">
-						<h4>IIT JEE Preparation - A Marathon!</h4>
+					<a href="http://yourdostiitg.blogspot.in/2015/03/your-first-job-not-end-to-all.html">
+						<h4>Your first Job- Not an end to all</h4>
 					</a>
 				</li>
 				<li>
-					<a href="http://blog.yourdost.com/2014/12/is-your-relationship-bothering-you.html">
-						<h4>Is your relationship bothering you? (Part 1) - Starting a conversation when you are already angry </h4>
+					<a href="http://yourdostiitg.blogspot.in/2015/03/this-is-my-second-blog-with-your-d.html">
+						<h4>Dream is something which doesn’t let you sleep! </h4>
 					</a>
 				</li>
 				<li>
-					<a href="http://blog.yourdost.com/2014/09/i-want-to-be-super-rich.html">
-						<h4>I want to be super rich</h4>
+					<a href="http://yourdostiitg.blogspot.in/2015/03/no-guy-cares-for-me.html">
+						<h4>No guy cares for me!</h4>
 					</a>
 				</li>
 				<li>
-					<a href="http://blog.yourdost.com/2014/09/phone-and-relationships-whom-to-blame.html">
-						<h4>Phone and Relationship, whom to blame?</h4>
+					<a href="http://yourdostiitg.blogspot.in/2015/03/depression-lets-get-over-it-why-sit-on.html">
+						<h4>DEPRESSION!!!! Let's get over it, why sit on an electric chair..</h4>
 					</a>
 				</li>
 			</li>
