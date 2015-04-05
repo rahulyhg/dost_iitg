@@ -3,6 +3,7 @@ package com.dost.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,5 +71,10 @@ public class Utils {
 			showSignUpPage = false;
 		} */
 		return showSignUpPage;
+	}
+	
+	public static String generateUniqueToken() {
+		UUID uniqueId = UUID.randomUUID();
+		return uniqueId.toString();
 	}
 }

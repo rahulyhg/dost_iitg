@@ -187,5 +187,13 @@ public class UserDAOImpl implements UserDAO {
 			users = new ArrayList<DbUser>();
 		}
 		return users;
-	}	
+	}
+	
+	public DbUser getUserByIdentifier(String identifier) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from DbUser u where u.identifier= :identifier");
+		query.setParameter("identifier", identifier);
+		DbUser user = (DbUser)query.uniqueResult();
+		return user;
+	}
 }

@@ -27,5 +27,5 @@ public interface UserService {
 	public int getUsersCount();
 	public List<DbUser> searchUserByUserName(String username);
 	
-
+	public DbUser getUserByIdentifier(String identifier);
 }

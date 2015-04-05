@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dost.hibernate.DbUser;
+import com.dost.model.Message;
 import com.dost.model.User;
 import com.dost.model.UserPopulator;
 import com.dost.model.UserProfile;
 import com.dost.service.UserService;
+import com.dost.util.MessageUtil;
+import com.dost.util.Utils;
 
 @Controller
 @RequestMapping("api")
@@ -84,20 +87,52 @@ public class UserController {
 	@RequestMapping(value="/user/{username}/emailpassword", method=RequestMethod.POST)  
 	@ResponseBody
 	public Map<String, String> sendPasswordResetLinkToUser(@PathVariable String username, UserProfile userProfile) {
-		
-		//TODO: perform business logic 
 		Map<String, String> response = new HashMap<String, String>();
-		response.put("status", "success");
+		// username is not provided
+		if(username == null) {
+			response.put("status", "failure");	
+		}
+		else {
+			DbUser user = userService.getUserByUsername(username);
+			String identifier = Utils.generateUniqueToken();
+			// Check if email provided by UI and email in DB is same
+			if(user.getEmail() == null) {
+				response.put("status", "failure");
+			}
+			else {
+				if(user.getEmail().equals(userProfile.getEmail())) {
+					// Update unique token in user table with proper identifier
+					user.setIdentifier(identifier);
+					userService.updateUser(user);
+					String messageToSend = createPasswordResetMessage(username, identifier);
+					MessageUtil.sendEmail("customersupport@yourdost.com", user.getEmail(), "Password Reset Request", messageToSend);
+					
+					response.put("status", "success");				
+				}
+				else {
+					response.put("status", "failure");
+				}
+			}			
+		}
 		return response;
 	}
 	
-	@RequestMapping(value="/user/{username}/resetpassword", method=RequestMethod.POST)  
+	@RequestMapping(value="/user/resetpassword", method=RequestMethod.POST)  
 	@ResponseBody
-	public Map<String, String> resetUserPassword(@PathVariable String username, UserProfile userProfile) {
-
-		//TODO: perform business logic 
+	public Map<String, String> resetUserPassword(UserProfile userProfile) {
 		Map<String, String> response = new HashMap<String, String>();
-		response.put("status", "success");
+		response.put("status", "failure");
+		if(userProfile.getIdentifier() != null) {
+			DbUser dbUser = userService.getUserByIdentifier(userProfile.getIdentifier());
+			// Check if user identifier in database is same as identifier passed by UI in userprofile
+			if(dbUser != null) {
+				// Now change password
+				dbUser.setPassword(userProfile.getPassword());
+				dbUser.setIdentifier(null);
+				userService.updateUser(dbUser);
+				response.put("status", "success");
+			}
+		}		
 		return response;
 	}
 	
@@ -154,6 +189,32 @@ public class UserController {
 		userService.updateUser(user);
         statusMap.put("status", "true");
 		return statusMap;
-	}	
+	}
+	
+	
+	/**
+	 * 
+	 * @param recipientUsername
+	 * @param identifier, to identify which user is it
+	 * @return
+	 */
+	private String createPasswordResetMessage(String recipientUsername, String identifier) {
+		StringBuilder resetPasswordMessageBuffer = new StringBuilder();
+		resetPasswordMessageBuffer.append("Hi " + recipientUsername + ",");
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("We have received a request from you to reset your password. If you asked to reset your password, please follow the instructions below. ");
+		resetPasswordMessageBuffer.append("If you do not wish to reset your password, simply disregard this message.");
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("To reset your password click on the following link:");
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("<u><a href='http://localhost:8800/dost/resetPassword?identifier=" + identifier + "'>Reset Password</a></u>");
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("Regards,");
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("Admin at Your D.O.S.T");
+		
+		return resetPasswordMessageBuffer.toString();
+	}
+
 	
 }

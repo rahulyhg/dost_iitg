@@ -15,6 +15,7 @@ public class UserPopulator {
 		user.setBranch(dbUser.getBranch());
 		user.setEmail(dbUser.getEmail());
 		user.setBlocked(dbUser.getBlocked());
+		user.setIdentifier(dbUser.getIdentifier());
 	}
 	
 	public static void populateDbUser(User user, DbUser dbUser) {
@@ -27,5 +28,6 @@ public class UserPopulator {
 		dbUser.setBranch(user.getBranch());
 		dbUser.setEmail(user.getEmail());
 		dbUser.setBlocked(user.getBlocked());
+		dbUser.setIdentifier(user.getIdentifier());
 	}
 }

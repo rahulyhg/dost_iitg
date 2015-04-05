@@ -15,6 +15,7 @@ public class User {
 	private String branch = "";
 	private String email = "";
 	private String blocked = "";
+	private String identifier = "";
 	
 	public Long getUserId() {
 		return userId;
@@ -87,6 +88,12 @@ public class User {
 	}
 	public void setBlocked(String blocked) {
 		this.blocked = blocked;
+	}
+	public String getIdentifier() {
+		return identifier;
+	}
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 	
 	
