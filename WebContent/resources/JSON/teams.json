@@ -1,116 +1,33 @@
 {"core_team":[
-	{"name":"Richa",
-	 "details":"Richa is the Co-Founder and Conceptualizer for Your D.O.S.T. <br/><br/>She felt the need for Your D.O.S.T while she was studying at IIT Guwahati. Even though there was a counseling cell in the college, no-one would ever go there. Even she herself was never able to gather courage to see a counselor, however emotionally stressed she felt. She observed her colleagues also having similar issues. That's when she started seriously thinking about a virtual emotional support system. <br/><br/> She is agony aunt for most of her friends. A keen observer, TT Lover and a complete foodie.<br/><br/>",
-	 "linkedin":"https://www.linkedin.com/in/richa0387",
-	 "twitter":"https://www.twitter.com/des_richa",
-	 "image":"Richa.jpg"
+
+	{
+	 "name":"Dr. Lakshmi",
+	 "details": "Dr. Lakshmi Haobam, a PhD degree in Psychology from Panjab University. She specialises in Clinical Patterns and Therapies, Clinical Psycho Diagnostics and Basic Counselling. <br/><br/> She has 7+ years of experience in counseling - relationship issues, internal conflicts, past unresolved issues, general stress, interpersonal stressful dynamics with friends, etc. <br/><br/> A compassionate person who goes out of way to help people.  She has been actively involved with NGOs too. <br/><br/>She is also trained in conducting JPMR, a muscle  relaxation technique which help to get a good sleep at night. <br/><br/>",
+	 "image":"Lakshmi.jpg"
 	},
 	
-	{"name":"Satyajeet",
-	 "details":"Satyajeet is the Co-Founder and Conceptualizer for Your D.O.S.T. <br/><br/> He breathes and eats code. The day Richa and Satyajeet had discussion about the idea of Your D.O.S.T, he actually started creating it because he felt that D.O.S.T has the potential to help millions.<br><br> An avid traveler, runner, a compassionate person and the person behind making Your D.O.S.T a reality.<br/><br/>",
-	 "linkedin":"https://www.linkedin.com/profile/view?id=53321336",
-	 "twitter":"",
-	 "image":"Satyajeet.jpg"
+	{
+	 "name":"Mrs. Pallabita",
+	 "details":"Mrs. Pallabita Barooah Chowdhury is a double Masters in Education and Psychology from the Gauhati University. A trained and qualified teacher with 20+ years of experience - mentored, guided and counselled students at various educational institutions.<br/><br/> She is passionate about helping people in distress to come out better. She approaches counseling from an eclectic and integrated perspective and defines herself as a Life Coach to students. <br/><br/>A spiritualist at heart who believes in Positive Thought, Feeling and Action as medium of life defining changes and transitions. For her the world lies ‘between the two eyes’ and it is the sense of personal responsibility and the practice of healthy purposeful living that creates a better life and a better world for an individual.<br/><br/>A passionate Educator and Mentor and co-author of ‘A Handbook on Parenting’. Married to a businessman and a mother of two beautiful adolescent girls.<br/><br/> ",
+	 "image":"Pallabita.jpg"
 	},
 	{
-			"name":"Puneet",
-		 	"details":"Puneet is the Chief Strategist for Your D.O.S.T. <br/><br/>Difficult problems make him happy. An IIM Bangalore alumni, a consultant with Mckinsey & Company and a former programmer by profession. He keeps coming up with innovative ideas on making Your D.O.S.T a sustainable business. <br/><br/>A huge bollywood fan, tennis lover and a king of poor jokes.<br/><br/>  ",
-		 	"linkedin":"https://www.linkedin.com/profile/view?id=34069522",
-		 	"twitter":"https://twitter.com/puneetmanuja",
-		 	"image":"Puneet.jpg"
-		}
+	 "name":"Dr Bandana",
+	 "details":"Dr. Bandana Dutta, a PhD in Psychology from Centre for Advanced Study, Utkal University. She has 33+ years of experience as a psychologist. <br/><br/>She uses the Projective Techniques to assess her clients and unveils their personality and probes deep into their inner self. She uses client –centered psychotherapy, Cognitive Therapy, Psychodynamic Therapy, Grapho- Therapy, Counselling and Relaxation Techniques to support the client’s in their day- today activities and overall well being.A very compassionate individual with the knack of helping people.<br/><br/> She is an active a member of Assam Autism Foundation and Mind India, Gauhati. <br/><br/>",
+	 "image":"Bandana.jpg"
+	}
+	
+	
   ], 
   
   "volunteers":[
-		
 		 {
-		 	"name":"Namrata",
+		 	"name":"Zilani",
 		 	"details":"Namrata is your special friend from Your D.O.S.T team.<br/><br/> She is currently working at CIMBS :Delhi Psychiatry Centre as Clinical Psychologist. At CIMBS, she also heads a Tobacco Cessation Clinic. She specializes in anxiety spectrum disorders like phobia, OCD, GAD, relationship issues. <br/><br/> She is passionate about helping people in distress. <br/> She believes, through Your D.O.S.T, she can extend her to many more people in need.<br/>She is compassionate, empathetic, an active  listener and novelty seeker.<br/><br/>",
 		 	"linkedin":"https://www.linkedin.com/pub/namrata-upadhyay/63/41/100",
 		 	"twitter":"",
 		 	"image":"Namrata.jpg"
-		 },
-		 
-		 {
-		 	"name":"Vishnu",
-		 	"details":"Vishnu is your special friend from Your D.O.S.T team. <br/><br/>He is an Industrial and Organizational Psychologist by profession and also a Research Scholar at Jai Narayan Vyas University, Jodhpur. He loves to explore inner self and helps others too in self exploration. He has successfully guided many students to achieve their academic and career goals. <br/><br/> He believes he will be able to help others through D.O.S.T.<br/><br/>A good listener, motivational speaker, a kind and helping person who finds happiness in helping others. <br/><br/> ",
-		 	"linkedin":"https://www.linkedin.com/in/vishnunarayan57",
-		 	"twitter":"",
-		 	"image":"Vishnu.jpg"
-		 },
-		 {
-		 	"name":"Nabanita",
-		 	"details":"Nabanita is your special friend from Your D.O.S.T team. <br/><br/>She has done her masters in Clinical Psychology and has the knack of motivating people. <br/><br/>She believes that through Your D.O.S.T she will be able to help a lot of people.<br/><br/>She has a philosophical bent, likes to read and is a fitness freak. She knows self defence too! <br/><br/> ",
-		 	"linkedin":"https://www.linkedin.com/pub/nabanita-barua/35/4b3/681",
-		 	"twitter":"",
-		 	"image":"nabanita.jpg"
-		 },
-		 {
-			 "name":"Tarun",
-			 "details":"Tarun is your special friend from Your D.O.S.T team. <br/><br/>He is a clinicaL psychologist by profession and a lecturer at SGT University, Gurgaon. He was a medical student at school but chose to take psychology as career as he loved to explore inner self and helped others too in exploration. <br/><br/>An extremely good listener, a kind and helping person who goes an extra mile to solve others problem. He believes he will be able to help others through by being a neutral, impartial and by providing unconditional guidance to Your D.O.S.T users.<br/><br/>He loves reading about psychology, watching movies. <br/><br/> ",
-			 "linkedin":"https://www.linkedin.com/profile/view?id=151960741",
-			 "twitter":"",
-			 "image":"Tarun.gif"
-		 },
-		 
-		
-		 {
-			 "name":"Ankita",
-			 "details":"Ankita is a gifted programmer and helps Your D.O.S.T with development. <br/><br/>She has done her engineering from Pune Institute of Technology. If there exist a fix for a technical problem, she always has it. <br/><br/>She believes in Your D.O.S.T's vision of helping people in stress. She says she has herself been there multiple times and understands the pain. She is a big time foodie and an avid traveler.<br/><br/>",
-			 "linkedin":"https://www.linkedin.com/pub/ankita-singhal/1b/573/348",
-			 "twitter":"https://twitter.com/ankita_singhal",
-			 "image":"Ankita.jpg"
-		 },
-		
-		 {
-		 	"name":"Kishlay",
-		 	"details":"Kishlay is your special friend from Your D.O.S.T team. <br/><br/>An IIT'an, a computer programmer by profession but a gifted listener. He is a keen observer, a compassionate listener and wants to make a contribution in bringing a positive change to society. He thinks our education system is causing us stress which is not worthwhile and also lacks imparting basic life skills to students. <br/><br/>He is a sports fanatic and a music lover.<br/><br/>",
-		 	"linkedin":"https://www.linkedin.com/profile/view?id=83100099",
-		 	"twitter":"",
-		 	"image":"Kishlay.jpg"
-		 },
-		 
-		  {
-		 	"name":"Shreya",
-		 	"details":"Shreya is your special friend from Your D.O.S.T team. <br/><br/>She has done her Post Graduation in Psychological Counselling from Montfort College, Bangalore. A skilled counselor and experienced in dealing with all age groups. <br/><br/>She believes in helping people in a way that would better suit them rather than having a textbook or purist approach. She volunteers for Your D.O.S.T as she loves helping people and believes all the human beings have the potential to reach their optimum best once they overcome the barriers and resolve the deep lying issues.<br/><br/>",
-		 	"linkedin":"https://www.linkedin.com/profile/view?id=400113328",
-		 	"twitter":"https://www.twitter.com/KentonLaneCom",
-		 	"image":"Shreya.jpg"
-		 },
-		  {
-		 	"name":"Ankita",
-		 	"details":"Ankita is a great UX designer and helps Your D.O.S.T with Design. <br/><br/>An IIT'an, traveller, a basket ball player, avid reader and a great photographer. <br/><br/>She volunteers at Your D.O.S.T  as she believes in the vision of - making this world a happier place. <br/><br/> ",
-		 	"linkedin":"https://www.linkedin.com/in/ankitagautam",
-		 	"twitter":"https://twitter.com/njoinlife_",
-		 	"image":"ankitaGautam.jpg"
-		 },
-		 {
-		 	"name":"Vikas",
-		 	"details":"Vikas helps Your D.O.S.T with Marketing. <br/><br/>A Bangalore Institute of Technology Alumnus, socialholic, likes to google and read interesting article on web.<br/><br/>He volunteers for Your D.O.S.T as he believes that words have power and can help people change the way they live and think.<br/><br/> ",
-		 	"linkedin":"https://www.linkedin.com/in/3vikasvicky",
-		 	"twitter":"https://twitter.com/3VikasVicky",
-		 	"image":"Vikas.jpg"
-		 },
-		 {
-		 	"name":"Kenton",
-		 	"details":"Kenton contributes to D.O.S.T by providing rich and insightful content on Your D.O.S.T blog.<br/><br/> He is an American Psychotherapist with 15+ years of experience in solving the most challenging cases across the globe. He grew up from Portuguese explorer roots in an international environment and became fascinated with India from an early age. <br/><br/>Kenton has great love and compassion for the Indians and shares the Your D.O.S.T. vision of bring stress free help and friendship to everyone in times of need.<br/><br/>",
-		 	"linkedin":"https://www.linkedin.com/in/kentonlane",
-		 	"twitter":"https://www.twitter.com/KentonLaneCom",
-		 	"image":"Kenton.jpg"
 		 }
-		 
-		 
-		 
-		
-	],
-	"campus":[
-		
-		 {
-		 	"name":"Aalap",
-		 	"details":"Aalap is Your D.O.S.T campus ambassador for NIT Surat (SVNIT).<br/><br/> He is third year Mechanical Engineering student. He is really excited with Your D.O.S.T vision from Day 1. He helps to increase awareness about Your D.O.S.T not just in his own campus but also outside. <br/><br/>",
-		 	"linkedin":"https://www.linkedin.com/profile/view?id=399839239",
-		 	"twitter":"",
-		 	"image":"Aalap.jpg"
-		 }
-	]  
+		 		
+	]
 }

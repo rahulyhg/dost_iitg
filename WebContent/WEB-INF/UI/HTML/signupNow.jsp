@@ -42,8 +42,8 @@
 				//alert("1");
 				$(" #username").css("border-color","red")
 				$(".exists").removeClass("hidden")
-				$(".exists").html("only alphabets and numbers accepted")
-				$("#viewPassword").attr("disabled","true") 
+				$(".exists").html("only alphabets and numbers accepted").css("color","#666")
+				//$("#viewPassword").attr("disabled","true") 
 				//$("#signin").attr("disabled","true") ;
 			                      
 			}
@@ -58,7 +58,7 @@
 						$(".exists").css("color","red")
 						$(".exists").html("username exists")
 						$("#signin").attr("disabled","true") 
-						$("#viewPassword").attr("disabled","true") 
+						//$("#viewPassword").attr("disabled","true") 
 	                      				
 					}
 					else{
@@ -74,14 +74,15 @@
 			}
 			else{
 				$(" #username").css("border-color","red")
-				$("#viewPassword").attr("disabled","true") 
+				//$("#viewPassword").attr("disabled","true") 
 				$(".exists").html("uername length should be atleast 4 and start with  a letter").css("color","red")
 				//$("#signin").attr("disabled","true") ;
 			}
 		}; 
 		
-		$('input[name="viewPassword"]').blur( function(){
-			var valid_password = validate_password() ;			
+		$('input[name="viewPassword"]').keyup( function(){
+			var valid_password = validate_password() ;		
+			var valid_user = validate_username();
 		});
 		
 		//$('input[name="username"]').keyup( function(){
@@ -91,7 +92,6 @@
 		$('input[name="viewPassword"]').keyup( function(){
 			var valid_password = validate_password() ;			
 		});
-
 	
 	});
 	
@@ -124,7 +124,6 @@
 		}
 	}
 	
-
 	function validateForm() {
 		$(".error").html("");
 		$(".error").hide();
@@ -170,7 +169,6 @@
 			event.preventDefault();
 		}				
 		else{
-
 		}
 	}
 	
@@ -184,7 +182,6 @@
 		 });
 	});
 	
-
 	function updateEncPass () {
 		var pass = $("#viewPassword").val();
 		var encPass = CryptoJS.SHA3(pass);
@@ -260,12 +257,11 @@
  -->
  <br/>
 						<div class="medical_warning">We are not a medical service. If you are  thinking about suicide, if you think you may be in a danger of yourself or to others, 
-						or if otherwise you have any medical emergency, please immediately call 100/101 and notify the police or emergency medical service. 
-						By signing up you are agreeing to <a target="_blank" href="termsOfService">Terms and Services</a> of D.O.S.T</div>					
+						or if otherwise you have any medical emergency, please immediately call <strong>+91 80110 89898</strong>. 
+						By signing up you are agreeing to <a target="_blank" href="termsOfService">Terms and Services</a> of Your D.O.S.T - IIT Guwahati</div>					
 						<br/><br/>
 						<button id="signin" class="pull-right btn btn-large btn-primary" type="submit" onclick="validateForm();">Proceed &gt;</button>
 						<a class="pull-right loginText" href="login" alt="Login to an existing account">Have an account? Login Now</a>
-
 					</div>
 				</div>
 				<div class="clearfix"></div>
