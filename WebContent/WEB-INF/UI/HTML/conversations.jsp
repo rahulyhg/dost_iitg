@@ -539,40 +539,60 @@
 							$(".error").html("");
 							$(".error").hide();
 							
-							var selected_recipient = $("#selected_recipient").val() ;
-							if( selected_recipient == undefined || selected_recipient == '' || !selected_recipient ){
-								selected_recipient = "all" ;
-							}
-														
-							var datatosend = 'subject='+$("#subject").val()+'&content=' + $("#messageContent").val()+ '&recipients='+ selected_recipient +'&senderId=' + userid;
-
-							if( $("#userTags").val() ){
-								datatosend += '&counselorTag=' + $("#userTags").val() ;
-							}	
-												 
-							if($("#recipient").val()== '' || $("#subject").val()== '' || $("#messageContent").val() =='') {
-								$(".error").show().text("Please fill in details");
-							}
-							else{
-								
-								$.post('/dost/api/user/message', datatosend, function(response) {							
-									if(response = ""){
-											$(".status").show().html("sending..");
+							
+							var recipientsNames=$("#recipient").val().split(",");
+							$.ajax({
+				                url: "/dost/api/users",
+				                dataType: "json",
+				                success: function(details) {									
+				                	recipientsNames.pop();
+		                        	var ids=[];
+		              		        $.each(details, function(j,key){
+		                    	        $.each(recipientsNames, function(i,name){
+		                    	        	name=name.trim();
+		                        		  if(key.username==name){
+		                        		    ids.push(key.userId);
+		                        		  }
+		                        		});
+		                    		});
+		                        	ids=ids.join();
+									 var selected_recipient=ids;
+									if( selected_recipient == undefined || selected_recipient == '' || !selected_recipient ){
+										selected_recipient = "all" ;
+									}							
+									var datatosend = 'subject='+$("#subject").val()+'&content=' + $("#messageContent").val()+ '&recipients='+ selected_recipient +'&senderId=' + userid;
+		
+									if( $("#userTags").val() ){
+										datatosend += '&counselorTag=' + $("#userTags").val() ;
+									}	
+														 
+									if($("#recipient").val()== '' || $("#subject").val()== '' || $("#messageContent").val() =='') {
+										$(".error").show().text("Please fill in details");
 									}
-								});
-								
-								setTimeout(function(){
-									/*location.reload(function(){
+									else{
 										
+										$.post('/dost/api/user/message', datatosend, function(response) {							
+											if(response = ""){
+													$(".status").show().html("sending..");
+											}
+										});
 										
-										
-									});*/
-									$(".status").show().html("sent");
-									$("#dialogMessage").dialog("close");
-									$('.ui-widget-overlay').hide() ;
-								}, 1000);
-								receipient = 'all';
-							}
+										setTimeout(function(){
+											/*location.reload(function(){
+												
+												
+												
+											});*/
+											$(".status").show().html("sent");
+											$("#dialogMessage").dialog("close");
+											$('.ui-widget-overlay').hide() ;
+										}, 1000);
+										receipient = 'all';
+										}
+
+		                	
+				                }
+							});
 					}
 				}]	
 		});	

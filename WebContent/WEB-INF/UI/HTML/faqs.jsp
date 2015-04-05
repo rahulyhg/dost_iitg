@@ -164,13 +164,10 @@
 		
 		
 		$(".FAQList").on("click","#deletebutton", function(){
-			$("#dialog").dialog("option","title", "Edit this question/Answer");
+			$("#dialog").dialog("option","title", "Delete the Question/Answer");
 			$("#dialog").dialog("open");
 			
-			var questionToBeEdited = $(".questionAnswer").find(".clickedQuestion").text();
-			var answerToBeEdited = $(".questionAnswer").find(".clickedQuestion").next().text();
-			$(".questionForm").val(questionToBeEdited);
-			$(".answerForm").val(answerToBeEdited);
+			$("#dialog").html('<h2 style="color:#d55; text-align:center">Are you sure you want to delete?</h2>')
 			$(".ui-dialog-buttonset button").show();
 			$(".ui-dialog-buttonset button").eq(1).hide();
 			$(".ui-dialog-buttonset button").eq(2).hide();
