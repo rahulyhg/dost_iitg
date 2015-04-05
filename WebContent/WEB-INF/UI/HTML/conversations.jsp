@@ -187,6 +187,8 @@
 						var unreadcount = count[userid];
 						if(unreadcount > 0) {
 							$('#count').text('Inbox(' + unreadcount +  ')');
+							$(".new-messages").remove();
+							$(".conversationsUser").prepend("<h3 class='new-messages'>You have "+unreadcount+" unread messages</h3>")
 						}
 						else {
 							$('#count').text('Inbox');
@@ -537,12 +539,19 @@
 							$(".error").html("");
 							$(".error").hide();
 							
-							
-							var recipientsNames=$("#recipient").val().split(",");
+							var recipientsNames;
+							if($("#recipient").val()){
+								recipientsNames=$("#recipient").val().split(",");
+							}
+							else{
+								recipientsNames=null;
+							}
 							$.ajax({
 				                url: "/dost/api/users",
 				                dataType: "json",
-				                success: function(details) {									
+				                success: function(details) {
+				                	var selected_recipient;
+				                	if(recipientsNames){
 				                	recipientsNames.pop();
 		                        	var ids=[];
 		              		        $.each(details, function(j,key){
@@ -554,7 +563,11 @@
 		                        		});
 		                    		});
 		                        	ids=ids.join();
-									 var selected_recipient=ids;
+		                        	selected_recipient=ids;
+				                	}
+				                	else{
+									 selected_recipient="";
+				                	}
 									if( selected_recipient == undefined || selected_recipient == '' || !selected_recipient ){
 										selected_recipient = "all" ;
 									}							
