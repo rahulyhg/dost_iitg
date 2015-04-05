@@ -304,14 +304,12 @@
 			
 					for (var j = 0 ; j < messages.length; j++) {
 						var ismessagenew = 0;
-					//	debugger;
-						if(messages[j].recipients == 'undefined') {
+						if(messages[j].recipients == 'undefined' || messages[j].recipients.length == 0) {
 							ismessagenew = 0;
 						}
 						else {
 							ismessagenew = messages[j].recipients[0].viewed;
 						}
-						//var ismessagenew = messages[j].recipients[0].viewed;
 						var messageHeading = '';
 						
 						// 1 means viewed
