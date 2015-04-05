@@ -339,5 +339,13 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 	
+	<script type="text/javascript">
+	
+		if( !$(".login_unit ").length ){
+			$(".container > div").removeClass("col-md-7");		
+		}
+	
+	</script>
+	
 </body>
 </html>
