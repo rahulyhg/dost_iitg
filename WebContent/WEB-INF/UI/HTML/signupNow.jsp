@@ -260,12 +260,11 @@
  -->
  <br/>
 						<div class="medical_warning">We are not a medical service. If you are  thinking about suicide, if you think you may be in a danger of yourself or to others, 
-						or if otherwise you have any medical emergency, please immediately call 100/101 and notify the police or emergency medical service. 
-						By signing up you are agreeing to <a target="_blank" href="termsOfService">Terms and Services</a> of D.O.S.T</div>					
+						or if otherwise you have any medical emergency, please immediately call <strong>+91 80110 89898</strong>. 
+						By signing up you are agreeing to <a target="_blank" href="termsOfService">Terms and Services</a> of Your D.O.S.T - IIT Guwahati</div>					
 						<br/><br/>
 						<button id="signin" class="pull-right btn btn-large btn-primary" type="submit" onclick="validateForm();">Proceed &gt;</button>
 						<a class="pull-right loginText" href="login" alt="Login to an existing account">Have an account? Login Now</a>
-
 					</div>
 				</div>
 				<div class="clearfix"></div>

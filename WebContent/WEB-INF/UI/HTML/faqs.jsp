@@ -8,7 +8,7 @@
 <jsp:include page="includes/header.jsp"></jsp:include>
 <head>
 <meta charset="utf-8">
-<title>Frequently Asked Questions - DOST</title>
+<title>Frequently Asked Questions, Your D.O.S.T - IITG</title>
 <script>
 	$(function() {
 		

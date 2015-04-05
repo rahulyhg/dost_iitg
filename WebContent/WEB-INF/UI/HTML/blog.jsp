@@ -22,10 +22,10 @@ $( document ).ready(function() {
 	var txt="=";
 	if(pageUrl.indexOf(txt) > -1) {
 		var category = window.location.href.split("=");
-		$("iframe").attr("src", 'http://blog.yourdost.com/search/label/'+category[1].toLowerCase());
+		$("iframe").attr("src", 'http://yourdostiitg.blogspot.com/search/label/'+category[1].toLowerCase());
 	}
 	else{
-		$("iframe").attr("src", 'http://blog.yourdost.com/');
+		$("iframe").attr("src", 'http://yourdostiitg.blogspot.com/');
 	}	
 });
 </script>

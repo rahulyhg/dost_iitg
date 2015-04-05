@@ -195,17 +195,17 @@ public class SignupController {
 		welcomeBuffer.append("<br><br>");
 		welcomeBuffer.append("<u>Steps to get started</u>");
 		welcomeBuffer.append("<br>");
-		welcomeBuffer.append("Read on <a href='faqs'><strong>frequently asked questions</strong></a> by people around");
+		welcomeBuffer.append("<a href='conversations?=chat'><strong>Leave us a message</strong></a> about what is bothering you and we will respond within 12 hours. You can just hit <a class='replyBtn'>Reply</a>");
 		welcomeBuffer.append("<br>");
-		welcomeBuffer.append("Participate in <a href='forums/show/6.page'><strong>discussions</strong></a> and get views of your peers, professionals");
-		welcomeBuffer.append("<br>");
-		welcomeBuffer.append("<a href='conversations?=chat'><strong>Write a mail</strong></a> to me and I will respond within 4 hours");
-		welcomeBuffer.append("<br>");
-		welcomeBuffer.append("<a href='talkToFriend'><strong>Talk</strong></a> to me online and get quick reponse");
+		welcomeBuffer.append("Anonymously <a href='talkToFriend'><strong>Chat Online</strong></a> with psychologists and experienced individuals");
 		welcomeBuffer.append("<br><br>");
+		welcomeBuffer.append("Read <a href='faqs'><strong>Frequently Asked Questions</strong></a>");
+		welcomeBuffer.append("<br>");
+		welcomeBuffer.append("Participate in <a href='forums/show/6.page'><strong>Peer Discussions</strong></a> and help others going to tough times or get the community share their views");
+		welcomeBuffer.append("<br>");
 		welcomeBuffer.append("Regards,");
 		welcomeBuffer.append("<br><br>");
-		welcomeBuffer.append("Counselors at Dost");
+		welcomeBuffer.append("Your special friends at IIT Guwahati - Your D.O.S.T");
 		
 		Message welcomeMessage = new Message();
 		welcomeMessage.setContent(welcomeBuffer.toString());
@@ -214,7 +214,7 @@ public class SignupController {
 		// Trigger populates sent date
 		// welcomeMessage.setSentDate(new Date());
 		//welcomeMessage.setSenderId(Long.parseLong(Utils.getDostConfig("dostadmin.userid")));
-		welcomeMessage.setSubject("Welcome to your Dost.");
+		welcomeMessage.setSubject("Welcome to You D.O.S.T");
 		return welcomeMessage;
 	}
 	
