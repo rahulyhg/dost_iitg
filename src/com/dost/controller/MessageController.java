@@ -301,17 +301,30 @@ public class MessageController {
 		String recipientIds = message.getRecipients();
 		String[] recipientArray = null;
 		if(!recipientIds.equals("all")){
-			recipientArray = recipientIds.split(",");	
+			recipientArray = recipientIds.split(",");
+			Long counselorTagId = message.getCounselorTag() != null ? Long.parseLong(message.getCounselorTag()) : 0;
+			dbMessage.setCategoryId(counselorTagId);
 		}
 		// If UI didnt send the recipient id then get list of available counselors
 		else {
 			// Earlier we used to send messages to all counselors, now after 02/28 for IITG we send messages messages to only counselor having TAG sent by user
 //			List<DbUser> counselors = userService.getAllCounselors();
 			String selectedCounselorTag = message.getCounselorTag();
-			//TODO: Hardcoding it for now. It should come from UI
-//			Long selectedCounselorTagId = 1l;
-			Long selectedCounselorTagId = Long.parseLong(selectedCounselorTag);
-			List<DbCounselor> counselors = counselorService.getCounselorsByCodeIds(Arrays.asList(selectedCounselorTagId));
+			// This may be the case 
+			List<DbCounselor> counselors = new ArrayList<DbCounselor>();
+			if(selectedCounselorTag == null || selectedCounselorTag.length() == 0) {
+				counselors = counselorService.getAllCounselors();
+				
+				// Setting selectedCounselorTagId in message as we are saving this going forward
+				dbMessage.setCategoryId(0L); // Category 0 means all
+			}
+			else {
+				Long selectedCounselorTagId = Long.parseLong(selectedCounselorTag);
+				counselors = counselorService.getCounselorsByCodeIds(Arrays.asList(selectedCounselorTagId));
+				
+				// Setting selectedCounselorTagId in message as we are saving this going forward
+				dbMessage.setCategoryId(selectedCounselorTagId);
+			}
 			recipientArray = new String[counselors.size()];
 			for(int i = 0; i < counselors.size(); i++) {
 				recipientArray[i] = ""+counselors.get(i).getCounselorId();

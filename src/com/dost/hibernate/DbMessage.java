@@ -57,6 +57,8 @@ public class DbMessage extends DbGeneric implements Serializable {
     private Long msgId;
     @Transient
 	private String sentDate;
+    @Column(name="category")
+    private Long categoryId;
     
     @PrePersist
     public void sentDateDb() {
@@ -124,6 +126,14 @@ public class DbMessage extends DbGeneric implements Serializable {
 	}
 	public void setMsgId(Long msgId) {
 		this.msgId = msgId;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	

@@ -358,3 +358,6 @@ ADD COLUMN `blocked` VARCHAR(10) DEFAULT false AFTER `email`;
 
 ALTER TABLE user
 ADD COLUMN `identifier` VARCHAR(100) AFTER `blocked`;
+
+ALTER TABLE message
+ADD COLUMN `category` INTEGER AFTER `msgid`;

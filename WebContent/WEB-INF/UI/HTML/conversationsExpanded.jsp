@@ -63,8 +63,7 @@
 					// Added to handle special characters
 					var encodedSubject = encodeURIComponent(messages[0].subject);
                     var encodedContent = encodeURIComponent($("#messageContent").val());
-                    
-                    var datatosend = 'subject='+ encodedSubject +'&content=' + encodedContent + '&recipients='+receipient+'&senderId=' + userid+'&msgId='+threadId[1];
+                    var datatosend = 'subject='+ encodedSubject +'&content=' + encodedContent + '&recipients='+receipient+'&senderId=' + userid+'&msgId='+threadId[1]+'&counselorTag='+messages[0].categoryId;
 					
 					if($("#messageContent").val() =='') {
 						$(".error").show().text("Please type out the reply");
