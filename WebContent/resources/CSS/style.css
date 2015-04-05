@@ -853,7 +853,8 @@
 		padding-top: 0;
 	}
 	.theme-default {
-    	background: none repeat scroll 0 0 #ffff99;
+    	/*background: none repeat scroll 0 0 #ffff99;*/
+    	background: none repeat scroll 0 0 #FFFFFF;
 	}
 	.theme-default .media-body{
 		color: #333;

@@ -24,7 +24,7 @@
 		$.getJSON( "${pageContext.request.contextPath}/resources/JSON/teams.json", function( data ){
 				var core_team  = data[ "core_team"  ] ;
 				var volunteers = data[ "volunteers" ] ;	
-				var campus = data[ "campus" ] ;	
+				<!--var campus = data[ "campus" ] ;	-->
 				//ajax loading done
 				$(document).ajaxComplete(function(){
 			        $(".loading").css("display", "none");
@@ -39,8 +39,8 @@
 					
 					$(this_list_html).find(".listheading").text( elem.name ) ;
 					$(this_list_html).find(".listContent").html( elem.details ) ;
-					$(this_list_html).find(".linkedin a").attr("href", elem.linkedin ) ;
-					$(this_list_html).find(".twitter a").attr("href", elem.twitter ) ;
+					/* $(this_list_html).find(".linkedin a").attr("href", elem.linkedin ) ;
+					$(this_list_html).find(".twitter a").attr("href", elem.twitter ) ; */
 					var background_image= '#FFEDB5 url("resources/img/team/'+elem.image+'") no-repeat center center';
 					$(this_list_html).find(".listImage").css("background", background_image ) ;
 					
@@ -61,9 +61,9 @@
 					
 					$(this_list_html).find(".listheading").text( elem.name ) ;
 					$(this_list_html).find(".listContent").html( elem.details ) ;
-					$(this_list_html).find(".linkedin a").attr("href", elem.linkedin ) ;
+					/*$(this_list_html).find(".linkedin a").attr("href", elem.linkedin ) ;
 					$(this_list_html).find(".twitter").attr("id", elem.name ) ;
-					$(this_list_html).find(".twitter a").attr("href", elem.twitter ) ;
+					$(this_list_html).find(".twitter a").attr("href", elem.twitter ) ;*/
 					
 					var background_image= '#FFEDB5 url("resources/img/team/'+elem.image+'") no-repeat center center';
 					$(this_list_html).find(".listImage").css("background", background_image ) ;
@@ -127,13 +127,6 @@
 									'<div class="listContent">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</div>'+
 									'<div class="clearfix"></div>'+
 								'</div>'+
-								'<div>'+
-									'<div class="listFooter">'+
-										'<div class="col-md-6 linkedin"><a target="_blank" href="#">LinkedIn</a></div>'+
-										'<div class="col-md-6 twitter" ><a target="_blank"href="#">Twitter</a></div>'+
-										'<div class="clearfix"></div>'+
-									'</div>'+
-								'</div>'+
 							'</div>'+
 						'</div>';
 			return html ;
@@ -147,7 +140,7 @@
 	<jsp:include page="includes/header.jsp"></jsp:include>
 	<li class="loading" id="loading">
 							<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
-						</li>
+	</li>
 				
 	<div class="container row-fluid pageMainContainer" >
 	
@@ -156,13 +149,13 @@
 		
 			<div class="row">
 				<h2 class="col-md-3 pageHeading">
-					CORE TEAM
+					YOUR COUNSELORS
 				</h2>
 			</div>
 			<div class="details well"></div>
 		</div>
 			
-		<div id="volunteers" class="row">
+		<div id="volunteers" class="row" style="display:none">
 			<div class="row">
 				<h2 class="pull-left pageHeading">
                     VOLUNTEERS <em>(People who make this work seamlessly)</em>
