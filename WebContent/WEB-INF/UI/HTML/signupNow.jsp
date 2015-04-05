@@ -36,34 +36,59 @@
 		});
 		function validate_username(){
 			var text=$(" #username").val();
-			var hostname=$(location).attr('host');   
 			
-		$.ajax("http://"+hostname+"/dost/api/user/"+text+"/exists").done(function(response){
-			if(response.status){
-				
-				//$(" #username_check").css("background","url(images/cross.png)");
-				$("#username").css("border-color","red")
-				$(".exists").css("color","red")
+			var hostname=$(location).attr('host');   
+			if( !text.match(/^([a-zA-Z0-9]+)$/)){
+				//alert("1");
+				$(" #username").css("border-color","red")
 				$(".exists").removeClass("hidden")
+				$(".exists").html("only alphabets and numbers accepted")
+				$("#viewPassword").attr("disabled","true") 
+				//$("#signin").attr("disabled","true") ;
+			                      
+			}
+			else  if(text.length >= 4 && isNaN(text.substring(0,1)) === true)
+			{ 
+				$.ajax("http://"+hostname+"/dost/api/user/"+text+"/exists").done(function(response){
+					if(response.status){
+						
+						
+						$("#username").css("border-color","red")
+						$(".exists").removeClass("hidden")
+						$(".exists").css("color","red")
+						$(".exists").html("username exists")
+						$("#signin").attr("disabled","true") 
+						$("#viewPassword").attr("disabled","true") 
+	                      				
+					}
+					else{
+						$("#viewPassword").removeAttr("disabled")
+						$(" #username").css("border-color","green")
+						$(".exists").addClass("hidden")
+						
+						
+						//$("#signin").removeAttr("disabled") ;
+					}
+				});
+			
 			}
 			else{
-				
-				//$("#username_check").css("background","url(images/tik.png)");
-				$(" #username").css("border-color","green")
-				$(".exists").addClass("hidden")
+				$(" #username").css("border-color","red")
+				$("#viewPassword").attr("disabled","true") 
+				$(".exists").html("uername length should be atleast 4 and start with  a letter").css("color","red")
+				//$("#signin").attr("disabled","true") ;
 			}
-		});
 		}; 
 		
-		$('input[name="password"]').blur( function(){
+		$('input[name="viewPassword"]').blur( function(){
 			var valid_password = validate_password() ;			
 		});
 		
-		$('input[name="username"]').keyup( function(){
-			var valid_user = validate_username();
-		});
+		//$('input[name="username"]').keyup( function(){
+			//var valid_user = validate_username();
+	//	});
 		
-		$('input[name="password"]').keyup( function(){
+		$('input[name="viewPassword"]').keyup( function(){
 			var valid_password = validate_password() ;			
 		});
 
@@ -86,7 +111,7 @@
 	}*/
 	
 	function validate_password(){
-		var password       = $('input[name="password"]').val()   ;
+		var password       = $('input[name="viewPassword"]').val()   ;
 		var contains_space = check_if_contains_space( password ) ;
 		if( contains_space || !password ){
 			$("#passwordError").show()           ;
@@ -103,9 +128,10 @@
 	function validateForm() {
 		$(".error").html("");
 		$(".error").hide();
-
+		var usernameRegex = /^[a-zA-Z0-9]+$/;
 		$(".alert-success").html("");
 		$(".alert-success").hide();
+		var userName = $("#username").val();
 		var checkAvatar = $(".avatar").hasClass("selectedImage");		
 		if(checkAvatar==false){
 			$(".error").show();
@@ -113,13 +139,31 @@
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}
-		else if($("#username").val()==false){
+		else if(userName == false){
 			$(".error").show();
 			$("<p>Please enter username</p>").appendTo(".error");
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}
-		else if($("#password").val()==false){
+		else if(userName.length < 4){
+			$(".error").show();
+			$("<p>Your username must be at least 4 characters long.</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if(isNaN(userName.substring(0,1)) === false){
+			$(".error").show();
+			$("<p>Your username must begin with a letter.</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if(userName.match(usernameRegex) === null){
+			$(".error").show();
+			$("<p>Please enter valid username. Only letters and numbers are allowed</p>").appendTo(".error");
+			$('[id$=signin]').removeAttr("disabled");
+			event.preventDefault();
+		}
+		else if($("#viewPassword").val()==false){
 			$(".error").show();
 			$("<p>Please enter password</p>").appendTo(".error");
 			$('[id$=signin]').removeAttr("disabled");
@@ -142,9 +186,14 @@
 	
 
 	function updateEncPass () {
-		var pass = $("#password").val();
+		var pass = $("#viewPassword").val();
 		var encPass = CryptoJS.SHA3(pass);
 		$("#password").val(encPass);
+		var newPass = "";
+		for (var i=0;i<pass.length;i++) {
+			newPass += "*";
+		}
+		$("#viewPassword").val(newPass)
 		return true;
 	}
 	</script>
@@ -179,14 +228,16 @@
 						<br/>
 						<input id="avatarinput" type="hidden" name="avatarinput">
 						<label>Username*</label>
-						<input id="username"  name="username" required type="text" class="form-control input-block-level" placeholder="Create a username">
-                        <label class="exists">Username already exists</label>
+						<input id="username"  name="username" required pattern="[a-zA-Z0-9]+" type="text" class="form-control input-block-level" placeholder="Create a username">
+                        <label class="exists hidden">Username already exists</label>
                         <!-- <div id="usernameError" class="errorMsg">Username should contain atleast one alphabet</div> -->
 						<br/>
 						
 						<label>Password*</label>
 
-						<input id="password" name="password"  type="password" class="form-control input-block-level" placeholder="Set a password">
+						<input id="viewPassword" name="viewPassword" required type="password" class="form-control input-block-level" placeholder="Set a password">
+						<input id="password" name="password" type="hidden">
+						
 						
 						<br/>
 						<label>Email</label>

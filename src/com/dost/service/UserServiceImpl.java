@@ -67,4 +67,15 @@ public class UserServiceImpl implements UserService {
 		return userDAO.searchUserByUserName(username);
 	}
 
+	@Override
+	public DbUser getUserByIdentifier(String identifier) {
+		return userDAO.getUserByIdentifier(identifier);
+	}
+
+	@Override
+	public DbUser getUserByEmail(String email) {
+		return userDAO.getUserByEmail(email);
+	}
+
+	
 }

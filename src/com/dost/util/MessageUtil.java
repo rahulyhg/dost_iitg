@@ -95,7 +95,10 @@ public class MessageUtil {
 	
 	public static void sendEmail(String senderEmail, String recipientEmail, String subject, String content) {
 		//TODO: Hard-coding this to richa and my email to test
-		recipientEmail = "satyajeet@yourdost.com, richa@yourdost.com";
+		if(recipientEmail == null || recipientEmail.length() == 0) {
+			recipientEmail = "satyajeet@yourdost.com, richa@yourdost.com";
+		}
+		
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "465");

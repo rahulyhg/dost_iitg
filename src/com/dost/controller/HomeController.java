@@ -60,6 +60,11 @@ public class HomeController {
 		return new ModelAndView("forgotPassword"); 
 	}
 	
+	@RequestMapping("resetPassword")  
+	public ModelAndView resetPassword() {
+		return new ModelAndView("resetPassword"); 
+	}
+	
 	@RequestMapping("horoscope")  
 	public ModelAndView horoscope() {
 		return new ModelAndView("horoscope"); 

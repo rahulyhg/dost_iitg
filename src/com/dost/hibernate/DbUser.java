@@ -72,6 +72,8 @@ public class DbUser extends DbGeneric implements Serializable {
 	private String email;	
 	@Column(name = "blocked")
 	private String blocked;	
+	@Column(name = "identifier")
+	private String identifier;
 	
 	public Long getUserId() {
 		return userId;
@@ -162,6 +164,12 @@ public class DbUser extends DbGeneric implements Serializable {
 	}
 	public void setBlocked(String blocked) {
 		this.blocked = blocked;
+	}
+	public String getIdentifier() {
+		return identifier;
+	}
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 	
 	
