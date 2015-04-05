@@ -104,10 +104,20 @@ function showForgotEmailText(show,hide) {
 	$("#"+hide).hide();
 }
 
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+
 function submitForgotEmail() {
 	
 	var email = $("#email").val();
 	var userName = getUrlParameter("username");
+	
+	if(!validateEmail(email)) {
+		$("#errorAlert").show();
+		return;
+	}
 	
 	$("#emailSentMsg").show().html("We have sent an email to you at "+email+" with details about your username and link to update password.");
 	$("#forgotBlock").hide();

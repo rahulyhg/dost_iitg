@@ -16,6 +16,7 @@ margin-top: 50px;
 				<h3 class="col-md-offset-2 form-signin-heading">
 				<div class="well well-large row  col-md-offset-2 signinFormOuterContainer">
 				<div id="forgotBlock">
+				<div class="error alert alert-danger" id="errorAlert" role="alert" style="display: none;"><p>Please enter valid email.</p></div>
 					<p>Having trouble signing in?</p>
 					<div>
 						<input onchange="showForgotEmailText('inputEmail','inputUsername');" type="radio" name="forgot" value="email">&nbsp;I am registered with Email<br>
