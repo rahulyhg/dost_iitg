@@ -42,8 +42,8 @@
 				//alert("1");
 				$(" #username").css("border-color","red")
 				$(".exists").removeClass("hidden")
-				$(".exists").html("only alphabets and numbers accepted")
-				$("#viewPassword").attr("disabled","true") 
+				$(".exists").html("only alphabets and numbers accepted").css("color","#666")
+				//$("#viewPassword").attr("disabled","true") 
 				//$("#signin").attr("disabled","true") ;
 			                      
 			}
@@ -58,7 +58,7 @@
 						$(".exists").css("color","red")
 						$(".exists").html("username exists")
 						$("#signin").attr("disabled","true") 
-						$("#viewPassword").attr("disabled","true") 
+						//$("#viewPassword").attr("disabled","true") 
 	                      				
 					}
 					else{
@@ -74,14 +74,15 @@
 			}
 			else{
 				$(" #username").css("border-color","red")
-				$("#viewPassword").attr("disabled","true") 
+				//$("#viewPassword").attr("disabled","true") 
 				$(".exists").html("uername length should be atleast 4 and start with  a letter").css("color","red")
 				//$("#signin").attr("disabled","true") ;
 			}
 		}; 
 		
-		$('input[name="viewPassword"]').blur( function(){
-			var valid_password = validate_password() ;			
+		$('input[name="viewPassword"]').keyup( function(){
+			var valid_password = validate_password() ;		
+			var valid_user = validate_username();
 		});
 		
 		//$('input[name="username"]').keyup( function(){
@@ -91,7 +92,6 @@
 		$('input[name="viewPassword"]').keyup( function(){
 			var valid_password = validate_password() ;			
 		});
-
 	
 	});
 	
@@ -124,7 +124,6 @@
 		}
 	}
 	
-
 	function validateForm() {
 		$(".error").html("");
 		$(".error").hide();
@@ -170,7 +169,6 @@
 			event.preventDefault();
 		}				
 		else{
-
 		}
 	}
 	
@@ -184,7 +182,6 @@
 		 });
 	});
 	
-
 	function updateEncPass () {
 		var pass = $("#viewPassword").val();
 		var encPass = CryptoJS.SHA3(pass);

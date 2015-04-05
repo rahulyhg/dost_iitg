@@ -151,6 +151,9 @@
 		$(".FAQList").on("click",".editQuestion", function(){
 			$("#dialog").dialog("option","title", "Edit this question/Answer");
 			$("#dialog").dialog("open");
+
+			$("#faq").show();
+			$(".confirm-delete").remove();
 			$(".ui-dialog-buttonset button:last-child span").text("EDIT");
 			
 			var questionToBeEdited = $(".questionAnswer").find(".clickedQuestion").text();
@@ -167,7 +170,8 @@
 			$("#dialog").dialog("option","title", "Delete the Question/Answer");
 			$("#dialog").dialog("open");
 			
-			$("#dialog").html('<h2 style="color:#d55; text-align:center">Are you sure you want to delete?</h2>')
+			$("#faq").hide();
+			$("#dialog").append('<h2 class="confirm-delete" style="color:#d55; text-align:center">Are you sure you want to delete?</h2>');
 			$(".ui-dialog-buttonset button").show();
 			$(".ui-dialog-buttonset button").eq(1).hide();
 			$(".ui-dialog-buttonset button").eq(2).hide();
@@ -250,6 +254,8 @@
 		$("#addbutton").click(function(event) {
 			$("#dialog").dialog("option","title", "Add New Question");
 			$("#dialog").dialog("open");
+			$("#faq").show();
+			$(".confirm-delete").remove();
 			$('.ui-widget-overlay').css('background', 'white');
 			
 			$(".questionForm").val("");
