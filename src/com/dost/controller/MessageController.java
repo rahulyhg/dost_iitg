@@ -163,16 +163,19 @@ public class MessageController {
 				messagesToReturn.add(messagesByMsgId.get(0));
 			}
 		}
-		
-		
+		// Sort messages on sent date
+		sortMessagesOnSentDate(messagesToReturn);	
+		return messagesToReturn;
+	}
+
+	private void sortMessagesOnSentDate(List<DbMessage> messagesToReturn) {
 		// Sort messages based on dates
 		Collections.sort(messagesToReturn, new Comparator<DbMessage>() {
 			public int compare(DbMessage o1, DbMessage o2) {
 				// Sort in descending order date
 				return o2.getSentDate().compareTo(o1.getSentDate());
 			}
-		});	
-		return messagesToReturn;
+		});
 	}
 	
 	@RequestMapping(value="/user/{id}/draftmessages", method=RequestMethod.GET)  
@@ -194,6 +197,8 @@ public class MessageController {
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate(msg.getSentDateDb()));
 		}
+		// Sort messages on sent date
+		sortMessagesOnSentDate(messages);
 		return messages;
 	}
 	
