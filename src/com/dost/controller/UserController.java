@@ -88,14 +88,14 @@ public class UserController {
 	public Map<String, String> sendPasswordResetLinkToUser(UserProfile userProfile) {
 		Map<String, String> response = new HashMap<String, String>();
 		// username is not provided
-		if(userProfile.getUsername() != null) {
+		if(userProfile.getUsername() != "") {
 			DbUser user = userService.getUserByUsername(userProfile.getUsername());
 			if(user == null) {
 				response.put("status", "usernotpresent");
 			}
 			else {
 				if(user.getEmail() == null) {
-					response.put("status", "emailnotpresent");	
+					response.put("status", "emailnotpresentcontactcustomecare");	
 				}
 				else {
 					sendPasswordResetEmail(user);
@@ -103,7 +103,7 @@ public class UserController {
 				}				
 			}
 		}
-		else if(userProfile.getEmail() != null) {
+		else if(userProfile.getEmail() != "") {
 			DbUser user = userService.getUserByEmail(userProfile.getEmail());
 			if(user == null) {
 				response.put("status", "emailnotpresent");	

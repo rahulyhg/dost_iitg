@@ -43,7 +43,7 @@
 				$(" #username").css("border-color","red")
 				$(".exists").removeClass("hidden")
 				$(".exists").html("only alphabets and numbers accepted")
-				$("#password").attr("disabled","true") 
+				$("#viewPassword").attr("disabled","true") 
 				//$("#signin").attr("disabled","true") ;
 			                      
 			}
@@ -58,11 +58,11 @@
 						$(".exists").css("color","red")
 						$(".exists").html("username exists")
 						$("#signin").attr("disabled","true") 
-						$("#password").attr("disabled","true") 
+						$("#viewPassword").attr("disabled","true") 
 	                      				
 					}
 					else{
-						$("#password").removeAttr("disabled")
+						$("#viewPassword").removeAttr("disabled")
 						$(" #username").css("border-color","green")
 						$(".exists").addClass("hidden")
 						
@@ -74,13 +74,13 @@
 			}
 			else{
 				$(" #username").css("border-color","red")
-				$("#password").attr("disabled","true") 
+				$("#viewPassword").attr("disabled","true") 
 				$(".exists").html("uername length should be atleast 4 and start with  a letter").css("color","red")
 				//$("#signin").attr("disabled","true") ;
 			}
 		}; 
 		
-		$('input[name="password"]').blur( function(){
+		$('input[name="viewPassword"]').blur( function(){
 			var valid_password = validate_password() ;			
 		});
 		
@@ -88,7 +88,7 @@
 			//var valid_user = validate_username();
 	//	});
 		
-		$('input[name="password"]').keyup( function(){
+		$('input[name="viewPassword"]').keyup( function(){
 			var valid_password = validate_password() ;			
 		});
 
@@ -111,7 +111,7 @@
 	}*/
 	
 	function validate_password(){
-		var password       = $('input[name="password"]').val()   ;
+		var password       = $('input[name="viewPassword"]').val()   ;
 		var contains_space = check_if_contains_space( password ) ;
 		if( contains_space || !password ){
 			$("#passwordError").show()           ;
@@ -163,7 +163,7 @@
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}
-		else if($("#password").val()==false){
+		else if($("#viewPassword").val()==false){
 			$(".error").show();
 			$("<p>Please enter password</p>").appendTo(".error");
 			$('[id$=signin]').removeAttr("disabled");
@@ -186,9 +186,14 @@
 	
 
 	function updateEncPass () {
-		var pass = $("#password").val();
+		var pass = $("#viewPassword").val();
 		var encPass = CryptoJS.SHA3(pass);
 		$("#password").val(encPass);
+		var newPass = "";
+		for (var i=0;i<pass.length;i++) {
+			newPass += "*";
+		}
+		$("#viewPassword").val(newPass)
 		return true;
 	}
 	</script>
@@ -230,7 +235,9 @@
 						
 						<label>Password*</label>
 
-						<input id="password" name="password" required type="password" class="form-control input-block-level" placeholder="Set a password">
+						<input id="viewPassword" name="viewPassword" required type="password" class="form-control input-block-level" placeholder="Set a password">
+						<input id="password" name="password" type="hidden">
+						
 						
 						<br/>
 						<label>Email</label>

@@ -8,10 +8,10 @@
 	$(document).ready( function() {
 	$('#forgot').click(function() {
 		    var x = document.forms["loginForm"]["username"].value;
-		    if (x == null || x == "") {
+		    /* if (x == null || x == "") {
 		        $("#errorAlert").show();
 		        return false;
-		    }
+		    } */
 		    window.location.href = "/dost/forgotPassword?username="+x;
 	    //$('form').attr("action", "forgotPassword");  //change the form action
 	    //$('form').attr("method", "GET");  //change the form action
@@ -19,7 +19,7 @@
 	});
 	});
 	function updateEncPass () {
-		var pass = $("#password").val();
+		var pass = $("#viewPassword").val();
 		var encPass = CryptoJS.SHA3(pass);
 		$("#password").val(encPass);
 		return true;
@@ -48,8 +48,9 @@
 						<br/><br/>
 						
 						<label>Password</label>
-						<input type="password" required id="password" name="password" class="input-block-level form-control" placeholder="Password">
-						<a id="forgot" class="pull-right forgotPasswordText" alt="Forgot Password" href="#">Forgot Password?</a>
+						<input type="password" required id="viewPassword" class="input-block-level form-control" placeholder="Password">
+						<input type="hidden" id="password" name="password">
+						<a id="forgot" class="pull-right forgotPasswordText" alt="Forgot Password" href="#">Forgot Password / Username?</a>
 						<label class="checkbox">
 							<input type="checkbox" value="remember-me"> Remember me
 						</label>

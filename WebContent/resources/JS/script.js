@@ -112,23 +112,37 @@ function validateEmail(email) {
 function submitForgotEmail() {
 	
 	var email = $("#email").val();
-	var userName = getUrlParameter("username");
+	var userName = $("#username").val();
 	
-	if(!validateEmail(email)) {
+	if (email === "" && userName === "") {
+		$("#errorAlert").show().html("Please enter Username or Email");
+		return;
+	}
+	
+	if(email !== "" &&!validateEmail(email)) {
 		$("#errorAlert").show();
 		return;
 	}
 	
-	$("#emailSentMsg").show().html("We have sent an email to you at "+email+" with details about your username and link to update password.");
+	/*$("#emailSentMsg").show().html("We have sent an email to you at "+email+" with details about your username and link to update password.");
 	$("#forgotBlock").hide();
-	
+	*/
 	$.ajax({
 		  method: "POST",
-		  url: '/dost/api/user/'+userName+'/emailpassword',
+		  url: '/dost/api/user/emailpassword',
 		  data: { username :userName, email: email }
 		}).done(function( msg ) {
 			if(msg.status == "success") {
-				$("#emailSentMsg").show();
+				$("#emailSentMsg").show().html("We have sent an email with details about your username and link to update password.");
+				$("#forgotBlock").hide();
+			}else if(msg.status == "usernotpresent") {
+				$("#errorAlert").show().html("Username '"+userName+"' not registered with us. Don't worry, we are here for you. Please <a href='/dost/signupNow'>SIGNUP</a>  and get started.");
+			}else if(msg.status == "emailnotpresent") {
+				$("#errorAlert").show().html("Email '"+email+"' not registered with us. Don't worry, we are here for you. Please <a href='/dost/signupNow'>SIGNUP</a>  and get started.");
+			}else if(msg.status == "emailnotpresentcontactcustomecare") {
+				$("#errorAlert").hide()
+				$("#emailNotPresent").show();
+				$("#forgotUserPassBlock").hide();
 			} 
 		});
 }
