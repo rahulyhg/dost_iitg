@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dost.hibernate.DbUser;
-import com.dost.model.Message;
 import com.dost.model.User;
 import com.dost.model.UserPopulator;
 import com.dost.model.UserProfile;
@@ -84,37 +83,49 @@ public class UserController {
 		return searchedUsers;
 	}
 
-	@RequestMapping(value="/user/{username}/emailpassword", method=RequestMethod.POST)  
+	@RequestMapping(value="/user/emailpassword", method=RequestMethod.POST)  
 	@ResponseBody
-	public Map<String, String> sendPasswordResetLinkToUser(@PathVariable String username, UserProfile userProfile) {
+	public Map<String, String> sendPasswordResetLinkToUser(UserProfile userProfile) {
 		Map<String, String> response = new HashMap<String, String>();
 		// username is not provided
-		if(username == null) {
-			response.put("status", "failure");	
-		}
-		else {
-			DbUser user = userService.getUserByUsername(username);
-			String identifier = Utils.generateUniqueToken();
-			// Check if email provided by UI and email in DB is same
-			if(user.getEmail() == null) {
-				response.put("status", "failure");
+		if(userProfile.getUsername() != null) {
+			DbUser user = userService.getUserByUsername(userProfile.getUsername());
+			if(user == null) {
+				response.put("status", "usernotpresent");
 			}
 			else {
-				if(user.getEmail().equals(userProfile.getEmail())) {
-					// Update unique token in user table with proper identifier
-					user.setIdentifier(identifier);
-					userService.updateUser(user);
-					String messageToSend = createPasswordResetMessage(username, identifier);
-					MessageUtil.sendEmail("customersupport@yourdost.com", user.getEmail(), "Password Reset Request", messageToSend);
-					
-					response.put("status", "success");				
+				if(user.getEmail() == null) {
+					response.put("status", "emailnotpresent");	
 				}
 				else {
-					response.put("status", "failure");
-				}
-			}			
+					sendPasswordResetEmail(user);
+					response.put("status", "success");	
+				}				
+			}
+		}
+		else if(userProfile.getEmail() != null) {
+			DbUser user = userService.getUserByEmail(userProfile.getEmail());
+			if(user == null) {
+				response.put("status", "emailnotpresent");	
+			}
+			else {
+				sendPasswordResetEmail(user);
+				response.put("status", "success");					
+			}
+		}
+		else {
+			response.put("status", "failure");	
 		}
 		return response;
+	}
+
+	private void sendPasswordResetEmail(DbUser user) {
+		String identifier = Utils.generateUniqueToken();
+		// Update unique token in user table with proper identifier
+		user.setIdentifier(identifier);
+		userService.updateUser(user);
+		String messageToSend = createPasswordResetMessage(user.getUsername(), identifier);
+		MessageUtil.sendEmail("customersupport@yourdost.com", user.getEmail(), "Forgot Username/Password - Your D.O.S.T", messageToSend);
 	}
 	
 	@RequestMapping(value="/user/resetpassword", method=RequestMethod.POST)  
@@ -200,18 +211,21 @@ public class UserController {
 	 */
 	private String createPasswordResetMessage(String recipientUsername, String identifier) {
 		StringBuilder resetPasswordMessageBuffer = new StringBuilder();
-		resetPasswordMessageBuffer.append("Hi " + recipientUsername + ",");
+		resetPasswordMessageBuffer.append("Dear " + recipientUsername + ",");
 		resetPasswordMessageBuffer.append("<br><br>");
-		resetPasswordMessageBuffer.append("We have received a request from you to reset your password. If you asked to reset your password, please follow the instructions below. ");
-		resetPasswordMessageBuffer.append("If you do not wish to reset your password, simply disregard this message.");
+		resetPasswordMessageBuffer.append("We have received your request. ");
 		resetPasswordMessageBuffer.append("<br><br>");
-		resetPasswordMessageBuffer.append("To reset your password click on the following link:");
+		resetPasswordMessageBuffer.append("Your username -- " + recipientUsername);
 		resetPasswordMessageBuffer.append("<br><br>");
-		resetPasswordMessageBuffer.append("<u><a href='http://localhost:8800/dost/resetPassword?identifier=" + identifier + "'>Reset Password</a></u>");
+		resetPasswordMessageBuffer.append("To change password <u><a href='http://localhost:8800/dost/resetPassword?identifier=" + identifier + "'>click here</a></u> or copy paste this link in browser");
+		resetPasswordMessageBuffer.append("<br>");
+		resetPasswordMessageBuffer.append("http://localhost:8800/dost/resetPassword?identifier=" + identifier);
+		resetPasswordMessageBuffer.append("<br><br>");
+		resetPasswordMessageBuffer.append("If you have any queries, please reply to this email.");
 		resetPasswordMessageBuffer.append("<br><br>");
 		resetPasswordMessageBuffer.append("Regards,");
 		resetPasswordMessageBuffer.append("<br><br>");
-		resetPasswordMessageBuffer.append("Admin at Your D.O.S.T");
+		resetPasswordMessageBuffer.append("Team Your D.O.S.T");
 		
 		return resetPasswordMessageBuffer.toString();
 	}

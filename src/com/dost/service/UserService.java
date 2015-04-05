@@ -28,4 +28,5 @@ public interface UserService {
 	public List<DbUser> searchUserByUserName(String username);
 	
 	public DbUser getUserByIdentifier(String identifier);
+	public DbUser getUserByEmail(String email);
 }
