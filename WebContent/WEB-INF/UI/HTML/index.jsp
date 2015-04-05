@@ -119,45 +119,6 @@ $( document ).ready(function() {
 		</sec:authorize>
 		<div class="hrdivider">
 			<div class="col-md-12">
-				<hr class="col-md-4">
-				<div class="col-md-3">What users say about us?</div>
-				<hr class="col-md-4">
-			</div>
-		</div>
-		<div class="container container_testimonal">
-			<div class="container container_testimonal">
-				<div class="col-md-8 testimonial" id="slideshow" >
-					<div>
-						<p><strong>&ldquo;</strong>i was thinking to personally meet a professional life coach or something because i was getting overwhelmed with my recursive thoughts but since i have you guys helping me... i think my search has ended here</p>
-						<em>(BTech  Graduate, preparing for banking exam and struggling to find herself)</em>
-						<a class="pull-right" href="testimonials">View More<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-						<div class="clearfix"></div>
-					</div>
-					<div>
-						<p><strong>&ldquo;</strong>i really dont have words to thank you!! you have motivated me to achieve my dream!! you all are doing a great work!! may god bless u all!! once again thanxx a lott</p>
-						<em>(A youngster, feeling broken and lost the zeal of life, burdened with expectations)</em>
-						<a class="pull-right" href="testimonials">View More<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-						<div class="clearfix"></div>
-					</div>
-					<div>
-						<p><strong>&ldquo;</strong>seriously feels good, the work you guys are doing for others, hats off
-I am so thankful to you for such an inspiring reply. Really a heartfelt thanks. I have already started working towards getting a job.</p>
-						<em>(Gay person feeling rejected from society, speaking to us at 3am and then again few days later)</em>
-						<a class="pull-right" href="testimonials">View More<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-				<div class="col-md-3 counter pull-right">
-					<p><strong>800+ </strong>users supported in 60 days</p>
-					<mark>115 Supporters</mark>
-					<br/>
-					<a href="https://milaap.org/campaigns/dost" target="_blank">SUPPORT THE CAUSE</a>
-				</div>
-				<div class="clearfix"></div>
-			</div>	
-		</div>	
-		<div class="hrdivider">
-			<div class="col-md-12">
 				<hr class="col-md-5">
 				<div class="col-md-1">Explore</div>
 				<hr class="col-md-5">

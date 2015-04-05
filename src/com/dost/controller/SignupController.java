@@ -135,6 +135,7 @@ public class SignupController {
 		dbUser.setPassword(user.getPassword());
 		dbUser.setDeleted("0");
 		dbUser.setEnabled(1);
+		dbUser.setBlocked("0");
 		dbUser.setAvatar(user.getAvatarId());
 		// Setting user role
 		DbUserRole userRole = new DbUserRole();

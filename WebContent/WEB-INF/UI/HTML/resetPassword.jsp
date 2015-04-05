@@ -19,9 +19,12 @@
 			  .done(function( data ) {
 			    if(data.status == "success") {
 			    	$("#resetForm").hide();
-			    	$("#succMsg").show();
+			    	$("#succMsg").show().html("You password is changed successfully. You will be redirected to loging page shortly.");
 			    	setTimeout(function(){ window.location.href = "/dost/login";}, 3000);
-			    }
+			    }else if(data.status == "failure") {
+			    	$("#resetForm").hide();
+			    	$("#succMsg").show().html('Error: Unable to change you password. Please try again resetting the password, if you still face issue contact <strong><a title="Contact for enquiries" target="_blank" href="mailto:yourdostiitg@gmail.com">yourdostiitg@gmail.com</a></strong>');	
+			    } 
 			});
 		}
 	</script>
@@ -41,7 +44,7 @@
 								<br/><br/>
 								<button onclick="resetSPassSubmit();" class="pull-right btn btn-large btn-primary" type="button">Submit ></button>
 							</div>
-							<div id="succMsg" style="display:none;" class="col-md-offset-1">You password is changed successfully. You will be redirected to loging page shortly.</div>
+							<div id="succMsg" style="display:none;" class="col-md-offset-1">You password is changed successfully. You will be redirected to login page shortly.</div>
 						</div>
 						<div class="clearfix"></div>
 			</div>

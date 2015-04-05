@@ -21,5 +21,6 @@ public interface UserDAO {
 	public int getUsersCount();
 	public List<DbUser> searchUserByUserName(String username);
 	public DbUser getUserByIdentifier(String identifier);
+	public DbUser getUserByEmail(String email);
 
 }

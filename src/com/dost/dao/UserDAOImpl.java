@@ -196,4 +196,13 @@ public class UserDAOImpl implements UserDAO {
 		DbUser user = (DbUser)query.uniqueResult();
 		return user;
 	}
+
+	@Override
+	public DbUser getUserByEmail(String email) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from DbUser u where u.email= :email");
+		query.setParameter("email", email);
+		DbUser user = (DbUser)query.uniqueResult();
+		return user;	
+	}
 }
