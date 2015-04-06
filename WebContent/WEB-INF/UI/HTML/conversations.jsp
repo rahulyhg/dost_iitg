@@ -18,14 +18,20 @@
 	var gloablePage = 1;
 	var globalPerPage = 10;
 	var globalScroll = true;
-	function triggerPagination() {
+	function triggerPagination() {		
 	   if($(window).scrollTop() + $(window).height() > $(document).height() - 300 && globalScroll) {
-			if(gloablFlag) {
+			if(gloablFlag && $(".inbox.active").length === 1) {
 				triggerPageLoadData();	
 			}		
 	   }
 	 }
 	 
+	function resetGlobal() {
+		gloablFlag  = false;
+		gloablePage = 1;
+		globalScroll = true;
+	}
+	
 	function triggerPageLoadData() {
 		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
 			userid = user.userId;
@@ -204,6 +210,7 @@
 			UrlForData = '/dost/api/user/'+userid+'/sentmessages';
 			
 			showData(UrlForData);
+			resetGlobal();
 		});
 		/**
 		$(".chats").click(function(){
@@ -217,6 +224,7 @@
 
 		
 		$(".inbox").click(function(){
+			resetGlobal();
 			$(".active").removeClass("active");
 			$(this).addClass("active");
 			$(".conversationsUser").html("");
@@ -224,6 +232,7 @@
 			UrlForData = '/dost/api/user/'+userid+'/messages?page=1&per_page='+globalPerPage+'&sort=messageId&order=desc';
 			//UrlForData = '/dost/api/user/'+userid+'/messages';
 			showDataMsg(UrlForData);
+			
 		});
 		/*End Of Sent messages and inbox toggle active class*/
 		
@@ -357,6 +366,7 @@
 		
 		
 		$(".chats").click(function(){
+			resetGlobal();
 			$(".active").removeClass("active");
 			$(this).addClass("active");
 			var chatMessageLength = 0;
@@ -615,10 +625,12 @@
 		$(".sentItems").click(function(){
 			$(".active").removeClass("active");
 			$(this).addClass("active");
+			resetGlobal();
 		});
 		$(".Inbox").click(function(){
 			$(".active").removeClass("active");
 			$(this).addClass("active");
+			resetGlobal();
 		});
 		/*End Of Sent messages and inbox toggle active class*/
 		triggerPageLoadData()
