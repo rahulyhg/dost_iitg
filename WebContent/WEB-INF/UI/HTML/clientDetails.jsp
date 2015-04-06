@@ -111,8 +111,8 @@
 			/*end of scrolling to the related conversation for the note*/
 			
 			/*adding search for conversation*/
-			$(".col-md-8").sieve({ itemSelector: ".each_conversation" });
-			$(".col-md-8").prev("div").addClass("searchBox");
+			//$(".col-md-8").sieve({ itemSelector: ".each_conversation" });
+			//$(".col-md-8").prev("div").addClass("searchBox");
 			/*end of adding search for patient*/
 		});
 	</script>
@@ -120,14 +120,14 @@
 		<jsp:include page="includes/header.jsp"></jsp:include>
 		<!--patient summary-->
 		<div class="container">
-			<div class="pageTop">
+			<div class="pageTop col-sm-12">
 					<h2 class="pull-left pageHeading">
 						<a  href="clientList">&larr; Back to all clients</a>
 					</h2>
 					<!-- <div class="clearfix"></div>  -->
 			</div>
 						
-			<div class="col-md-7 well">
+			<div class="col-md-8 well">
 				
 				<div class="summary_patient">
 					<h2 class="pageHeading patientName"></h2>
