@@ -6,6 +6,13 @@
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 	<script>
 	$(document).ready( function() {
+		
+		<% if(request.getParameter("error") != null) 
+		{
+		%>
+		$("#errorAlert").html("<p> Your Username or password incorrect</p>");
+		$("#errorAlert").show();
+		<%}%>
 	$('#forgot').click(function() {
 		    var x = document.forms["loginForm"]["username"].value;
 		    /* if (x == null || x == "") {
