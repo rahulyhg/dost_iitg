@@ -333,7 +333,7 @@
 												
 						
 						$(".conversationsCounselor").append('<li class="well media conversation_topic">'+
-							'<a class="each_conversation" href="conversationsExpanded?='+messages[j].msgId+'">'+
+							'<div class="each_conversation" id="conversationsExpanded?='+messages[j].msgId+'">'+
 								'<div class="pull-left col-md-2" >'+
 									'<div class="friend_name"><img class="avatar" id='+messages[j].sender.avatar+' src=avatar/'+messages[j].sender.avatar+'.png name='+messages[j].sender.avatar+ '/></div>'+
 									'<div class="friend_name">'+messages[j].sender.username+'</div>'+
@@ -348,9 +348,16 @@
 										'<span class="glyphicon glyphicon-chevron-right"></span>'+
 									'</div>'+
 								'</div>'+
-							'</a>'+
+							'</div>'+
 							'<div class="clearfix"></div>'+
 						'</li>');
+//open the conversation detail for counsellor -->
+						
+						$(".each_conversation").click(function(){
+							var link = $(this).attr("id");
+							window.open(link,"_self");
+						});
+						//end of click to open the conversation for counseller-->
 					}
 					
 					/*for highlighting unread conversations*/
