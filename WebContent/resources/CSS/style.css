@@ -866,7 +866,7 @@
 	}
 	.theme-default .media-body{
 		color: #333;
-		  white-space: pre-line;
+		 // white-space: pre-line;
 	}
 	.theme-default .well{
 		background-color: #FFFFFF;
@@ -1221,4 +1221,35 @@ div.medical_warning{
 		overflow-x: hidden;
 	
 	}
+	.media-body div{
+ display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
 
+/*welcome-message styling for more*/
+
+ #welcome-message ol{width: 450px; font-family: sans-serif;}
+ #welcome-message ol a{ 
+ 	padding: 10px 10px;
+ 	display: block;background: #ECECB2;
+ 	width: 450px;text-align: center; 
+ 	 text-transform: uppercase;
+ 	   margin: 12px 0px;
+ 	     text-decoration: none;
+ 	     color: #5A3817;
+ 	     -webkit-transition: all 1s; /* Safari */
+    transition: all 1s;
+ 	}
+ 	#welcome-message a:hover{background: #660000;color: #fff}
+ 	#welcome-message li {padding:0;margin:0;border-bottom:0;}
+ 
+ 	/* #welcome-message ol li:last-child a{display: inline-block;width: 50px;}
+ 	 #image-links li a{width: 50px; margin-left: 10px;}
+ 	#welcome-message #image-links li{list-style-type: none; padding:0;}
+ 	#image-links{  display: inline-flex;} */
+ 	.each_conversation #welcome-message{height:100px;}
+ 	.conversation_topic:hover{color:#444;}
+ 	
