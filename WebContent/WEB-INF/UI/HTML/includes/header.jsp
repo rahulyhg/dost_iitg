@@ -17,7 +17,7 @@
 			
 				<ul class="nav navbar-nav pull-right ">
 					<li><a href="#" class="navbar-link">${pageContext.request.userPrincipal.name}</a></li>
-					<li><a href="dost/j_spring_security_logout" class="navbar-link">Logout</a></li>
+					<li><a href="j_spring_security_logout" class="navbar-link">Logout</a></li>
 				</ul>
 				<ul class="nav navbar-nav pull-left menuItems">
 					  <!-- Adding this after talking to Richa, conversation link should appear only for Prashant and Aarti -->
@@ -71,7 +71,7 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_USER')">
 						<li><a href="#" class="navbar-link">${pageContext.request.userPrincipal.name}</a></li>
-						<li><a href="dost/j_spring_security_logout" class="navbar-link">Logout</a></li>
+						<li><a href="j_spring_security_logout" class="navbar-link">Logout</a></li>
 					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav pull-left menuItems">
