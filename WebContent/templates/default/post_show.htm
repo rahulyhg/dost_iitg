@@ -48,13 +48,13 @@
 	<script type="text/JavaScript" src="${JForumContext.encodeURL("/js/list/moderation")}"></script>
 </#if>
 <div class="container-fluid theme-default"> 
-	<div class="container row-fluid">
-		<div class="col-md-7">
+	<div class="container row-fluid  discussionExpanded">
+		<div class="col-md-8 ">
 		
 					<div class="pageTop">
-						<div class="pull-left breadcrumbContainer">
+						<h2 class="pull-left pageHeading breadcrumbContainer">
 							<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">&larr; Back to all Discussions</a>
-						</div>
+						</h2>
 						
 					
 						<#if !readonly>
@@ -149,7 +149,7 @@
 							<#else>
 								<#assign rowspan = "2"/>
 							</#if>
-							<div class="each_interaction media">
+							<div class="each_interaction media well">
 								<div class="clearfix"></div>
 								<#if canRemove>
 									<a class="pull-right"  href="${JForumContext.encodeURL("/jforum${extension}?module=${moduleName}&amp;action=delete&amp;post_id=${post.id}&amp;start=${start}","")}" id="delete${post.id}" onclick="return confirmDelete(${post.id});">Delete</a>

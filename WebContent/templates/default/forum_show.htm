@@ -32,9 +32,9 @@
 	});
 </script>
 <div class="container-fluid theme-default"> 
-	<div class="container row-fluid">
+	<div class="container row-fluid discussionListing">
 
-			<div class="col-md-7">
+			<div class="col-md-8">
 				<div class="pageTop">
 					<h2 class="pull-left pageHeading">Discussions</h2>
 			
@@ -43,16 +43,16 @@
 							<#if !readonly && !replyOnly>
 								<a class="pull_left icon_new_topic btn btn-primary btn-large login_btn" href="${JForumContext.encodeURL("/jforum${extension}?module=posts&amp;action=insert&amp;forum_id=${forum.id}", "")}" rel="nofollow" >Create New Discussion</a>
 							</#if>
-		
-							<div class=" pull_left " >
-				  				<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
-								${paginationData}
-							</div>
-						
 					</div>
+					<div class="clearfix"></div>
 				</div>
-				<div class="clearfix"></div>
-			 
+			<div class="clearfix"></div>
+			
+			<div class=" pagination_container " >
+				  	<#assign paginationData><@pagination.doPagination action, forum.id/></#assign>
+					${paginationData}
+			</div>
+			<div class="clearfix"></div>
 			<div class="forumline allDiscussion_topic">
 				<!-- TOPICS LISTING -->
 				<#list topics as topic>
@@ -170,7 +170,7 @@
 	</div>
 </div>
 
-	<div class="col-md-3" style="margin-top: 70px;">
+	<div class="col-md-4 well" style="margin-top: 82px;">
 		<div class="categoryList">
 		<h4>Categories</h4>
 		</div>

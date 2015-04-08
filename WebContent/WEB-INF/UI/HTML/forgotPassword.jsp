@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <html>
-
+	<head>
+		<title>Forgot Password : Your D.O.S.T - IIT Guwahati</title>
+	</head>
 <jsp:include page="includes/commonHeader.jsp"></jsp:include>
 <style>
 .forgot_password_message{
@@ -13,11 +15,12 @@ margin-top: 50px;
 <jsp:include page="includes/header.jsp"></jsp:include>
 <div class="container row-fluid welcomePage">
 
-<div class="col-md-7">
+	<div class="col-md-9">
 					
-				<h3 class="col-md-offset-2 form-signin-heading">
-				<p style="margin-left:90px;">Having trouble signing in? Enter Username or Email</p>
-				<div class="well well-large row  col-md-offset-2 signinFormOuterContainer">
+				<h3 class="col-md-offset-4 form-signin-heading">
+					<p>Having trouble signing in? Enter Username or Email</p>
+				</h3>
+				<div class="well well-large row  col-md-offset-4 signinFormOuterContainer">
 				
 				<div id="forgotBlock">
 				<div class="error alert alert-danger" id="errorAlert" role="alert" style="display: none;"><p>Please enter valid email.</p></div>
