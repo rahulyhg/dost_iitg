@@ -34,6 +34,7 @@
 			
 			var valid_user = validate_username();
 		});
+		
 		function validate_username(){
 			var text=$(" #username").val();
 			
@@ -79,6 +80,52 @@
 				//$("#signin").attr("disabled","true") ;
 			}
 		}; 
+$('#email').blur( function(){
+			
+			var valid_email = validate_email();
+		});
+function validate_email(){
+	var text_email=$(" #email").val();
+	
+	var hostname=$(location).attr('host'); 
+	if($(" #email").val().length === 0){
+		$("#viewPassword").removeAttr("disabled")
+		$(" #email").css("border-color","green")
+		$(".error").hide();
+		$("#signin").removeAttr("disabled")
+	}
+	else if( !text_email.match(/^\S+@\S+\.\S+$/)){
+		//alert("1");
+		$(" #email").css("border-color","red")
+		$(".error").show();
+		$(".error").html("<p>email format will be example@xyz.com</p>");
+		$("#signin").attr("disabled","true") 
+	                      
+	}
+
+	else {
+		$.ajax("http://"+hostname+"/dost/api/email/"+text_email+"/exists").done(function(response){
+		if(response.status){
+			
+			
+			$("#email").css("border-color","red")
+			$(".error").show();
+			$(".error").html("<p>email already taken</p>");
+			$("#signin").attr("disabled","true") 
+			//$("#viewPassword").attr("disabled","true") 
+              				
+		}
+		else{
+			$("#viewPassword").removeAttr("disabled")
+			$(" #email").css("border-color","green")
+			$(".error").hide();
+			$("#signin").removeAttr("disabled")
+			
+			//$("#signin").removeAttr("disabled") ;
+		}
+	});
+	}
+};
 		
 		$('input[name="viewPassword"]').keyup( function(){
 			var valid_password = validate_password() ;		
