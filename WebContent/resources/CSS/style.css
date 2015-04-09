@@ -15,6 +15,9 @@
 	.blockedText{
 		margin-top:8px;
 	}
+	a.leaveMessageLink{
+		cursor: hand;
+	}
 	.insertBlock{
 		
 		padding-right:20px;
