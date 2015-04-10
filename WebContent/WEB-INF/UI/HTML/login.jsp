@@ -21,7 +21,7 @@
 		        $("#errorAlert").show();
 		        return false;
 		    } */
-		    window.location.href = "/forgotPassword?username="+x;
+		    window.location.href = "/dost/forgotPassword?username="+x;
 	    //$('form').attr("action", "forgotPassword");  //change the form action
 	    //$('form').attr("method", "GET");  //change the form action
 	    //$('form').submit();  // submit the form
