@@ -198,14 +198,19 @@
 						if(unreadcount > 0) {
 							$('#count').text('Inbox(' + unreadcount +  ')');
 							$(".new-messages").remove();
-							$(".conversationsUser").prepend("<li class='new-messages'>You have "+unreadcount+" unread messages</li>")
+							$(".conversationsUser").prepend("<a href='javascript:void(0);' class='new-messages' id='showUnreadMsgs'>You have "+unreadcount+" unread messages</a>")
 						}
 						else {
 							$('#count').text('Inbox');
+							$('.new-messages').remove();
 						}
 					});
 			});
           }, 60000);
+		
+		$(document).on("click", "#showUnreadMsgs", function(){
+			$(".inbox").trigger("click");
+		});
 		
 		/*Sent messages and inbox toggle active class*/
 		$(".sentItems").click(function(){
