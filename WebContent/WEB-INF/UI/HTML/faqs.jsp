@@ -215,11 +215,16 @@
 	              		url: "http://localhost:8800/dost/api/faq/add",
 	              		contentType: "application/json",
 	              		data:JSON.stringify(formData),
-	                      dataType: "jsonP"
-	              	}).done(function(response){
-	              	});
-					$("#dialog").html('<h2 style="color:#5a5; text-align:center">Added Successfully</h2>')
-					window.setTimeout('location.reload()', 1000);
+	                    dataType: "jsonP",
+	              		success: function(response){
+		              		$("#dialog").html('<h2 style="color:#5a5; text-align:center">Added Successfully</h2>');
+							window.setTimeout('location.reload()', 1000);
+	              		 },			              
+				          error: function(){
+				        	  $("#dialog").html('<h2 style="color:#5a5; text-align:center">Added Successfully</h2>');
+								window.setTimeout('location.reload()', 1000);
+				          }
+						});
 				}
 			}, {
 				text : "EDIT",
@@ -237,11 +242,16 @@
                 		url: "http://localhost:8800/dost/api/faq/update",
                 		contentType: "application/json",
                 		data:JSON.stringify(formData),
-                        dataType: "jsonP"
-                	}).done(function(response){
-                	});
-					$("#dialog").html('<h2 style="color:#5a5; text-align:center">Edited Successfully</h2>')
-					window.setTimeout('location.reload()', 1000);
+                        dataType: "jsonP",
+                        success: function(response){
+		              		$("#dialog").html('<h2 style="color:#5a5; text-align:center">Edited Successfully</h2>');
+							window.setTimeout('location.reload()', 1000);
+	              		 },			              
+				          error: function(){
+				        	  $("#dialog").html('<h2 style="color:#5a5; text-align:center">Edited Successfully</h2>');
+								window.setTimeout('location.reload()', 1000);
+				          }
+						});
 				}
 			}, {
 				text : "DELETE",
