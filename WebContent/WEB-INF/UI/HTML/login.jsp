@@ -12,7 +12,7 @@
 		<% if(request.getParameter("error") != null) 
 		{
 		%>
-		$("#errorAlert").html("<p> Your Username or password incorrect</p>");
+		$("#errorAlert").html("<p> Your username or password is incorrect</p>");
 		$("#errorAlert").show();
 		<%}%>
 	$('#forgot').click(function() {

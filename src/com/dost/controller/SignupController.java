@@ -216,7 +216,7 @@ public class SignupController {
 		// Trigger populates sent date
 		// welcomeMessage.setSentDate(new Date());
 		//welcomeMessage.setSenderId(Long.parseLong(Utils.getDostConfig("dostadmin.userid")));
-		welcomeMessage.setSubject("Welcome to You D.O.S.T");
+		welcomeMessage.setSubject("Welcome to Your D.O.S.T - IIT Guwahati");
 		return welcomeMessage;
 	}
 	

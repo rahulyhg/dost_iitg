@@ -147,10 +147,9 @@
 	
 		<div id="coreTeam" class="row">	
 		
-			<div class="row">
-				<h2 class="col-md-3 pageHeading">
-					YOUR COUNSELORS
-				</h2>
+			<div class="pageTop">
+				<h2 class="pull-left pageHeading">Counselors</h2>
+				<div class="clearfix"></div>
 			</div>
 			<div class="details well"></div>
 		</div>

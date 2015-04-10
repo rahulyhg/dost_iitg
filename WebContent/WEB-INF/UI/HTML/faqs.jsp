@@ -42,6 +42,7 @@
 		$(".question").click(function(){
 				$(this).addClass("clickedQuestion");
 				$(this).closest(".questionAnswer").addClass("clicked");
+				$(".categoryList").addClass("removeSpace");
 				$(".nextPreviousNav").show();
 				$(".allQuestions").show();
 				$(".question").not(this).hide();
@@ -58,6 +59,7 @@
 		/*Moving through FAQs*/
 		$(".allQuestions").click(function(){
 				$(".categoryName").show();
+				$(".categoryList").removeClass("removeSpace");
 				$(".question").removeClass("clickedQuestion");
 				$(".questionAnswer").removeClass("clicked");
 				$(".nextPreviousNav").hide();
@@ -82,6 +84,7 @@
 		/*Next Previous navigation*/
 		$(".next").click(function(){
 			$(".clickedQuestion").closest("li.questionAnswer").hide();
+			$(".categoryList").addClass("removeSpace");
 			var nextQuestion = $(".clickedQuestion").closest("li").next("li");		
 			
 			if(nextQuestion.length == 0){
@@ -103,6 +106,7 @@
 		
 		
 		$(".previous").click(function(){
+			$(".categoryList").addClass("removeSpace");
 			$(".clickedQuestion").closest("li.questionAnswer").hide();
 			var prevQuestion = $(".clickedQuestion").closest("li").prev("li");		
 			
@@ -117,6 +121,7 @@
 			}
 			
 			$(".clickedQuestion").removeClass("clickedQuestion");
+			
 			prevQuestion.show();
 			prevQuestion.find("div").show();
 			prevQuestion.find(".question").addClass("clickedQuestion");
@@ -309,7 +314,7 @@
 			<div class="loading" id="loading">
 				<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
 			</div>
-			<p>We are extremely thankful to <a target="_blank" href="https://www.linkedin.com/profile/view?id=21998428">Mahalakshmi Rajagopal</a>, <a target="_blank" href="http://in.linkedin.com/in/tarun911">Tarun Verma</a>, <a target="_blank" href="http://ca.linkedin.com/pub/namrta-mohan/42/519/802">Namrta Moha</a>, <a target="_blank" href="http://in.linkedin.com/pub/veena-bose/3b/921/471">Veena Bose </a>, <a target="_blank" href="https://www.linkedin.com/profile/view?id=117319614">Anamika Papriwal</a> for helping us with frequenly asked questions</p>
+			<p class="credits">We are extremely thankful to <a target="_blank" href="https://www.linkedin.com/profile/view?id=21998428">Mahalakshmi Rajagopal</a>, <a target="_blank" href="http://in.linkedin.com/in/tarun911">Tarun Verma</a>, <a target="_blank" href="http://ca.linkedin.com/pub/namrta-mohan/42/519/802">Namrta Moha</a>, <a target="_blank" href="http://in.linkedin.com/pub/veena-bose/3b/921/471">Veena Bose </a>, <a target="_blank" href="https://www.linkedin.com/profile/view?id=117319614">Anamika Papriwal</a> for helping us with frequenly asked questions</p>
 		</div>
 		
 		
@@ -348,11 +353,11 @@
 		</div><!-- /.modal -->
 	
 	<script type="text/javascript">
-	
+	/*
 		if( !$(".login_unit ").length ){
 			$(".container > div").removeClass("col-md-8");		
 		}
-	
+	*/
 	</script>
 	
 </body>

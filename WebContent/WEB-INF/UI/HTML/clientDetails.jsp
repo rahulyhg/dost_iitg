@@ -26,11 +26,11 @@
 								$("#"+inner[0].messageId).after("<ul></ul></div>");						
 								for(var k in inner) {
 									$("#"+ inner[0].messageId).siblings("ul").append('<li class=" media each_conversation">'+
-											'<div class="pull-left col-md-2">'+
-												'<div class="patient_name"><strong>'+inner[k].sender.username+'</strong></div>'+
-												'<div class="post_details">'+ inner[k].sentDate +'</div>'+
+											'<div class="pull-left col-md-4">'+
+												'<span class="patient_name"><strong>'+inner[k].sender.username+'</strong></span>'+
+												'<span class="post_details">('+ inner[k].sentDate +')</span>'+
 											'</div>' +
-											'<div class="media-body col-md-8">'+
+											'<div class="media-body col-md-7">'+
 													'<span>'+inner[k].content+'</span>'+
 											'</div>'+
 										'</li>');							
@@ -127,7 +127,7 @@
 					<!-- <div class="clearfix"></div>  -->
 			</div>
 						
-			<div class="col-md-8 well">
+			<div class="col-md-8">
 				
 				<div class="summary_patient">
 					<h2 class="pageHeading patientName"></h2>

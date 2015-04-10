@@ -7,7 +7,7 @@
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<head>
 		<meta charset="utf-8">
-		<title>Quotes - DOST</title>
+		<title>Quotes : Your D.O.S.T - IIT Guwahati</title>
 	</head>
 	<style>
 		body, html { width:100% ;
@@ -30,7 +30,7 @@
 		</sec:authorize>
 		<jsp:include page="includes/header.jsp"></jsp:include>					
 		
-		<iframe class="quotes" src="http://quotesdost.blogspot.in/search/label/quote" height="100%"></iframe>
+		<iframe class="quotes" src="http://quotesiitg.blogspot.in/search/label/quote" height="100%"></iframe>
 	
 	</body>
 	<!--<sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -16,7 +16,12 @@
 		margin-top:8px;
 	}
 	a.leaveMessageLink{
-		cursor: hand;
+		cursor: pointer;
+	}
+	.worried_person{
+		background:url(../img/sadPerson.jpg) no-repeat 0 0;
+		height:300px;
+		
 	}
 	.insertBlock{
 		
@@ -95,8 +100,12 @@
 		min-height:200px;
 	}
 	.conversation_History_details .post_details {
-		display:none;
+		font-size:0.8em;
 		
+	}
+	.conversation_History_details .categoryList{
+		margin-top:15px;
+		padding: 0 20px;
 	}
 	.conversation_History_details .each_conversation{
 		padding:0;
@@ -136,7 +145,7 @@
 	}
 	.theme-default-counselor div.searchBoxDiscussions, .theme-default div.searchBoxDiscussions {
 		margin-right: 180px;
-  		margin-top: -56px;
+  		margin-top: -64px;
 	}
 	.theme-default-counselor div.searchBox {
 		margin-right: 100px;
@@ -616,8 +625,12 @@
 		border-right: 1px solid #DDD;
 	}
 	.message_counselor{
-		padding: 20px 0;
+		padding: 20px 10px;;
 		color: #333;
+	
+	}
+	.message_counselor p{
+		font-size: 1.2em;
 	}
 	.login_unit{
 		padding-top: 10px;
@@ -648,6 +661,9 @@
 	
 	.categoryList:first-child{
 		margin-top:0;
+	}
+	.categoryList:last-child{
+		border-bottom: 1px solid #ffffff;
 	}
 	.categoryList{
 		margin-top: 40px;
@@ -1020,6 +1036,9 @@
     	cursor: pointer;
     	padding:10px;
 	}
+	.credits{
+		margin-top: 20px;
+	}
 	.question:hover{
 		color: #000;
 	}
@@ -1034,13 +1053,22 @@
 	.FAQList .answer{
 		display:none;
 		margin-bottom: 50px;
+		padding:10px;
 	}
 	.nextPreviousNav, .allQuestions{
 		display:none;
 	}
-	.clickedQuestion{
+	div.clickedQuestion{
 		cursor:default;
+		border-top: 1px solid transparent;
 	}
+	#dialogMessage{
+		margin-top:10px;
+	}
+	div.removeSpace{
+		margin-top:0;
+	}
+	
 	div[contenteditable="true"]{
 		border:1px solid #ccc;
 		padding:5px;
