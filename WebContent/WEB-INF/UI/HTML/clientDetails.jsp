@@ -88,7 +88,8 @@
 				);
 			});
 			/*displaying notes*/
-			$.getJSON('/dost/api/user/'+userId[1]+'/notes/all', function(notes){
+			var hostname=$(location).attr('host'); 
+			$.getJSON('http://'+hostname+'/dost/api/user/'+userId[1]+'/notes/all', function(notes){
 				for(i=0; i<notes.length; i++){
 					$(".counselor_notes").append(
 						'<li class="each_note">'+
