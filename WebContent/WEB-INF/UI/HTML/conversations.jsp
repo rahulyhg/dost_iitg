@@ -5,6 +5,10 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<title>My Conversations, Your D.O.S.T - IIT Guwahati</title>
+	</head>
+	
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/jquery.more.css"> 
@@ -194,7 +198,7 @@
 						if(unreadcount > 0) {
 							$('#count').text('Inbox(' + unreadcount +  ')');
 							$(".new-messages").remove();
-							$(".conversationsUser").prepend("<h3 class='new-messages'>You have "+unreadcount+" unread messages</h3>")
+							$(".conversationsUser").prepend("<li class='new-messages'>You have "+unreadcount+" unread messages</li>")
 						}
 						else {
 							$('#count').text('Inbox');
@@ -340,7 +344,7 @@
 								'</div>'+
 								'<div class="pull-left media-body col-md-7">'+
 								messageHeading + 
-								'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
+									'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
 								'</div>'+
 								'<div class="pull-left">'+messages[j].sentDate+'</div>'+
 								'<div class="pull-right col-md-1">'+
@@ -672,7 +676,7 @@
 			<div class="container">
 				<div class="col-md-11">
 					<div class="pageTop">
-						<h2 class="pull-left pageHeading">Conversations</h2>
+						<h2 class="pull-left pageHeading"></h2>
 						<div class="pull-right">
 							<!--<ul class="pagination">
 							  <li class="disabled"><a href="#">&laquo;</a></li>
@@ -688,7 +692,7 @@
 					</div>
 					
 					<ul class="pull-left col-md-2 left_nav">
-						<li><a class="leaveMessage" href="#">Compose</a><br/><br/></li>
+						<li><a class="leaveMessage btn btn-large btn-primary" href="#">Compose</a><br/><br/></li>
 						<li class="active inbox"><a id="count" href="#">Inbox</a></li>
 						<li class="sentItems"><a href="#">Sent Items</a></li>
 						<li class="chats"><a href="#">Chats</a></li>
@@ -729,7 +733,7 @@
 					</div>
 					<!-- each conversation-->
 					<ul class="pull-left col-md-2 left_nav">
-						<li><a class="leaveMessage" href="#">Compose</a><br/><br/></li>
+						<li><a class="leaveMessage btn btn-large btn-primary" href="#">Compose</a><br/><br/></li>
 						<li class="active inbox"><a id="count" href="#">Inbox</a></li>
 						<li class="sentItems"><a href="#">Sent Items</a></li>
 						<li class="chats"><a href="#">Chats</a></li>

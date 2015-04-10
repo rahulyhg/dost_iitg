@@ -10,7 +10,7 @@ uri="http://www.springframework.org/security/tags"%>
 	<meta name="description" content="Is something bothering you - career, relationships, family, work, education, parents? Your D.O.S.T is a your emotional support system where you can be complete anonymous and vent out your feelings to special friends consiting of compassionate psychologists and others. You can privately discuss all your problems with special friends through one to one chat, explore self help and engage with others going through tough times on discussion forums"/>
 	<meta name="keywords" content="virtual counseling system, emotional support system, share your feelings, online counseling, share your problems, speak to counselor for free, free therapy, shre emotions, speak to a therapist, find a listener, your trusted friend, your supportive friend"/>
 	<meta name="author" content="Your D.O.S.T.">
-	<title>Your D.O.S.T - An Emotional Support System</title>
+	<title>Your D.O.S.T - IIT Guwahati : An Emotional Support System</title>
 	<link rel="shortcut icon" href="http://iitg.yourdost.com/favicon.ico" />
 	<!-- <link rel="image_src" href="http://iitg.yourdost.com/resources/img/dostLogo.jpg" />
 	<meta property="og:image" content="http://yourdost.com/resources/img/dostLogo.jpg"/>
@@ -92,8 +92,8 @@ $( document ).ready(function() {
 			<div class="bannerSignup bannerLarge">
 			<!-- Alert message start-->
 				<div style="position:absolute;left:35%;padding: 0px 25px 0px 25px;top:50px;background-color:#FFE390;"> 
-						<p style="letter-spacing: normal;line-height: normal;position:relative;">It is not a suicide prevention support portal. If you are feeling suicidal,<br/>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please call suicide prevention helpline at +91 88788 88998
+						<p  class="message_for_suicideprevention">It is not a suicide prevention support portal. If you are feeling suicidal,<br/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please call suicide prevention helpline at <strong>+91 80110 89898</strong></p>
 				</div>
 			 <!-- Alert message end-->
 				<img class="hand bannerLargehand" src="${pageContext.request.contextPath}/resources/img/hand.png">
@@ -104,7 +104,7 @@ $( document ).ready(function() {
 				<sec:authorize ifNotGranted="ROLE_USER">
 					<a class="bannerLargeform">
 						<input class="bannerLargeinput" type="text" placeholder="Choose a virtual name">
-						<button class="banner-signup bannerLargebutton" type="button">SIGNUP NOW</button>
+						<button class="banner-signup bannerLargebutton signup_now" type="button">SIGNUP NOW</button>
 					</a>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_USER')">

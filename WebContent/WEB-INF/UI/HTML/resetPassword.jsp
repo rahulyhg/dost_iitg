@@ -19,7 +19,7 @@
 			  .done(function( data ) {
 			    if(data.status == "success") {
 			    	$("#resetForm").hide();
-			    	$("#succMsg").show().html("You password is changed successfully. You will be redirected to loging page shortly.");
+			    	$("#succMsg").show().html("You password is changed successfully. You will be redirected to Login page shortly.");
 			    	setTimeout(function(){ window.location.href = "/dost/login";}, 3000);
 			    }else if(data.status == "failure") {
 			    	$("#resetForm").hide();

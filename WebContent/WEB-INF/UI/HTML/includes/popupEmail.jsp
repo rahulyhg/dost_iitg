@@ -8,9 +8,9 @@
 	    		<sec:authorize access="hasRole('ROLE_USER')">
 	    			<div class="mainMessage">
 	    				<p>Hi ${pageContext.request.userPrincipal.name},</p>
-						<p>I am here for you. Just tell me what’s on your mind and I will help you. 
+						<p>I am here for you. Consider me as your friend and you can share anything with me. 
 					   		Believe me even I have been in some situations myself and I know how hard it can get at times.
-					   		I can assure you, I am your friend - not a computer program and I am here to help you in any way I can.
+					   		I can assure you, I am here to help you in any way I can.
 						</p>
 					</div>
 					<br/>	

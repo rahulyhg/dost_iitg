@@ -4,6 +4,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<title>Client History, Your D.O.S.T - IIT Guwahati</title>
+	</head>
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<%-- <script src="${pageContext.request.contextPath}/resources/JS/jquery.jscroll.min.js"></script> --%>
 	<script>
@@ -89,7 +92,7 @@
 																'<a class="pull-left col-md-12" href="clientDetails?='+user[i].username+"+"+user[i].userId+'">'+
 																	'<img class="avatar" id='+user[i].avatar+' src="avatar/'+user[i].avatar+'.png" name='+user[i].avatar+'/>'+
 																	'<span class="patient_name">'+user[i].username+'</span>'+
-																	'<span class="pull-right glyphicon glyphicon-chevron-right"></span>'+
+																	'<span title="View User Details" class="pull-right glyphicon glyphicon-chevron-right"></span>'+
 																
 																	'<div class="insertBlock pull-right">'
 																		+html+					
@@ -108,7 +111,7 @@
 									$(".patient_list").empty();
 									gloablSearchPage = 1;
 									$("#noSearchResult").remove();
-									$(".patient_list").append("<div id='noSearchResult' >No Search result found.</div>")
+									$(".patient_list").append("<div id='noSearchResult' >No search result found.</div>")
 								} else {
 									$("#noSearchResult").remove();
 								}
@@ -135,8 +138,8 @@
 					</h2>
 					<div class="clearfix"></div>
 			</div>
-			<div class="searchBox"><label>Search: <input id="patientSearch" onkeyup="searchPatient(this)"; type="text"></label></div>
-			<div class="col-md-11 well">
+			<div class="searchBox"><label>Search Users <input id="patientSearch" onkeyup="searchPatient(this)"; type="text"></label></div>
+			<div class="col-md-11">
 				<div class="pull-left col-md-12">
 					<ul class="patient_list">
 						<li class="loading" id="loading">

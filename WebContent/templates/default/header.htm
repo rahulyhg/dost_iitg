@@ -20,15 +20,15 @@
 	<style type="text/css">@import url( ${contextPath}/templates/${templateName}/styles/SyntaxHighlighter.css?${startupTime} );</style>
 </#if>
 
-<script src="http://54.209.217.90:80/dost/resources/JS/jquery.js"></script>
-<meta property="og:image" content="http://yourdost.com/resources/img/dostLogo.jpg"/>
-<script src="http://54.209.217.90:80/dost/resources/JS/bootstrap.min.js"></script>
-<script src="http://54.209.217.90:80/dost/resources/JS/jquery.sieve.min.js"></script>
-<script src="http://54.209.217.90:80/dost/resources/JS/script.js"></script>
-<link href="http://54.209.217.90:80/dost/resources/CSS/bootstrap.min.css" rel="stylesheet" media="screen">
-<link href="http://54.209.217.90:80/dost/resources/CSS/style.css" rel="stylesheet" media="screen">
+<script src="http://iitg.yourdost.com/resources/JS/jquery.js"></script>
+<meta property="og:image" content="http://iitg.yourdost.com/resources/img/dostLogo.jpg"/>
+<script src="http://iitg.yourdost.com/resources/JS/bootstrap.min.js"></script>
+<script src="http://iitg.yourdost.com/resources/JS/jquery.sieve.min.js"></script>
+<script src="http://iitg.yourdost.com/resources/JS/script.js"></script>
+<link href="http://iitg.yourdost.com/resources/CSS/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="http://localhost:8800/dost/resources/CSS/style.css" rel="stylesheet" media="screen">
 
-<title>${pageTitle?default("JForum")?html}</title>
+<title>${pageTitle?default("JForum")?html} : Your D.O.S.T - IITG</title>
 
 </head>
 <body class="${language} theme-default"">
@@ -48,11 +48,11 @@ Modifications by JForum Team
 				<header id="main-navbar" class="navbar navbar-default navbar-fixed-top">
 					  <div class="navbar-inner">
 						<div>
-						   <a class="navbar-brand" href="http://54.209.217.90:80/dost/index" >
+						   <a class="navbar-brand" href="http://iitg.yourdost.com/index" >
 						   <!-- 
-						   <a class="navbar-brand" href="http://54.209.217.90:80/dost/index" >
+						   <a class="navbar-brand" href="http://iitg.yourdost.com/index" >
 							 -->  	
-							<img src="http://54.209.217.90:80/dost/resources/img/logoSmall.jpg" height="47px"/>
+							<img src="http://iitg.yourdost.com/resources/img/logoSmall.jpg" height="47px"/>
 						  </a>
 						  <div class="nav-collapse nav-collapse navbar-collapse">
 						  
@@ -62,23 +62,23 @@ Modifications by JForum Team
 								</ul>
 								<ul class="nav navbar-nav pull-left menuItems">
 									  <#if superAdmin>
-											<li id="conversations"><a href="http://54.209.217.90:80/dost/conversations">Conversations</a></li>									  
+											<li id="conversations"><a href="http://iitg.yourdost.com/conversations">Conversations</a></li>									  
 									  </#if>
-									  <li id="clientList"><a href="http://54.209.217.90:80/dost/clientList">Client History</a></li>
-									  <!-- <li id="onlineCounseling"><a href="http://54.209.217.90:80/dost/onlineCounseling">Online Counseling</a></li> -->
-									  <li id="discussions"><a href="http://54.209.217.90:80/dost/forums/show/6.page">Dicussions</a></li>
-									  <li id="quotes"><a href="http://54.209.217.90:80/dost/quotes">Quotes</a></li>
-									  <li id="faqs"><a href="http://54.209.217.90:80/dost/faqs">FAQs</a></li>
+									  <li id="clientList"><a href="http://iitg.yourdost.com/clientList">Client History</a></li>
+									  <!-- <li id="onlineCounseling"><a href="http://iitg.yourdost.com/onlineCounseling">Online Counseling</a></li> -->
+									  <li id="discussions" class="active"><a href="http://iitg.yourdost.com/forums/show/6.page">Dicussions</a></li>
+									  <li id="quotes"><a href="http://iitg.yourdost.com/quotes">Quotes</a></li>
+									  <li id="faqs"><a href="http://iitg.yourdost.com/faqs">FAQs</a></li>
 									   <!-- <li id="blog"><a href="http://blog.yourdost.com"  target="_blank">Blog</a></li> -->
 									  <li class="dropdown" id="blog">
 									  		 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Blogs <b class="caret"></b></a>
 								             <ul class="dropdown-menu">
-								                    <li><a href="http://54.209.217.90:80/dost/blog/?=love">Relationships</a></li>
-								                    <li><a href="http://54.209.217.90:80/dost/blog/?=marriage">Marriages</a></li>
-								                    <li><a href="http://54.209.217.90:80/dost/blog/?=education">Education</a></li>
-								                    <li><a href="http://54.209.217.90:80/dost/blog/?=parents">Parents/Kids</a></li>
+								                    <li><a href="http://iitg.yourdost.com/blog/?=love">Relationships</a></li>
+								                    <li><a href="http://iitg.yourdost.com/blog/?=marriage">Marriages</a></li>
+								                    <li><a href="http://iitg.yourdost.com/blog/?=education">Education</a></li>
+								                    <li><a href="http://iitg.yourdost.com/blog/?=parents">Parents/Kids</a></li>
 								                    <li class="divider"></li>
-								                    <li><a href="http://54.209.217.90:80/dost/blog/?=counseling%20profession">Counseling Profession</a></li>
+								                    <li><a href="http://iitg.yourdost.com/blog/?=counseling%20profession">Counseling Profession</a></li>
 								                </ul>
 						            </li>
 						             <li style="" id="team"><a href="team">Team</a></li>
@@ -91,15 +91,15 @@ Modifications by JForum Team
 			<#if !counselor>
 				<header id="main-navbar" class="navbar navbar-inverse navbar-fixed-top">
 				  <div class="navbar-inner">
-					  <a class="navbar-brand" href="http://54.209.217.90:80/dost/index" >
-					  	<img src="http://54.209.217.90:80/dost/resources/img/logoSmall.jpg" height="47px"/>
+					  <a class="navbar-brand" href="http://iitg.yourdost.com/index" >
+					  	<img src="http://iitg.yourdost.com/resources/img/logoSmall.jpg" height="47px"/>
 					  </a>
 				  </div>
 				   <div class="nav-collapse navbar-collapse ">
 						<ul class="nav navbar-nav pull-right ">
 							<#if !logged>
-								<li><a href="http://54.209.217.90:80/dost/login" class="btn btn-primary btn-large login_now">LOGIN</a></li>
-								<li><a href="http://54.209.217.90:80/dost/signupNow" class="btn btn-primary btn-large signup_now">SIGNUP NOW</a></li>
+								<li><a href="http://iitg.yourdost.com/login" class="btn btn-primary btn-large login_now">LOGIN</a></li>
+								<li><a href="http://iitg.yourdost.com/signupNow" class="btn btn-primary btn-large signup_now">SIGNUP NOW</a></li>
 							</#if>
 							<#if logged>
 							 	<li><a href="#" class="navbar-link">${session.username}</a></li>
@@ -108,23 +108,23 @@ Modifications by JForum Team
 						</ul>
 						<ul class="nav navbar-nav pull-left menuItems">
 						  <#if logged>
-							<li id="conversations"><a href="http://54.209.217.90:80/dost/conversations">My Conversations</a></li>
+							<li id="conversations"><a href="http://iitg.yourdost.com/conversations">My Conversations</a></li>
 						  </#if>
-						  <li id="discussions"><a href="http://54.209.217.90:80/dost/forums/show/6.page">Discussions</a></li>
+						  <li id="discussions" class="active"><a href="http://iitg.yourdost.com/forums/show/6.page">Discussions</a></li>
 						  <#if logged>
-						  	<li id="talkToFriend"><a href="http://54.209.217.90:80/dost/talkToFriend">Talk To a Friend</a></li>
+						  	<li id="talkToFriend"><a href="http://iitg.yourdost.com/talkToFriend">Talk To a Friend</a></li>
 						  </#if>
-						  <li id="faqs"><a href="http://54.209.217.90:80/dost/faqs">FAQs</a></li>
-						  <li id="quotes"><a href="http://54.209.217.90:80/dost/quotes">Quotes</a></li>
+						  <li id="faqs"><a href="http://iitg.yourdost.com/faqs">FAQs</a></li>
+						  <li id="quotes"><a href="http://iitg.yourdost.com/quotes">Quotes</a></li>
 						  <li class="dropdown" id="blog">
 						  		 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Blogs <b class="caret"></b></a>
 					             <ul class="dropdown-menu">
-					                <li><a href="http://54.209.217.90:80/dost/blog/?=love">Relationships</a></li>
-				                    <li><a href="http://54.209.217.90:80/dost/blog/?=marriage">Marriages</a></li>
-				                    <li><a href="http://54.209.217.90:80/dost/blog/?=education">Education</a></li>
-				                    <li><a href="http://54.209.217.90:80/dost/blog/?=parents">Parents/Kids</a></li>
+					                <li><a href="http://iitg.yourdost.com/blog/?=love">Relationships</a></li>
+				                    <li><a href="http://iitg.yourdost.com/blog/?=marriage">Marriages</a></li>
+				                    <li><a href="http://iitg.yourdost.com/blog/?=education">Education</a></li>
+				                    <li><a href="http://iitg.yourdost.com/blog/?=parents">Parents/Kids</a></li>
 				                    <li class="divider"></li>
-				                    <li><a href="http://54.209.217.90:80/dost/blog/?=counseling%20profession">Counseling Profession</a></li>
+				                    <li><a href="http://iitg.yourdost.com/blog/?=counseling%20profession">Counseling Profession</a></li>
 					              </ul>
 			             </li>
 			             <li style="" id="team"><a href="team">Team</a></li>

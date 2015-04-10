@@ -29,17 +29,16 @@ $( document ).ready(function() {
 	}	
 });
 </script>
-<body>
-<sec:authorize access="hasRole('ROLE_ADMIN')">
+ 	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	
-	<body class="theme-default theme-default-counselor" >
+		<body class="theme-default theme-default-counselor" >
 	</sec:authorize>
 	<sec:authorize access="!hasRole('ROLE_ADMIN')">
-	<body class="theme-default">
+		<body class="theme-default">
 	</sec:authorize>
-	<jsp:include page="includes/header.jsp"></jsp:include>					
+		<jsp:include page="includes/header.jsp"></jsp:include>					
 	
-	<iframe height="100%"></iframe>
+		<iframe height="100%"></iframe>
 	
-</body>
+	</body>
 </html>

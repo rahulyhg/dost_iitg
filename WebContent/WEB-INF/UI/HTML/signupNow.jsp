@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
+	<head>
+		<title>Sign Up Now : Your D.O.S.T - IIT Guwahati</title>
+	</head>
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 	<script>
@@ -248,14 +251,14 @@ function validate_email(){
 		<div class="container">
 			
 			<form  onsubmit="return updateEncPass();"  method='POST' class="form-signin" action="http://localhost:8800/dost/api/signup" >
-				<div class="col-md-7 col-md-offset-2 form-signin-heading">
+				<div class="col-md-6 col-md-offset-3 form-signin-heading">
 					<p>Hi,</p>
 					<p>Don't worry, whatever it is.. we can fix it together. <em>Get Started!</em></p>
 				</div>
-				<div class="well well-large row col-md-7 col-md-offset-2 signinFormOuterContainer">
+				<div class="well well-large row col-md-6 col-md-offset-3 signinFormOuterContainer">
 					<div class="error alert alert-danger" role="alert"></div>
 					<div class="alert alert-success" role="alert"></div>
-					<div id="signindiv" class="col-md-offset-1">
+					<div id="signindiv" class="col-md-offset-2">
 						
 						</div><label class="chooseAvatar">Choose your avatar* <span>(This is how I will know you)</span></label>
 
@@ -285,7 +288,7 @@ function validate_email(){
 						
 						<br/>
 						<label>Email</label>
-						<input id="email" name="email" type="text" class="form-control input-block-level" placeholder="Set a email">
+						<input id="email" name="email" type="text" class="form-control input-block-level" placeholder="Set an Email (It will never be shared with anyone)">
 					
 					   <!-- <div id="passwordError" class="errorMsg">Invalid Password</div> -->
 						<br>

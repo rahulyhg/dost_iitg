@@ -4,6 +4,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<title>Client History, Your D.O.S.T - IIT Guwahati</title>
+	</head>
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	
 	<script>
@@ -15,7 +18,7 @@
 			userid = user.userId;
 			userRole = user.dbUserRole.role;
 			var threadId = window.location.href.split("=");
-		
+			
 			
 			// Setting message as read
 			//message/{messageId}/user/{userId}/markasread"

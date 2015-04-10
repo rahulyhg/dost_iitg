@@ -187,18 +187,27 @@ public class SignupController {
 	 */
 	private Message createWelcomeMessage(String recipient) {
 		StringBuilder welcomeBuffer = new StringBuilder();
-		
-		welcomeBuffer.append("<div id='welcome-message'><span>Hi,</span> <br/><span>Welcome to D.O.S.T");
+
+		welcomeBuffer.append("<!DOCTYPE html><html><head>	<title></title>	<style >	 #welcome-message ol{width: 450px; font-family: sans-serif;}");
+		welcomeBuffer.append("#welcome-message ol a{  	padding: 10px 10px; 	display: block;background: #ECECB2; 	width: 450px;text-align: center; ");
+		welcomeBuffer.append("text-transform: uppercase; 	   margin: 12px 0px; 	     text-decoration: none; 	     color: #5A3817;");
+		welcomeBuffer.append("-webkit-transition: all 1s; /* Safari */    transition: all 1s; 	} 	#welcome-message a:hover{background: #660000;color:");
+		welcomeBuffer.append("#fff} 	#welcome-message a 	#image-links li a{width: 50px; margin-left: 10px;} 	#image-links li{list-style-type: none;}");
+		welcomeBuffer.append("#image-links{  display: inline-flex;}	</style></head>");
+		welcomeBuffer.append("<body><div id='welcome-message'><span>Hi,</span> <br/><span>Welcome to Your D.O.S.T - IIT Guwahati");
 		welcomeBuffer.append("</span> <br/><span>Every problem has a solution and together we will find a solution to the problems that are bothering you. <br/> ");
 		welcomeBuffer.append("<br/>I am your friend - not a computer program and I am here to help you come out of your problems. I will be here to support you ");
 		welcomeBuffer.append("and help you in any way I can.");
-		welcomeBuffer.append("</span><h3>Steps to get started</h3><ol>	");
-		welcomeBuffer.append("<li>You could also leave a offline message and someone from team DOST will reply in not more than 24 hours.<br/>");
-		welcomeBuffer.append("<a href='conversations?=chat'> leave a message for your dost</a>");
-		welcomeBuffer.append("<li> If you want to chat with a DOST about your problems <br/>");
-		welcomeBuffer.append("<a href='talkToFriend'> CHAT ONLINE WITH THE NEXT AVAILABLE DOST</a>	</li>");
-		welcomeBuffer.append("<li>Discuss with our DOST users about your by people around");
-		welcomeBuffer.append("<a href='faqs'>frequently asked questions</a></li><br/></ol>	</div>");
+		welcomeBuffer.append("</span><h3>STEPS TO GET STARTED</h3><ol>	");
+		welcomeBuffer.append("<li>You could leave a offline message and one of the counselors from the team will reply in not more than 24 hours.<br/>");
+		welcomeBuffer.append("<a href='conversations?=chat'> Leave a message</a>");
+		welcomeBuffer.append("<li> Chat online with the next available friend <br/>");
+		welcomeBuffer.append("<a href='talkToFriend'> CHAT ONLINE WITH THE NEXT AVAILABLE FRIEND</a>	</li>");
+		welcomeBuffer.append("<li>Discuss with the community about things bothering you");
+		welcomeBuffer.append("<a href='forums/show/6.page'> PEER TO PEER DISCUSSION</a>	</li>");
+		welcomeBuffer.append("<li>Explore Most Asked Questions<a href='faqs'>Frequently Asked Questions</a></li>");
+		welcomeBuffer.append("<div style='margin-top:20px'>Regards,</a></div>");
+		welcomeBuffer.append("<div>Your D.O.S.T - IIT Guwahati Team</a></div>");
 		
 		Message welcomeMessage = new Message();
 		welcomeMessage.setContent(welcomeBuffer.toString());
@@ -207,9 +216,10 @@ public class SignupController {
 		// Trigger populates sent date
 		// welcomeMessage.setSentDate(new Date());
 		//welcomeMessage.setSenderId(Long.parseLong(Utils.getDostConfig("dostadmin.userid")));
-		welcomeMessage.setSubject("Welcome to You D.O.S.T");
+		welcomeMessage.setSubject("Welcome to Your D.O.S.T - IIT Guwahati");
 		return welcomeMessage;
 	}
+	
 	
 	private DbMessage populateDbMessage(Message message) {
 		

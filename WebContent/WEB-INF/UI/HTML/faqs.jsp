@@ -8,7 +8,7 @@
 <jsp:include page="includes/header.jsp"></jsp:include>
 <head>
 <meta charset="utf-8">
-<title>Frequently Asked Questions, Your D.O.S.T - IITG</title>
+<title>Frequently Asked Questions, Your D.O.S.T - IIT Guwahati</title>
 <script>
 	$(function() {
 		
@@ -20,7 +20,7 @@
 			for (var i = 0 ; i < FAQ.length; i++) {
 				
 				/*FAQ listing on faq page*/
-				$(".FAQList").append('<div class="well categoryList"><h3 class="categoryName subHeading" id='+FAQ[i].faqCategoryName+">"+FAQ[i].faqCategoryName+"</h3>");
+				$(".FAQList").append('<div class="categoryList"><h3 class="categoryName subHeading" id='+FAQ[i].faqCategoryName+">"+FAQ[i].faqCategoryName+"</h3>");
 				$("#"+FAQ[i].faqCategoryName).after("<ul></ul></div>");
 
 				for (var j = 0 ; j < FAQ[i].faqs.length; j++) {
@@ -42,9 +42,11 @@
 		$(".question").click(function(){
 				$(this).addClass("clickedQuestion");
 				$(this).closest(".questionAnswer").addClass("clicked");
+				$(".categoryList").addClass("removeSpace");
 				$(".nextPreviousNav").show();
 				$(".allQuestions").show();
 				$(".question").not(this).hide();
+				$(".pageTop h2.pageHeading").hide();
 				var thisCategory = $(this).closest(".categoryList");
 				$(".categoryList").not(thisCategory).hide();
 				$(this).siblings(".answer").show();
@@ -57,9 +59,11 @@
 		/*Moving through FAQs*/
 		$(".allQuestions").click(function(){
 				$(".categoryName").show();
+				$(".categoryList").removeClass("removeSpace");
 				$(".question").removeClass("clickedQuestion");
 				$(".questionAnswer").removeClass("clicked");
 				$(".nextPreviousNav").hide();
+				$(".pageTop h2.pageHeading").show();
 				$(".allQuestions").hide();
 				$(".categoryList").show();
 				$(".questionAnswer").show();
@@ -80,6 +84,7 @@
 		/*Next Previous navigation*/
 		$(".next").click(function(){
 			$(".clickedQuestion").closest("li.questionAnswer").hide();
+			$(".categoryList").addClass("removeSpace");
 			var nextQuestion = $(".clickedQuestion").closest("li").next("li");		
 			
 			if(nextQuestion.length == 0){
@@ -101,6 +106,7 @@
 		
 		
 		$(".previous").click(function(){
+			$(".categoryList").addClass("removeSpace");
 			$(".clickedQuestion").closest("li.questionAnswer").hide();
 			var prevQuestion = $(".clickedQuestion").closest("li").prev("li");		
 			
@@ -115,6 +121,7 @@
 			}
 			
 			$(".clickedQuestion").removeClass("clickedQuestion");
+			
 			prevQuestion.show();
 			prevQuestion.find("div").show();
 			prevQuestion.find(".question").addClass("clickedQuestion");
@@ -280,7 +287,7 @@
 </sec:authorize>
 
 	<div class="container row-fluid">
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<div class="pageTop">
 				<h2 class="pull-left pageHeading">Frequently Asked Questions</h2>
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -289,11 +296,11 @@
 				<div class="clearfix"></div>
 			</div>
 			<div>
-				<div class="pull-left allQuestions">Back to List</div>
-				<div class="pull-right nextPreviousNav">
-					<span id="previous" class="previous">Previous</span> 
-					<span id="next" class="next">Next</span>
-				</div>
+				<h2 class="pull-left allQuestions pageHeading">&#9668; Back to List</h2>
+				<h2 class="pull-right nextPreviousNav pageHeading">
+					<span id="previous" class="previous">&lArr; Previous</span> 
+					<span id="next" class="next">Next &rArr;	</span>
+				</h2>
 				<div class="clearfix"></div>
 				<div class="FAQList">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -305,9 +312,9 @@
 				
 			</div>
 			<div class="loading" id="loading">
-						<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
+				<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
 			</div>
-			<p>We are extremely thankful to <a target="_blank" href="https://www.linkedin.com/profile/view?id=21998428">Mahalakshmi Rajagopal</a>, <a target="_blank" href="http://in.linkedin.com/in/tarun911">Tarun Verma</a>, <a target="_blank" href="http://ca.linkedin.com/pub/namrta-mohan/42/519/802">Namrta Moha</a>, <a target="_blank" href="http://in.linkedin.com/pub/veena-bose/3b/921/471">Veena Bose </a>, <a target="_blank" href="https://www.linkedin.com/profile/view?id=117319614">Anamika Papriwal</a> for helping us with frequenly asked questions</p>
+			<p class="credits">We are extremely thankful to <a target="_blank" href="https://www.linkedin.com/profile/view?id=21998428">Mahalakshmi Rajagopal</a>, <a target="_blank" href="http://in.linkedin.com/in/tarun911">Tarun Verma</a>, <a target="_blank" href="http://ca.linkedin.com/pub/namrta-mohan/42/519/802">Namrta Moha</a>, <a target="_blank" href="http://in.linkedin.com/pub/veena-bose/3b/921/471">Veena Bose </a>, <a target="_blank" href="https://www.linkedin.com/profile/view?id=117319614">Anamika Papriwal</a> for helping us with frequenly asked questions</p>
 		</div>
 		
 		
@@ -346,11 +353,11 @@
 		</div><!-- /.modal -->
 	
 	<script type="text/javascript">
-	
+	/*
 		if( !$(".login_unit ").length ){
-			$(".container > div").removeClass("col-md-7");		
+			$(".container > div").removeClass("col-md-8");		
 		}
-	
+	*/
 	</script>
 	
 </body>
