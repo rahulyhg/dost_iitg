@@ -12,7 +12,9 @@
 	<script>
 	$( document ).ready(function() {
 		var selectedUser;
+		var loggedinUser;
 		$.getJSON("/dost/api/user/${pageContext.request.userPrincipal.name}", function(user) {
+			loggedinUser=user;
 			userid = user.userId;
 			userRole = user.dbUserRole.role;
 			var threadId = window.location.href.split("=");
@@ -88,6 +90,39 @@
 		$(".addNote").click(function(){
 			$(".notePopup").show();		
 		});
+		$(document).on("click",".addNoteButton",function(){
+		 if ($("textarea[name='messageContent']").val()==""){
+			 $(".error").removeClass("hidden").show().css("color","red");
+			 alert(1);
+		 }
+		 else{
+			var hostname=$(location).attr('host');   
+			$.getJSON("http://"+hostname+"/dost/api/message/"+ window.location.href.split("=")[1]+"/", function(messages){
+				
+				  var formData = {};
+			      
+			      formData["msgId"]=  window.location.href.split("=")[1];
+			      formData["messageId"]= messages[0].messageId;
+			      formData["note"]= $("textarea[name='messageContent']").val();
+			      formData["userId"]= messages[0].sender.userId;
+			      console.log(formData);
+				$.ajax({
+	        		type: "POST",
+	        		url: "http:\/\/"+hostname+"/dost/api/notes/add",
+	        		contentType: "application/json",
+	        		data:JSON.stringify(formData),
+	                dataType: "jsonP"
+	        	}).done(function(response){
+	        		//$("textarea[name='messageContent']").val('');
+	        	});
+			});
+			
+			// $(".error").addClass("hidden");
+			$(this).closest(".notePopup").hide();
+		
+		 }
+		
+			});
 		
 		$(".cancelButton").click(function(){
 			$(this).closest(".notePopup").hide();
@@ -313,14 +348,8 @@
 			</div>
 				
 		</sec:authorize>
-		<jsp:include page="includes/notesPopup.jsp"></jsp:include>
-		<div class="notePopup">
-			<form>
-				<textarea class="form-control" id="messageContent" rows="3"></textarea>
-				<button type="button"  class="addNoteButton pull-right btn btn-primary">Submit</button>
-				<button type="button"  class="cancelButton pull-right btn btn-outline">Cancel</button>
-			</form>
-		</div>
+	 <jsp:include page="includes/notesPopup.jsp"></jsp:include>
+		
 
 		<jsp:include page="includes/popupUserDetails.jsp"></jsp:include>
 		<jsp:include page="includes/commonFooter.jsp"></jsp:include>
