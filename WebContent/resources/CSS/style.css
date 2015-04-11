@@ -1342,10 +1342,10 @@ div.medical_warning{
 	
 	}
 	.media-body div{
- display: block;
+ 	display: block;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: normal;
     width: 100%;
 }
 
