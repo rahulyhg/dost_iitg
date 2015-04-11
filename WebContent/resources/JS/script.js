@@ -194,13 +194,16 @@ function Linkify(inputText) {
 function formatDate( date ){
 	
 	dateObj = new Date( date ) ;
+	var utc = dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000);
+	
+	var istTime = new Date(utc + (3600000 * 5.5));
 	
 	var options = {weekday: "long", year: "2-digit", 
 			month: "short",day: "numeric", hour: "2-digit", minute: "2-digit"} ;
 	
-	var formatedDateStr = dateObj.toLocaleDateString('en-us', options ) ;
+	var formatedDateStr = istTime.toLocaleDateString('en-us', options ) ;
 	var dateArr = formatedDateStr.split("," ) ;
-	console.log(dateArr) ;
+	
 	var dateToReturn = dateArr[1].trim().split(" ").reverse().join(" ") + "'" + dateArr[2].trim() + " " + dateArr[3] ;
 	
 	return dateToReturn ;	
