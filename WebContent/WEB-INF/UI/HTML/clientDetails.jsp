@@ -28,7 +28,7 @@
 									$("#"+ inner[0].messageId).siblings("ul").append('<li class=" media each_conversation">'+
 											'<div class="pull-left col-md-4">'+
 												'<span class="patient_name"><strong>'+inner[k].sender.username+'</strong></span>'+
-												'<span class="post_details">('+ inner[k].sentDate +')</span>'+
+												'<span class="post_details">( '+ formatDate(inner[k].sentDate ) +' )</span>'+
 											'</div>' +
 											'<div class="media-body col-md-7">'+
 													'<span>'+inner[k].content+'</span>'+

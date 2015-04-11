@@ -38,7 +38,7 @@
 //													'</li>');
 						// From Druveen
 						$(".conversation_history").append('<li style="white-space: pre-wrap;">'+'<h4 class="media-heading">'+ messages[i].sender.username+ '<span> &nbsp' +
-							messages[i].sentDate +'</span></h4>'+Linkify(messages[i].content)+'</li>');						
+							formatDate(messages[i].sentDate) +'</span></h4>'+Linkify(messages[i].content)+'</li>');						
 			
 						// Richa?? I am not sure if this is the correct way of getting Sohil
 						if(messages[i].sender.dbUserRole.role=="ROLE_USER"){
