@@ -226,6 +226,7 @@ public class SignupController {
 		DbMessage dbMessage = new DbMessage();
 		dbMessage.setContent(message.getContent());
 		dbMessage.setSubject(message.getSubject());
+		dbMessage.setCategoryId(8L); // 8 is Others TAG for message category
 		dbMessage.setImportant(message.getImportant() != null ? 0l : 1l);
 		// Hibernate will set this
 		//dbMessage.setMessageId(messageId)
