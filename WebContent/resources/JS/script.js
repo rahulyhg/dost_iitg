@@ -2,10 +2,16 @@ $( document ).ready(function() {
 		
 		/*applying properties based on url*/
 		var url = $(location).attr("pathname").split("/");
-		if(!url[url.length-1]:contains('blog')){
-				$('#main-navbar .menuItems #'+url[url.length-1]).addClass("active");
+		if( url[url.length-1] != 'blog' && url[url.length-1] != "" ){
+			var tabType = url[url.length-1] ;
+			if( tabType == "clientList"){
+				tabType = "patientHistory" ;
+			}
+			$('#main-navbar .menuItems #'+tabType).addClass("active");
+		}else if( $(location).attr("pathname").match("blog") ){
+			$('#main-navbar .menuItems #blog').addClass("active");			
 		}
-				
+		
 		if(window.location.href.indexOf("counselor") > -1){
 			$("body").addClass("theme-default-counselor");
 		}
