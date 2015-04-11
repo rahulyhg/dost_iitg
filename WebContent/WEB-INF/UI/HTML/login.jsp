@@ -15,6 +15,13 @@
 		$("#errorAlert").html("<p> Your username or password is incorrect</p>");
 		$("#errorAlert").show();
 		<%}%>
+		
+		<% if(request.getAttribute("canAccessSignupScreen") == "false") 
+		{
+		%>
+		$("#errorAlert").html("<p> Sorry! You are not allowed to signup on this portal..This is dedicated portal for IIT Guwahati</p>");
+		$("#errorAlert").show();
+		<%}%>
 	$('#forgot').click(function() {
 		    var x = document.forms["loginForm"]["username"].value;
 		    /* if (x == null || x == "") {

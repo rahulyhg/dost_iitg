@@ -105,9 +105,11 @@ public class HomeController {
 	@RequestMapping("signupNow")  
 	public ModelAndView signupNow(HttpServletRequest request) {
 		if(Utils.showSignUpPage(request)) {
+			request.setAttribute("canAccessSignupScreen", "true");
 			return new ModelAndView("signupNow"); 
 		}
 		else {
+			request.setAttribute("canAccessSignupScreen", "false");
 			return new ModelAndView("login"); 
 		}
 	}

@@ -99,7 +99,7 @@ function validate_email(){
 	}
 	else if( !text_email.match(/^\S+@\S+\.\S+$/)){
 		//alert("1");
-		$(" #email").css("border-color","red")
+		$(" #email").css("border-color","red").addClass("has-error");
 		$(".error").show();
 		$(".error").html("<p>email format will be example@xyz.com</p>");
 		$("#signin").attr("disabled","true") 
@@ -111,7 +111,7 @@ function validate_email(){
 		if(response.status){
 			
 			
-			$("#email").css("border-color","red")
+			$("#email").css("border-color","red").addClass("has-error");
 			$(".error").show();
 			$(".error").html("<p>email already taken</p>");
 			$("#signin").attr("disabled","true") 
@@ -218,7 +218,12 @@ function validate_email(){
 			$('[id$=signin]').removeAttr("disabled");
 			event.preventDefault();
 		}				
-		else{
+		else if($(".has-error").length>0){
+			$(".error").show();
+			$("<p>Please enter right details in the field marked in red</p>").appendTo(".error");
+			event.preventDefault();
+		}
+		else{			
 		}
 	}
 	

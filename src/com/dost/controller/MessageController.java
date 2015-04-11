@@ -307,7 +307,7 @@ public class MessageController {
 		String[] recipientArray = null;
 		if(!recipientIds.equals("all")){
 			recipientArray = recipientIds.split(",");
-			Long counselorTagId = message.getCounselorTag() != null ? Long.parseLong(message.getCounselorTag()) : 0;
+			Long counselorTagId = message.getCounselorTag() != null ? Long.parseLong(message.getCounselorTag()) : 8; // 8 is TAG id for Others which is default type
 			dbMessage.setCategoryId(counselorTagId);
 		}
 		// If UI didnt send the recipient id then get list of available counselors
