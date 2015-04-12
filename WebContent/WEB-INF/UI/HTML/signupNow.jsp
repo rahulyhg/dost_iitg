@@ -84,7 +84,7 @@
 			}
 		}; 
 $('#email').blur( function(){
-			
+        	$(" #email").removeClass("has-error");			
 			var valid_email = validate_email();
 		});
 function validate_email(){
@@ -93,7 +93,7 @@ function validate_email(){
 	var hostname=$(location).attr('host'); 
 	if($(" #email").val().length === 0){
 		$("#viewPassword").removeAttr("disabled")
-		$(" #email").css("border-color","green")
+		$(" #email").css("border-color","green");
 		$(".error").hide();
 		$("#signin").removeAttr("disabled")
 	}
