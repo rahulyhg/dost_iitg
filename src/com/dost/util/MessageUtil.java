@@ -27,16 +27,16 @@ public class MessageUtil {
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(
-								"customersupport@yourdost.com", "D0$t4321");
+								"yourdostiitg@gmail.com", "D0$t123!");
 					}
 				});
 
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("customersupport@yourdost.com"));
+			message.setFrom(new InternetAddress("yourdostiitg@gmail.com"));
 			message.setRecipients(Message.RecipientType.CC,
-					InternetAddress.parse("satyajeet@yourdost.com, richa@yourdost.com, kishlay.raj@gmail.com"));
+					InternetAddress.parse("satyajeet@yourdost.com, richa@yourdost.com")); //TODO: Use counselors email id
 			message.setSubject("Email from " + sender.getUsername());
 			message.setText("Dear Counselor,"
 					+ "\n There is a query from user " + sender.getUsername() + ". Please login to yourdost.com and handle this case..Thanks");
@@ -61,14 +61,14 @@ public class MessageUtil {
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(
-								"customersupport@yourdost.com", "D0$t4321");
+								"yourdostiitg@gmail.com", "D0$t123!");
 					}
 				});
 
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("customersupport@yourdost.com"));
+			message.setFrom(new InternetAddress("yourdostiitg@gmail.com"));
 			message.setRecipients(Message.RecipientType.CC,
 					InternetAddress.parse(toUser.getEmail()));
 			message.setSubject("Response from D.O.S.T Team");
@@ -76,12 +76,12 @@ public class MessageUtil {
                     "<body>\n" +
                     "\n" +
                     "Hi " + toUser.getUsername() + "," + 
-                    "<br><br>Thank you for visiting www.yourdost.com. One of your D.O.S.T has left a message for you. Please log into www.yourdost.com to see the response." +
+                    "<br><br>Thank you for visiting http://iitg.yourdost.com. One of your D.O.S.T has left a message for you. Please log into http://iitg.yourdost.com/ to see the response." +
                     "<br><br>If there is anything bothering you, just reply to mail or " +
-                    "<a href=\"http://www.yourdost.com/talkToFriend\">\n" +
+                    "<a href=\"http://iitg.yourdost.com/talkToFriend\">\n" +
                     "talk to your friend</a> online\n" +
                     "<br><br>Be stress free! " +
-                    "<br><br> --<br>Regards, <br>D.O.S.T Team <br>www.yourdost.com" +
+                    "<br><br> --<br>Regards, <br>D.O.S.T Team <br>http://iitg.yourdost.com/" +
                     "</body>\n" +
                     "</html>", "text/html");
 
@@ -96,7 +96,7 @@ public class MessageUtil {
 	public static void sendEmail(String senderEmail, String recipientEmail, String subject, String content) {
 		//TODO: Hard-coding this to richa and my email to test
 		if(recipientEmail == null || recipientEmail.length() == 0) {
-			recipientEmail = "satyajeet@yourdost.com, richa@yourdost.com";
+			recipientEmail = "satyajeet@yourdost.com, richa@yourdost.com"; //TODO: replace or add counselors email id
 		}
 		
 		Properties props = new Properties();
@@ -111,14 +111,14 @@ public class MessageUtil {
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(
-								"customersupport@yourdost.com", "D0$t4321");
+								"yourdostiitg@gmail.com", "D0$t123!");
 					}
 				});
 
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("customersupport@yourdost.com"));
+			message.setFrom(new InternetAddress("yourdostiitg@gmail.com"));
 			message.setRecipients(Message.RecipientType.CC,
 					InternetAddress.parse(recipientEmail));
 			message.setSubject(subject);
