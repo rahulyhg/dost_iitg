@@ -1352,6 +1352,11 @@ div.medical_warning{
     width: 100%;
 }
 
+.navbar-inner .pull-right .navbar-link{
+max-width: 90px;
+overflow-x: hidden;
+}
+
 /*welcome-message styling for more*/
 #welcome-message{line-height:1.2;}
  #welcome-message ol{width: 450px; font-family: sans-serif;}
