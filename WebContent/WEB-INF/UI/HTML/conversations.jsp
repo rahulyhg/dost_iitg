@@ -61,9 +61,12 @@
 		    		  gloablFlag = true;
 			    	  gloablePage++;  
 						for (var i = 0 ; i < messages.length; i++) {
-					
+
+							var conversationDate = messages[i].sentDate ;
+							conversationDate = formatDate(conversationDate) ;
+			
 							if( messages[i].recipients.length == 0 ) continue ;
-							
+										
 							var ismessagenew = 0;
 						//	debugger;
 							if(messages[i].recipients == 'undefined') {
@@ -87,7 +90,7 @@
 									'<div class="pull-left col-md-2" href="#">'+
 										'<div class="friend_name"><img class="avatar" id='+messages[i].sender.avatar+' src=avatar/'+messages[i].sender.avatar+'.png name='+messages[i].sender.avatar+ '/></div>'+
 										'<div class="friend_name">'+messages[i].sender.username+'</div>'+
-										'<div class="date_of_conversation">'+messages[i].sentDate+'</div>'+
+										'<div class="date_of_conversation">'+conversationDate+'</div>'+
 									'</div>'+
 									'<div class="media-body col-md-8">'+
 											messageHeading +
@@ -114,6 +117,9 @@
 						for (var j = 0 ; j < messages.length; j++) {
 							var ismessagenew = 0;
 						//	debugger;
+							var conversationDate = messages[j].sentDate ;
+							conversationDate = formatDate(conversationDate) ;
+						
 							if(messages[j].recipients == 'undefined') {
 								ismessagenew = 0;
 							}
@@ -142,7 +148,7 @@
 									messageHeading + 
 									'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
 									'</div>'+
-									'<div class="pull-left">'+messages[j].sentDate+'</div>'+
+									'<div class="pull-left">'+conversationDate+'</div>'+
 									'<div class="pull-right col-md-1">'+
 										'<div title="view complete conversation" href="conversationsExpanded?='+messages[j].msgId+'">'+
 											'<span class="glyphicon glyphicon-chevron-right"></span>'+
@@ -272,6 +278,9 @@
 			if(messages.length>0){
 					for (var i = 0 ; i < messages.length; i++) {
 						
+						var conversationDate = messages[i].sentDate ;
+						conversationDate = formatDate(conversationDate) ;
+
 						if( messages[i].recipients.length == 0 ) continue ;
 						
 						var ismessagenew = 0;
@@ -297,7 +306,7 @@
 								'<div class="pull-left col-md-2" href="#">'+
 									'<div class="friend_name"><img class="avatar" id='+messages[i].sender.avatar+' src=avatar/'+messages[i].sender.avatar+'.png name='+messages[i].sender.avatar+ '/></div>'+
 									'<div class="friend_name">'+messages[i].sender.username+'</div>'+
-									'<div class="date_of_conversation">'+messages[i].sentDate+'</div>'+
+									'<div class="date_of_conversation">'+conversationDate+'</div>'+
 								'</div>'+
 								'<div class="media-body col-md-8">'+
 										messageHeading +
@@ -323,6 +332,10 @@
 					}
 			
 					for (var j = 0 ; j < messages.length; j++) {
+						
+						var conversationDate = messages[j].sentDate ;
+						conversationDate = formatDate(conversationDate) ;
+					
 						var ismessagenew = 0;
 						if(messages[j].recipients == 'undefined' || messages[j].recipients.length == 0) {
 							ismessagenew = 0;
@@ -351,7 +364,7 @@
 								messageHeading + 
 									'<span style="white-space: nowrap;">'+Linkify(messages[j].content)+'</span>'+
 								'</div>'+
-								'<div class="pull-left">'+messages[j].sentDate+'</div>'+
+								'<div class="pull-left">'+conversationDate+'</div>'+
 								'<div class="pull-right col-md-1">'+
 									'<div title="view complete conversation" href="conversationsExpanded?='+messages[j].msgId+'">'+
 										'<span class="glyphicon glyphicon-chevron-right"></span>'+
@@ -424,10 +437,10 @@
 								'<div class="pull-left col-md-2" href="#">'+
 									'<div class="friend_name"><img class="avatar" id='+value.user.avatar+' src=avatar/'+value.user.avatar+'.png name='+value.user.avatar+ '/></div>'+
 									'<div class="friend_name">'+value.user.username+'</div>'+
-									'<div class="date_of_conversation">'+ timeConverter(value.userChats[0].sentDate) +'</div>'+
+									'<div class="date_of_conversation">'+ formatDate(timeConverter(value.userChats[0].sentDate)) +'</div>'+
 								'</div>'+
 								'<div class="media-body col-md-8">'+
-										'CHAT ON ' + timeConverter(value.userChats[0].sentDate) +
+										'CHAT ON ' + formatDate(timeConverter(value.userChats[0].sentDate)) +
 										'<div class="wrapperConversations">'+ chatLinesToShowForMainPage +'</div>'+
 								'</div>'+
 								'<div class="pull-right col-md-1">'+
@@ -444,10 +457,10 @@
 								'<div class="pull-left col-md-2" href="#">'+
 									'<div class="friend_name"><img class="avatar" id='+value.user.avatar+' src=avatar/'+value.user.avatar+'.png name='+value.user.avatar+ '/></div>'+
 									'<div class="friend_name">'+value.user.username+'</div>'+
-									'<div class="date_of_conversation">'+ timeConverter(value.userChats[0].sentDate) +'</div>'+
+									'<div class="date_of_conversation">'+ formatDate(timeConverter(value.userChats[0].sentDate)) +'</div>'+
 								'</div>'+
 								'<div class="media-body col-md-8">'+
-										'CHAT ON ' + timeConverter(value.userChats[0].sentDate) +
+										'CHAT ON ' + formatDate(timeConverter(value.userChats[0].sentDate)) +
 										'<div class="wrapperConversations">'+ chatLinesToShowForMainPage +'</div>'+
 								'</div>'+
 								'<div class="pull-right col-md-1">'+

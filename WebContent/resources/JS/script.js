@@ -2,10 +2,16 @@ $( document ).ready(function() {
 		
 		/*applying properties based on url*/
 		var url = $(location).attr("pathname").split("/");
-		if(!url[url.length-1]:contains('blog')){
-				$('#main-navbar .menuItems #'+url[url.length-1]).addClass("active");
+		if( url[url.length-1] != 'blog' && url[url.length-1] != "" ){
+			var tabType = url[url.length-1] ;
+			if( tabType == "clientList"){
+				tabType = "patientHistory" ;
+			}
+			$('#main-navbar .menuItems #'+tabType).addClass("active");
+		}else if( $(location).attr("pathname").match("blog") ){
+			$('#main-navbar .menuItems #blog').addClass("active");			
 		}
-				
+		
 		if(window.location.href.indexOf("counselor") > -1){
 			$("body").addClass("theme-default-counselor");
 		}
@@ -182,4 +188,26 @@ function Linkify(inputText) {
 	    var replacedText = replacedText.replace(replacePattern3, '<a href="mailto:$1">$1</a>');
 
 	    return replacedText
-	}
+}
+
+
+function formatDate( date ){
+	
+	dateObj = new Date( date ) ;
+	var utc = dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000);
+	
+	var istTime = new Date(utc + (3600000 * 5.5));
+	
+	var options = {weekday: "long", year: "2-digit", 
+			month: "short",day: "numeric", hour: "2-digit", minute: "2-digit"} ;
+	
+	var formatedDateStr = istTime.toLocaleDateString('en-us', options ) ;
+	var dateArr = formatedDateStr.split("," ) ;
+	
+	var dateToReturn = dateArr[1].trim().split(" ").reverse().join(" ") + "'" + dateArr[2].trim() + " " + dateArr[3] ;
+	
+	return dateToReturn ;	
+	
+}
+
+

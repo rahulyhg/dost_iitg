@@ -38,7 +38,7 @@
 //													'</li>');
 						// From Druveen
 						$(".conversation_history").append('<li style="white-space: pre-wrap;">'+'<h4 class="media-heading">'+ messages[i].sender.username+ '<span> &nbsp' +
-							messages[i].sentDate +'</span></h4>'+Linkify(messages[i].content)+'</li>');						
+							formatDate(messages[i].sentDate) +'</span></h4>'+Linkify(messages[i].content)+'</li>');						
 			
 						// Richa?? I am not sure if this is the correct way of getting Sohil
 						if(messages[i].sender.dbUserRole.role=="ROLE_USER"){
@@ -93,7 +93,7 @@
 		$(document).on("click",".addNoteButton",function(){
 		 if ($("textarea[name='messageContent']").val()==""){
 			 $(".error").removeClass("hidden").show().css("color","red");
-			 alert(1);
+			
 		 }
 		 else{
 			var hostname=$(location).attr('host');   
@@ -106,15 +106,19 @@
 			      formData["note"]= $("textarea[name='messageContent']").val();
 			      formData["userId"]= messages[0].sender.userId;
 			      console.log(formData);
-				$.ajax({
-	        		type: "POST",
-	        		url: "http:\/\/"+hostname+"/dost/api/notes/add",
-	        		contentType: "application/json",
-	        		data:JSON.stringify(formData),
-	                dataType: "jsonP"
-	        	}).done(function(response){
-	        		//$("textarea[name='messageContent']").val('');
-	        	});
+			      $.ajax({
+			           type: "POST",
+			           url: "http:\/\/"+hostname+"/dost/api/notes/add",
+			           contentType: "application/json",
+			           data:JSON.stringify(formData),
+			                 dataType: "jsonP",
+			                 success: function(response){
+			                  $("textarea[name='messageContent']").val("");
+			                 },                 
+			             error: function(){
+			                   $("textarea[name='messageContent']").val("");
+			             }
+			     });
 			});
 			
 			// $(".error").addClass("hidden");
@@ -249,8 +253,8 @@
 							<div class="pull-right">
 								<div class="btn-group">
 								  <button type="button" class="replyBtn btn btn-default">Reply</button>
-								  <button type="button" class="btn btn-default addNote">Add Note</button>
-								  <button type="button" class="btn btn-default addDetail">Add Detail</button>
+								  <button type="button" class="btn btn-default addNote">Add Note</button> 
+								<!--    <button type="button" class="btn btn-default addDetail">Add Detail</button> -->
 	
 								  <!-- <div class="btn-group">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -305,7 +309,7 @@
 								<div class="btn-group">
 								  
 								  <button type="button" class="replyBtn btn btn-default">Reply</button>
-								  <button type="button" class="btn btn-default addNote">Add Note</button>
+								 <!--   <button type="button" class="btn btn-default addNote">Add Note</button> -->
 								  
 								  <!--  <div class="btn-group">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
