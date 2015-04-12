@@ -1353,7 +1353,7 @@ div.medical_warning{
 }
 
 /*welcome-message styling for more*/
-
+#welcome-message{line-height:1.2;}
  #welcome-message ol{width: 450px; font-family: sans-serif;}
  #welcome-message ol a{ 
  	padding: 10px 10px;
@@ -1373,6 +1373,6 @@ div.medical_warning{
  	 #image-links li a{width: 50px; margin-left: 10px;}
  	#welcome-message #image-links li{list-style-type: none; padding:0;}
  	#image-links{  display: inline-flex;} */
- 	.each_conversation #welcome-message{height:100px;}
+ 	.each_conversation  h4+span>#welcome-message{height:88px;}
  	.conversation_topic:hover{color:#444;}
  	
