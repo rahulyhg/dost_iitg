@@ -322,7 +322,9 @@ public class UserSession implements Serializable
 			return false;
 		}
 		else {
-			return (username.equalsIgnoreCase("prashant") || username.equalsIgnoreCase("aarti"));			
+			// TODO: No need to hide in IITG version so commenting
+			//return (username.equalsIgnoreCase("prashant") || username.equalsIgnoreCase("aarti"));
+			return true;
 		}
 	}
 
