@@ -45,8 +45,8 @@
 			if( !text.match(/^([a-zA-Z0-9]+)$/)){
 				//alert("1");
 				$(" #username").css("border-color","red")
-				$(".exists").removeClass("hidden")
-				$(".exists").html("only alphabets and numbers accepted").css("color","#666")
+				$(".error").show();
+				$(".error").html("only alphabets and numbers accepted").css("color","#666")
 				//$("#viewPassword").attr("disabled","true") 
 				//$("#signin").attr("disabled","true") ;
 			                      
@@ -58,9 +58,10 @@
 						
 						
 						$("#username").css("border-color","red")
-						$(".exists").removeClass("hidden")
-						$(".exists").css("color","red")
-						$(".exists").html("username exists")
+						//$(".exists").removeClass("hidden")
+						//$(".exists").css("color","red")
+						$(".error").show();
+						$(".error").html("username exists");
 						$("#signin").attr("disabled","true") 
 						//$("#viewPassword").attr("disabled","true") 
 	                      				
@@ -68,7 +69,8 @@
 					else{
 						$("#viewPassword").removeAttr("disabled")
 						$(" #username").css("border-color","green")
-						$(".exists").addClass("hidden")
+						//$(".exists").addClass("hidden")
+						$(".error").hide();
 						
 						
 						//$("#signin").removeAttr("disabled") ;
@@ -280,14 +282,14 @@ function validate_email(){
 						<br/>
 						<input id="avatarinput" type="hidden" name="avatarinput">
 						<label>Username*</label>
-						<input id="username"  name="username" required pattern="[a-zA-Z0-9]+" type="text" class="form-control input-block-level" placeholder="Create a username">
+						<input id="username"  name="username" autocomplete="off" required pattern="[a-zA-Z0-9]+" type="text" class="form-control input-block-level" placeholder="Create a username">
                         <label class="exists hidden">Username already exists</label>
                         <!-- <div id="usernameError" class="errorMsg">Username should contain atleast one alphabet</div> -->
 						<br/>
 						
 						<label>Password*</label>
 
-						<input id="viewPassword" name="viewPassword" required type="password" class="form-control input-block-level" placeholder="Set a password">
+						<input id="viewPassword" name="viewPassword" autocomplete="off" required type="password" class="form-control input-block-level" placeholder="Set a password">
 						<input id="password" name="password" type="hidden">
 						
 						
