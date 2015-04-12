@@ -79,6 +79,9 @@
 	strong{
 		font-weight:600;
 	}
+	.loadingIndex{
+		height : 100px;
+	}
 	.loading{
 		position: relative;
 	}

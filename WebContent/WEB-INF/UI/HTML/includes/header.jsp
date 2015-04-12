@@ -22,7 +22,8 @@
 				<ul class="nav navbar-nav pull-left menuItems">
 					  <!-- Adding this after talking to Richa, conversation link should appear only for Prashant and Aarti -->
 					  <%
-					  if(request.getUserPrincipal().getName().equalsIgnoreCase("prashant") || request.getUserPrincipal().getName().equalsIgnoreCase("aarti")) {
+					  //if(request.getUserPrincipal().getName().equalsIgnoreCase("prashant") || request.getUserPrincipal().getName().equalsIgnoreCase("aarti")) {
+					  if(true) {
 					  %>
 					  <li id="conversations"><a href="${pageContext.request.contextPath}/conversations">Conversations</a></li>
 					  <%
