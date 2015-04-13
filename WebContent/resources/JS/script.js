@@ -123,7 +123,7 @@ function submitForgotEmail() {
 	}
 	
 	if(email !== "" &&!validateEmail(email)) {
-		$("#errorAlert").show();
+		$("#errorAlert").show().html("Please enter valid Email ID");
 		return;
 	}
 	
