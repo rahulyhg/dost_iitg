@@ -313,8 +313,7 @@ function validate_email(){
 						<input id="answer2" required  name="answer2" required type="text" class="form-control input-block-level" placeholder="Please provide the answer">
  -->
  <br/>
-						<div class="medical_warning">We are not a medical service. If you are  thinking about suicide, if you think you may be in a danger of yourself or to others, 
-						or if otherwise you have any medical emergency, please immediately call <strong>+91 80110 89898</strong>. 
+						<div class="medical_warning">
 						By signing up you are agreeing to <a target="_blank" href="termsOfService">Terms and Services</a> of Your D.O.S.T - IIT Guwahati</div>					
 						<br/><br/>
 						<button id="signin" class="pull-right btn btn-large btn-primary" type="submit" onclick="validateForm();">Proceed &gt;</button>
