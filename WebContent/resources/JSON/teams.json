@@ -15,19 +15,13 @@
 	 "name":"Dr Bandana",
 	 "details":"Dr. Bandana Dutta, a PhD in Psychology from Centre for Advanced Study, Utkal University. She has 33+ years of experience as a psychologist. <br/><br/>She uses the Projective Techniques to assess her clients and unveils their personality and probes deep into their inner self. She uses client â€“centered psychotherapy, Cognitive Therapy, Psychodynamic Therapy, Grapho- Therapy, Counselling and Relaxation Techniques to support the clientâ€™s in their day- today activities and overall well being.A very compassionate individual with the knack of helping people.<br/><br/> She is an active a member of Assam Autism Foundation and Mind India, Gauhati. <br/><br/>",
 	 "image":"Bandana.jpg"
+	},
+	{
+		"name":"Mr. Rakesh",
+		"details":"Rakesh Kakaty believes as every painting is a mark of an artist’s uniqueness, every therapist is also unique in the same way. He explores the often convoluted labyrinths of a client’s psyche, he seem to unravel a lot more about himself in the process.  <br/><br/>Throughout the years he has come to realize counseling is not about seeking glorious result or “breakthroughs” within a session, as counseling is not a way to solve the problems of a clients’ life. Counseling is empowerment and for empowerment, one needs an unconditional support. <br/><br/>He believes highest and the most charitable act in the world is to listen silently, attentively, when a weary heart is speaking.  <br/><br/>",
+		"image":"Rakesh.jpg"
 	}
 	
 	
-  ], 
-  
-  "volunteers":[
-		 {
-		 	"name":"Zilani",
-		 	"details":"Namrata is your special friend from Your D.O.S.T team.<br/><br/> She is currently working at CIMBS :Delhi Psychiatry Centre as Clinical Psychologist. At CIMBS, she also heads a Tobacco Cessation Clinic. She specializes in anxiety spectrum disorders like phobia, OCD, GAD, relationship issues. <br/><br/> She is passionate about helping people in distress. <br/> She believes, through Your D.O.S.T, she can extend her to many more people in need.<br/>She is compassionate, empathetic, an active  listener and novelty seeker.<br/><br/>",
-		 	"linkedin":"https://www.linkedin.com/pub/namrata-upadhyay/63/41/100",
-		 	"twitter":"",
-		 	"image":"Namrata.jpg"
-		 }
-		 		
-	]
+  ]
 }
