@@ -8,7 +8,7 @@
 <html>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Your D.O.S.T Team</title>
+	<title>Your D.O.S.T - IIT Guwahati Team</title>
 	<jsp:include page="includes/commonHeader.jsp"></jsp:include>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/CSS/teams.css"> 
 		<script>
@@ -23,7 +23,7 @@
 	<script>
 		$.getJSON( "${pageContext.request.contextPath}/resources/JSON/teams.json", function( data ){
 				var core_team  = data[ "core_team"  ] ;
-				var volunteers = data[ "volunteers" ] ;	
+
 				<!--var campus = data[ "campus" ] ;	-->
 				//ajax loading done
 				$(document).ajaxComplete(function(){
@@ -51,34 +51,8 @@
 					
 				});
 
+					$("#volunteers .details").html("<p style='text-align: center; padding: 20px 20px 10px 20px;'> Saathi is a group of non-judgemental people selected and trained by counselors with a knack to listen actively, attentively when you are speaking your heart out.</p> ") ;
 
-				$.each( volunteers, function( index, elem ){
-					var html = return_team_html() ;
-					
-					$("#volunteers .details").append(html) ;
-					
-					var this_list_html = $("#volunteers").find(".listOuterContainer").last() ;
-					
-					$(this_list_html).find(".listheading").text( elem.name ) ;
-					$(this_list_html).find(".listContent").html( elem.details ) ;
-					/*$(this_list_html).find(".linkedin a").attr("href", elem.linkedin ) ;
-					$(this_list_html).find(".twitter").attr("id", elem.name ) ;
-					$(this_list_html).find(".twitter a").attr("href", elem.twitter ) ;*/
-					
-					var background_image= '#FFEDB5 url("resources/img/team/'+elem.image+'") no-repeat center center';
-					$(this_list_html).find(".listImage").css("background", background_image ) ;
-					
-					if( index > 0 && (index % 3 ) ){
-						$(this_list_html).addClass("col-md-offset-1") ;
-						
-					}
-					
-					if( index >= 3 ){
-						
-						$(this_list_html).css("margin-top","40px" ) ;
-					}
-					
-				});
 				
 				/* $.each(campus, function( index, elem ){
 					var html = return_team_html() ;
@@ -154,11 +128,13 @@
 			<div class="details well"></div>
 		</div>
 			
-		<div id="volunteers" class="row" style="display:none">
+		<div id="volunteers" class="row">
 			<div class="row">
 				<h2 class="pull-left pageHeading">
-                    VOLUNTEERS <em>(People who make this work seamlessly)</em>
+                    Saathi
 				</h2>
+<!--				
+<p> Saathi is a group of non-judgemental people selected and trained by counselors with a knack to listen actively, attentively when you are speaking your heart out.</p>-->
 				<!--  <a href="https://www.surveymonkey.com/s/FP6Z6QN" target="_blank" class="pull-left become_a_volunteer">Do you want to volunteer too?</a>-->
 			</div>
 			<div class="details well"></div>
