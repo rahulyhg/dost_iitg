@@ -30,7 +30,7 @@
 												'<span class="patient_name"><strong>'+inner[k].sender.username+'</strong></span>'+
 												'<span class="post_details">( '+ formatDate(inner[k].sentDate ) +' )</span>'+
 											'</div>' +
-											'<div class="media-body col-md-7">'+
+											'<div class="media-body col-md-12">'+
 													'<span>'+inner[k].content+'</span>'+
 											'</div>'+
 										'</li>');							

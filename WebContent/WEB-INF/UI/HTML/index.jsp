@@ -91,10 +91,12 @@ $( document ).ready(function() {
 		<sec:authorize access="!hasRole('ROLE_ADMIN')">
 			<div class="bannerSignup bannerLarge">
 			<!-- Alert message start-->
+			<!-- Commenting this during Richa's IITG visit 
 				<div style="position:absolute;left:35%;padding: 0px 25px 0px 25px;top:50px;background-color:#FFE390;"> 
 						<p  class="message_for_suicideprevention">It is not a suicide prevention support portal. If you are feeling suicidal,<br/>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;please call suicide prevention helpline at <strong>+91 80110 89898</strong></p>
 				</div>
+			 -->
 			 <!-- Alert message end-->
 				<img class="hand bannerLargehand" src="${pageContext.request.contextPath}/resources/img/hand.png">
 				<img class="sadPerson bannerLargesadPerson" src="${pageContext.request.contextPath}/resources/img/sad_person.png">

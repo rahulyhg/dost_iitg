@@ -142,9 +142,10 @@ public class PatientHistoryController {
 	public Map<String, Object> getAllUserMessagesForHistory(@PathVariable Long id) {
 		List<DbMessage> senderMessages = messageService.getAllUserMessages(id, null, null, null, null);
 		List<DbMessage> recipientMessages = messageService.getUserMessages(id, null, null, null, null);
-		Set<DbMessage> messages = new HashSet<DbMessage>();
-		messages.addAll(senderMessages);
-		messages.addAll(recipientMessages);
+//		Set<DbMessage> messages = new HashSet<DbMessage>();
+//		messages.addAll(senderMessages);
+//		messages.addAll(recipientMessages);
+		List<DbMessage> messages = removeDuplicateMessages(senderMessages, recipientMessages);
 		for(DbMessage msg : messages) {
 			msg.setSentDate(Utils.formatDate("yyyy-MM-dd hh:mm:s", msg.getSentDateDb()));
 			System.out.println(msg.getSentDate());
@@ -211,5 +212,30 @@ public class PatientHistoryController {
 			System.out.println(sortedMap1.getKey());
 		}
 		return sortedMap;
+	}
+	
+	/**
+	 * All this I have to do to remove duplicate messages from 2 lists.
+	 * Somehow hashset is not helping
+	 * @param list1
+	 * @param list2
+	 * @return
+	 */
+	private List<DbMessage> removeDuplicateMessages(List<DbMessage> list1, List<DbMessage> list2) {
+		
+		List<DbMessage> output = new ArrayList<DbMessage>();
+		Map<Long, DbMessage> map1 = new HashMap<Long, DbMessage>();
+		for(DbMessage msg1 : list1) {
+			map1.put(msg1.getMessageId(), msg1);
+			output.add(msg1);
+		}
+		
+		for(DbMessage msg2 : list2) {
+			if(map1.get(msg2.getMessageId()) == null) {
+				output.add(msg2);
+			}
+		}
+		
+		return output;
 	}
 }

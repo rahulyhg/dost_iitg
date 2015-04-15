@@ -123,7 +123,7 @@ function submitForgotEmail() {
 	}
 	
 	if(email !== "" &&!validateEmail(email)) {
-		$("#errorAlert").show();
+		$("#errorAlert").show().html("Please enter valid Email ID");
 		return;
 	}
 	
@@ -192,7 +192,7 @@ function Linkify(inputText) {
 
 
 function formatDate( date ){
-	
+	date = date.replace(/-/g,"/");
 	dateObj = new Date( date ) ;
 	var utc = dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000);
 	

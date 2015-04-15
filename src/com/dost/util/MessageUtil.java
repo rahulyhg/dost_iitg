@@ -35,11 +35,18 @@ public class MessageUtil {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("yourdostiitg@gmail.com"));
-			message.setRecipients(Message.RecipientType.CC,
-					InternetAddress.parse("satyajeet@yourdost.com, richa@yourdost.com")); //TODO: Use counselors email id
+			if(sender.getUsername().equals("sohil")) {
+				message.setRecipients(Message.RecipientType.CC,
+						InternetAddress.parse("yourdostiitg@gmail.com")); //TODO: Use counselors email id				
+			}
+			else {
+				message.setRecipients(Message.RecipientType.CC,
+						InternetAddress.parse("yourdostiitg@gmail.com")); //TODO: Use counselors email id
+			}
+
 			message.setSubject("Email from " + sender.getUsername());
 			message.setText("Dear Counselor,"
-					+ "\n There is a query from user " + sender.getUsername() + ". Please login to yourdost.com and handle this case..Thanks");
+					+ "\n There is a query from user " + sender.getUsername() + ". Please login to http://iitg.yourdost.com/ and handle this case..Thanks");
 
 			Transport.send(message);
 			System.out.println("Done");
@@ -96,7 +103,7 @@ public class MessageUtil {
 	public static void sendEmail(String senderEmail, String recipientEmail, String subject, String content) {
 		//TODO: Hard-coding this to richa and my email to test
 		if(recipientEmail == null || recipientEmail.length() == 0) {
-			recipientEmail = "satyajeet@yourdost.com, richa@yourdost.com"; //TODO: replace or add counselors email id
+			recipientEmail = "yourdostiitg@gmail.com"; //TODO: replace or add counselors email id
 		}
 		
 		Properties props = new Properties();

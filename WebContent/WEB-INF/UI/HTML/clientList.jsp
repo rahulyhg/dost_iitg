@@ -32,11 +32,15 @@
 				}		
 		   }
 		 }
-				function searchPatient(ele) {
-					var x = event.which || event.keyCode;
-					if( x == 34 || x == 33) {
-						return;
+				function searchPatient(event) {
+					
+					if(event) {
+						var x = event.which || event.keyCode;
+						if( x && (x == 34 || x == 33)) {
+							return;
+						}	
 					}
+					
 					var searchText = $("#patientSearch").val();
 					if(gloablOldSearchValue != searchText) {
 						gloablSearchPage = 1;
@@ -138,7 +142,7 @@
 					</h2>
 					<div class="clearfix"></div>
 			</div>
-			<div class="searchBox"><label>Search Users <input id="patientSearch" onkeyup="searchPatient(this)"; type="text"></label></div>
+			<div class="searchBox"><label>Search Users <input id="patientSearch" onkeyup="searchPatient(event)"; type="text"></label></div>
 			<div class="col-md-11">
 				<div class="pull-left col-md-12">
 					<ul class="patient_list">

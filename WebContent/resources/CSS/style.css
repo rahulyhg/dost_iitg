@@ -23,7 +23,7 @@
 	}
 	.worried_person{
 		background:url(../img/sadPerson.jpg) no-repeat 0 0;
-		height:300px;
+		height:240px;
 		
 	}
 	.insertBlock{
@@ -81,6 +81,9 @@
 	}
 	strong{
 		font-weight:600;
+	}
+	.loadingIndex{
+		height : 100px;
 	}
 	.loading{
 		position: relative;
@@ -1352,8 +1355,13 @@ div.medical_warning{
     width: 100%;
 }
 
-/*welcome-message styling for more*/
+.navbar-inner .pull-right .navbar-link{
+max-width: 90px;
+overflow-x: hidden;
+}
 
+/*welcome-message styling for more*/
+#welcome-message{line-height:1.2;}
  #welcome-message ol{width: 450px; font-family: sans-serif;}
  #welcome-message ol a{ 
  	padding: 10px 10px;
@@ -1373,6 +1381,6 @@ div.medical_warning{
  	 #image-links li a{width: 50px; margin-left: 10px;}
  	#welcome-message #image-links li{list-style-type: none; padding:0;}
  	#image-links{  display: inline-flex;} */
- 	.each_conversation #welcome-message{height:100px;}
+ 	.each_conversation  h4+span>#welcome-message{height:88px;}
  	.conversation_topic:hover{color:#444;}
  	

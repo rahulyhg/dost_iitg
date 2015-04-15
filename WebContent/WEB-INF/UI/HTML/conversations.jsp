@@ -549,12 +549,17 @@
 			$("#recipient, #subject, #messageContent").val("");
 			if( $("#userTags") ){
 				$.getJSON("/dost/api/codes/TAG", function(tags){
-					
+					$("#userTags option").remove();
 					$.each( tags, function( index, tag ){
 						var codeID = tag.codeId ;
 						var tagValue = tag.value ;
 						
-						$("#userTags").append('<option value="'+ codeID +'">'+ tagValue +'</option>') ;
+						if(tagValue=="Others"){
+							$("#userTags").append('<option selected value="'+ codeID +'">'+ tagValue +'</option>') ;
+						}
+						else{
+							$("#userTags").append('<option value="'+ codeID +'">'+ tagValue +'</option>') ;
+						}
 						
 					});
 					
