@@ -47,6 +47,11 @@ public class HomeController {
 		return new ModelAndView("team"); 
 	}
 	
+	@RequestMapping("welcome")  
+	public ModelAndView welcome() {
+		return new ModelAndView("welcome"); 
+	}
+	
 	@RequestMapping("contact")  
 	public ModelAndView contact() {
 		return new ModelAndView("contact"); 

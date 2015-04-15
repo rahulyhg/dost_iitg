@@ -101,7 +101,7 @@ $( document ).ready(function() {
 				<img class="hand bannerLargehand" src="${pageContext.request.contextPath}/resources/img/hand.png">
 				<img class="sadPerson bannerLargesadPerson" src="${pageContext.request.contextPath}/resources/img/sad_person.png">
 				<p class="col-md-7 bannerLargep">IS SOMETHING BOTHERING YOU? ARE YOU FEELING LONELY?<br/>
-					<span><strong>Anonymously</strong> discuss your worries by<strong> chatting online</strong> with psychologists and experienced individuals<br/>
+					<span><strong>Anonymously</strong> discuss your worries by<strong> chatting online</strong> with counselors and experienced individuals<br/>
 				</p>
 				<sec:authorize ifNotGranted="ROLE_USER">
 					<a class="bannerLargeform">
