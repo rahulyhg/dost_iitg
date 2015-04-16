@@ -139,7 +139,8 @@ public class UserController {
 		user.setIdentifier(identifier);
 		userService.updateUser(user);
 		String messageToSend = createPasswordResetMessage(user.getUsername(), identifier);
-		MessageUtil.sendEmail("customersupport@yourdost.com", user.getEmail(), "Forgot Username/Password - Your D.O.S.T", messageToSend);
+		MessageUtil.sendEmail("yourdostiitg@gmail.com", user.getEmail(), "Forgot Username/Password - Your D.O.S.T", messageToSend);
+		System.out.println("Sending email to : " + user.getEmail());
 	}
 	
 	@RequestMapping(value="/user/resetpassword", method=RequestMethod.POST)  
