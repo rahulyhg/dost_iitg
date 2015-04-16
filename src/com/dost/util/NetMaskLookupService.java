@@ -8,8 +8,8 @@ import java.util.Vector;
 public class NetMaskLookupService
 {
 	public static boolean ValidateIP(String ipAddress) throws UnknownHostException, Exception {
-	//	return (ValidateIP(ipAddress, "125.20.82.161/28") || ValidateIP(ipAddress, "14.139.196.0/24")); 
-		return true;
+		return (ValidateIP(ipAddress, "125.20.82.161/28") || ValidateIP(ipAddress, "14.139.196.0/24")); 
+//		return true;
 	}
 	
 	/** Validate that IPAddress exists in NetMask address space */

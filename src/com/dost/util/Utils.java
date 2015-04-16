@@ -59,7 +59,7 @@ public class Utils {
 	
 	public static boolean showSignUpPage(HttpServletRequest request) {
 		boolean showSignUpPage = true;
-		/*String ipAddress = request.getHeader("X-FORWARDED-FOR");  
+		String ipAddress = request.getHeader("X-FORWARDED-FOR");  
 		if (ipAddress == null) {  
 		   ipAddress = request.getRemoteAddr();  
 		}
@@ -69,7 +69,7 @@ public class Utils {
 		catch (Exception e) {
 			e.printStackTrace();
 			showSignUpPage = false;
-		} */
+		} 
 		return showSignUpPage;
 	}
 	
