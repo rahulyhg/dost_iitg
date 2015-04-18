@@ -9,6 +9,7 @@
 	<a href="termsOfService" class="footer_link">Terms of Service</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href="team"  class="footer_link">Team</a>&nbsp;&nbsp; <!--| &nbsp;&nbsp;<a href="testimonials"  class="footer_link">What users say about us?</a>&nbsp;&nbsp; | &nbsp;&nbsp;  <a href="contact"  class="footer_link">Contact Us</a>-->
 	<br/><br/>
 	Copyright 2015, Your D.O.S.T - IIT Guwahati, All rights reserved | Contact us at <strong><a title="Contact for enquiries" target="_blank" href="mailto:yourdostiitg@gmail.com">yourdostiitg@gmail.com</a></strong> for any queries, we respond really fast!
+	<br/>The portal is under trial and any difficulty encountered may please be reported to Chairman Welfare Board <a title="Feedback for portal" target="_blank" href="mailto:chrwb@iitg.ernet.in">chrwb@iitg.ernet.in</a>
 </footer>
 
 <!-- <script src="http://d2g9qbzl5h49rh.cloudfront.net/static/feedback2.js?3.2.4748" type="text/javascript">

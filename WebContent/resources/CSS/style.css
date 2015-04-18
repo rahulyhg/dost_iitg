@@ -15,6 +15,9 @@
 	.blockedText{
 		margin-top:8px;
 	}
+	.TOSContent{
+		text-align: justify;
+	}
 	.date_of_conversation{
 		font-size: 10px;
 	}

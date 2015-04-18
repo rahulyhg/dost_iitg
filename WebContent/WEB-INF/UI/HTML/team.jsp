@@ -45,7 +45,7 @@
 					$(this_list_html).find(".listImage").css("background", background_image ) ;
 					
 					if( index > 0 ){
-						$(this_list_html).addClass("col-md-offset-1") ;
+						/*$(this_list_html).addClass("col-md-offset-1") ;*/
 						
 					}
 					
@@ -88,7 +88,7 @@
 		function return_team_html(){
 			
 			var html = '<div class="col-md-3 listOuterContainer" >'+
-							'<div class="col-md-12">'+
+							'<div class="col-md-11">'+
 								'<div>'+
 									'<div class="col-md-8 col-md-offset-2 listheading"></div>'+
 									'<div class="clearfix"></div>'+
