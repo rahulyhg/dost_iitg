@@ -235,7 +235,7 @@ public class SignupController {
 		}
 		dbMessage.setRecipients(createRecipientList(message, dbMessage));
 		if(message.getSenderId() == null) {
-			message.setSenderId(104l);
+			message.setSenderId(200l); //TODO: this is welcome sender counselor id..make this configuration
 		}
 		dbMessage.setSender(userService.getUser(message.getSenderId()));
 		dbMessage.setSentDateDb(new Date());

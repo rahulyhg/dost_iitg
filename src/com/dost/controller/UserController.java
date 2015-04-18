@@ -100,6 +100,7 @@ public class UserController {
 	@RequestMapping(value="/user/emailpassword", method=RequestMethod.POST)  
 	@ResponseBody
 	public Map<String, String> sendPasswordResetLinkToUser(UserProfile userProfile) {
+		System.out.print("Send password link");
 		Map<String, String> response = new HashMap<String, String>();
 		// username is not provided
 		if(userProfile.getUsername() != "") {
@@ -108,7 +109,7 @@ public class UserController {
 				response.put("status", "usernotpresent");
 			}
 			else {
-				if(user.getEmail() == null) {
+				if(user.getEmail() == null || user.getEmail().length() == 0) {
 					response.put("status", "emailnotpresentcontactcustomecare");	
 				}
 				else {
@@ -139,7 +140,8 @@ public class UserController {
 		user.setIdentifier(identifier);
 		userService.updateUser(user);
 		String messageToSend = createPasswordResetMessage(user.getUsername(), identifier);
-		MessageUtil.sendEmail("customersupport@yourdost.com", user.getEmail(), "Forgot Username/Password - Your D.O.S.T", messageToSend);
+		MessageUtil.sendEmail("yourdostiitg@gmail.com", user.getEmail(), "Forgot Username/Password - Your D.O.S.T", messageToSend);
+		System.out.println("Sending email to : " + user.getEmail());
 	}
 	
 	@RequestMapping(value="/user/resetpassword", method=RequestMethod.POST)  
@@ -231,9 +233,9 @@ public class UserController {
 		resetPasswordMessageBuffer.append("<br><br>");
 		resetPasswordMessageBuffer.append("Your username -- " + recipientUsername);
 		resetPasswordMessageBuffer.append("<br><br>");
-		resetPasswordMessageBuffer.append("To change password <u><a href='http://localhost:8800/dost/resetPassword?identifier=" + identifier + "'>click here</a></u> or copy paste this link in browser");
+		resetPasswordMessageBuffer.append("To change password <u><a href='http://iitg.yourdost.com/resetPassword?identifier=" + identifier + "'>click here</a></u> or copy paste this link in browser");
 		resetPasswordMessageBuffer.append("<br>");
-		resetPasswordMessageBuffer.append("http://localhost:8800/dost/resetPassword?identifier=" + identifier);
+		resetPasswordMessageBuffer.append("http://iitg.yourdost.com/resetPassword?identifier=" + identifier);
 		resetPasswordMessageBuffer.append("<br><br>");
 		resetPasswordMessageBuffer.append("If you have any queries, please reply to this email.");
 		resetPasswordMessageBuffer.append("<br><br>");
