@@ -96,7 +96,7 @@ public class TopicsCommon
 		List topics;
 		
 		// Try to get the first's page of topics from the cache
-		if (start == 0 && SystemGlobals.getBoolValue(ConfigKeys.TOPIC_CACHE_ENABLED)) {
+		if (start == 0 && false) {
 			topics = TopicRepository.getTopics(forumId);
 
 			if (topics.size() == 0 || !TopicRepository.isLoaded(forumId)) {

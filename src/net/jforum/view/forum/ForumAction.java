@@ -56,6 +56,7 @@ import net.jforum.dao.DataAccessDriver;
 import net.jforum.dao.ForumDAO;
 import net.jforum.dao.ModerationDAO;
 import net.jforum.dao.PostDAO;
+import net.jforum.dao.TopicDAO;
 import net.jforum.entities.Forum;
 import net.jforum.entities.MostUsersEverOnline;
 import net.jforum.entities.Topic;
@@ -217,9 +218,11 @@ public class ForumAction extends Command
 		List topicsList = TopicsCommon.prepareTopics(tmpTopics);
 		PostDAO postDao = DataAccessDriver.getInstance().newPostDAO();
 		Map topicPostMap = new HashMap();
+		TopicDAO topicDAO = DataAccessDriver.getInstance().newTopicDAO();
 		for(Object object : topicsList) {
 			Topic temp = (Topic)object;
-			Topic topic = TopicRepository.getTopic(new Topic(temp.getId()));			
+//			Topic topic = TopicRepository.getTopic(new Topic(temp.getId()));
+			Topic topic = topicDAO.selectById(temp.getId());
 			List helperList = PostCommon.topicPosts(postDao, moderatorCanEdit, us.getUserId(), topic.getId(), start, count);
 			topicPostMap.put(topic.getId(), helperList);
 		}
