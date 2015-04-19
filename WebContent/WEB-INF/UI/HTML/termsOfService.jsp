@@ -14,7 +14,7 @@
 <body class="theme-default">
 
 	<div class="container row-fluid">
-		<div class="col-md-7">
+		<div class="col-md-8">
 			<div class="pageTop">
 				<h2 class="pull-left pageHeading">Terms of Service</h2>
 				<div class="clearfix"></div>

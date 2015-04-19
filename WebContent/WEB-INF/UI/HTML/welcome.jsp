@@ -705,15 +705,14 @@
                         
                             <h1 style="font-size: 14px;margin-bottom:10px;margin-top:10px">Hi Friends,</h1>
 
-<p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in;">Sometimes life becomes difficult&nbsp;- "competitive environment, family expectations, loneliness, confusions, unstable relationships" - and not always are we able to share our worries with someone. Isn't it?&nbsp;</p><br>
+<p style="margin-top: 0pt; margin-bottom: 0pt; margin-left: 0in;">Sometimes life becomes difficult - “competitive environment, family expectations, loneliness, confusions, unstable relationships” - and not always we able to share our worries with someone.</p><br>
 
-<p style="line-height:16px;margin-top:10px">We have been there ourselves and out of our own need we&nbsp; created an online emotional support system -&nbsp;<br>
+<p style="line-height:16px;margin-top:10px">Student welfare board, IIT Guwahati is glad to offer online anonymous emotional support system customized for IIT Guwahati.<br>
 
 <div id="mainUrl"><a href="http://iitg.yourdost.com" target="_blank"><span style="font-size:24px">www.iitg.yourdost.com</span></a></div><br>
-<p>for people like us to anonymously vent out our feelings.&nbsp; You can chat with&nbsp;psychologists and non-judgmental&nbsp;individuals, &nbsp;explore self help, share experiences&nbsp;and help peers going though tough times.&nbsp;</span>
-&nbsp;</p>
-
-<div>Your D.O.S.T in collaboration with IIT Guwahati wishes to create a more productive and happier environment.</div>
+<p>with aim to create a more productive and happier IIT Guwahati campus. Using the online portal, you may anonymously vent out your feelings  and chat with counsellors as well as partially trained volunteers. You may explore self  help, share experiences and help peers going through tough times. A link of the  Anonymous Emotional Support System is also available on intranet.</span>&nbsp;</p>
+<p>The  portal is primarily for students of IIT Guwahati but other residents of IIT  Guwahati Campus may also use the same. The online portal may help in overcoming the social stigma attached to counselling and make the services more  accessible.</p>
+<p>The portal is still under trial and any difficulty encountered may please be  reported to <a href="">chrwb@iitg.ernet.in</a>
 
                         </td>
                     </tr>

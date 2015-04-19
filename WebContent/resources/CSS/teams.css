@@ -1,5 +1,5 @@
 	.pageMainContainer .listOuterContainer{
-		height: 330px;
+		height: 300px;
 		position:relative;
 		display: inline-block;
 		float: none;
@@ -8,8 +8,6 @@
 	
 	.pageMainContainer .listOuterContainer>div {
 		border: 1px solid #FECA12;
-		padding-bottom: 20px;
-		width:100%;
 		padding:0;
 		background-color: #ffcc33;
 		-webkit-transition-property: background-color; /* Safari */
@@ -91,7 +89,7 @@
 		  position:relative;
 		  padding:0 10px;
 		  line-height:1.5;
-		  max-height:7.5em;
+		  max-height:9em;
 		  /*-webkit-transition: max-height 0.8s;
 	      transition: max-height 0.8s;
 	      -moz-transition: max-height 0.8s;*/
@@ -114,8 +112,5 @@
 	
 	.pageMainContainer .listOuterContainer:hover .listContent:after{
 			content:"";
-	}
-	#volunteers{
-		margin-top : 30px 
 	}
 	
