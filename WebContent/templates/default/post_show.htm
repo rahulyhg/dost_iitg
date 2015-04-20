@@ -52,13 +52,13 @@
 		<div class="col-md-8 ">
 		
 					<div class="pageTop">
-						<h2 class="pull-left pageHeading breadcrumbContainer">
+						<h2 class="col-md-3 pull-left pageHeading breadcrumbContainer">
 							<a href="${JForumContext.encodeURL("/forums/show/${forum.id}")}">&larr; Back to all Discussions</a>
 						</h2>
-						
+						<div class="col-md-7 disclaimer_discussions" >Discussions are visible to everyone and can be answered by anyone. If you want to leave a private message to counselor please, <a href="http://iitg.yourdost.com/conversations?=chat">Leave a Message</a></div>
 					
 						<#if !readonly>
-						<div class="pull-right">
+						<div class="pull-right col-md-2">
 						</#if>
 							<#if topic.status == STATUS_LOCKED>
 								<span class="icon_reply_locked"><img src="${contextPath}/images/transp.gif" alt="" /></span>

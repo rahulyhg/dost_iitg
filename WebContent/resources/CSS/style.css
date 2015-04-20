@@ -1145,10 +1145,18 @@
 
 /* jforum module*/
 
+.disclaimer_discussions{
+	padding: 3px;
+  	border: 1px solid #ffcc33;
+  	background: #ffcc33;
+  	font-size: 0.9em;
+	
+}
 .pagination .current{
 	border:1px solid #ffcc33;
 	background-color: #ffcc33;
 }
+
 .pagination a{
 	color: #000;
 	border: 1px solid #ffcc33;	
