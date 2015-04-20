@@ -23,12 +23,13 @@
 	var globalPerPage = 10;
 	var globalScroll = true;
 	function triggerPagination() {		
-	   if($(window).scrollTop() + $(window).height() > $(document).height() - 300 && globalScroll) {
-			if(gloablFlag && $(".inbox.active").length === 1) {
-				triggerPageLoadData();	
-			}		
-	   }
-	 }
+		   if($(window).scrollTop() + $(window).height() > $(document).height() - 300 && globalScroll) {
+				if(gloablFlag && $(".inbox.active").length === 1) {
+					gloablFlag = false;
+					triggerPageLoadData();	
+				}		
+		   }
+		 }
 	 
 	function resetGlobal() {
 		gloablFlag  = false;
