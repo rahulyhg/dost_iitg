@@ -195,9 +195,7 @@ function formatDate( date ){
 	date = date.replace(/-/g,"/");
 	dateObj = new Date( date ) ;
 	var utc = dateObj.getTime() + (dateObj.getTimezoneOffset() * 60000);
-	
-	var istTime = new Date(utc + (3600000 * 5.5));
-	
+	var istTime = new Date(utc + (3600000 * 1.5));
 	var options = {weekday: "long", year: "2-digit", 
 			month: "short",day: "numeric", hour: "2-digit", minute: "2-digit"} ;
 	
@@ -205,7 +203,7 @@ function formatDate( date ){
 	var dateArr = formatedDateStr.split("," ) ;
 	
 	var dateToReturn = dateArr[1].trim().split(" ").reverse().join(" ") + "'" + dateArr[2].trim() + " " + dateArr[3] ;
-	
+
 	return dateToReturn ;	
 	
 }
