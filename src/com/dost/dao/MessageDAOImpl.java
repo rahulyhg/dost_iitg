@@ -58,27 +58,29 @@ public class MessageDAOImpl implements MessageDAO {
 		Session session = sessionFactory.getCurrentSession();
 //		String hql = "from DbMessage m join fetch m.recipients r where r.recipient.userId = ? and m.deleted = 0 and r.deleted = 0";
 //		String hql = "from DbMessage where msgId in (select distinct m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m." + sort + " " + order + ")";
-		String hql = "select m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m.messageId desc";// + order;
+		String hql = "select distinct m.msgId from DbMessage m inner join m.recipients r where r.recipient.userId = ? order by m.messageId || m.msgId desc";// + order;
+//		String hql = "select distinct m.msgId from DbMessage m where m.messageId in (select mr.message.messageId from DbMessageRecipient mr where mr.recipient.userId = ?) order by m.messageId desc";// + order;
 		Query query = session.createQuery(hql);
         query.setParameter(0, userId);
         if(pageNo != null && per_page != null) {
         	query.setFirstResult((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page));
+        	query.setMaxResults(Integer.parseInt(per_page));
         }
         List<Long> msgIdList = query.list();
         if(msgIdList == null) {
         	return new ArrayList<DbMessage>();
         }
-        Set<Long> msgIdSet = new LinkedHashSet<Long>(msgIdList);
-        msgIdList = new ArrayList<Long>(msgIdSet);
-        if(pageNo != null && per_page != null) {
-            if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
-//            	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
-            	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
-            }
-            else {
-            	msgIdList = msgIdList.subList(0, msgIdList.size());
-            }        	
-        }
+//        Set<Long> msgIdSet = new LinkedHashSet<Long>(msgIdList);
+//        msgIdList = new ArrayList<Long>(msgIdSet);
+//        if(pageNo != null && per_page != null) {
+//            if(msgIdList.size() > (Integer.parseInt(pageNo)) * Integer.parseInt(per_page)) {
+////            	msgIdList = msgIdList.subList((Integer.parseInt(pageNo) - 1) * Integer.parseInt(per_page), (Integer.parseInt(pageNo)) * Integer.parseInt(per_page));
+//            	msgIdList = msgIdList.subList(0, Integer.parseInt(per_page));
+//            }
+//            else {
+//            	msgIdList = msgIdList.subList(0, msgIdList.size());
+//            }        	
+//        }
         List<DbMessage> msgList = new ArrayList<DbMessage>();
         if(msgIdList.size() > 0) {
             String hqlMessages = "from DbMessage m inner join fetch m.recipients r where m.msgId in (:list) and r.recipient.userId = :userId order by m.messageId";
