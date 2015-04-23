@@ -33,6 +33,16 @@ public class Utils {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 		return dateFormat.format(date);
 	}
+
+	public static String formatDateBasedOnInputFormat(String format, String date) {
+		String outputDate = null;
+		try {
+			outputDate = new SimpleDateFormat("hh:mm a, dd MMMM yyyy").format(new SimpleDateFormat(format).parse(date));
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+		}
+		return outputDate;
+	}
 	
 	public static Date formatDate(String format, String dateStr) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
