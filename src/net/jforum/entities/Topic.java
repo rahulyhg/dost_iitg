@@ -45,6 +45,8 @@ package net.jforum.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.dost.util.Utils;
+
 /**
  * Represents every topic in the forum.
  * 
@@ -345,7 +347,8 @@ public class Topic implements Serializable
 	}
 	
 	public String getLastPostTime() {
-		return this.lastPostTime;
+		//return this.lastPostTime;
+		return Utils.convertDatetoIST(this.lastPostTime);
 	}
 
 	public void setRead(boolean read) {

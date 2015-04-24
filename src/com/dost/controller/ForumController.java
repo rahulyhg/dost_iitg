@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +39,22 @@ public class ForumController {
 				postDates.add(post.getPostTime());
 			}
 			String recentPostDate = latestDate(postDates);
-			Date tempDate = Utils.formatDate("yyyy-MM-dd HH:mm:ss.S", recentPostDate);	
-			recentPostDate = Utils.formatDate("hh:mm a, dd MMMM yyyy", tempDate);	
+
+//			Date tempDate = Utils.formatDate("yyyy-MM-dd HH:mm:ss.S", recentPostDate);	
+//			recentPostDate = Utils.formatDate("hh:mm a, dd MMMM yyyy", tempDate);	
 			
 			// Create return data
 			List<DbForumPost> outputPosts = new ArrayList<DbForumPost>();
 			DbForumPost forumPost = new DbForumPost();
-			forumPost.setPostTime(recentPostDate);
+			if(recentPostDate != null) {
+				// Format date as needed by below method
+				String formattedDate = Utils.formatDateBasedOnInputFormat("yyyy-MM-dd HH:mm:ss.S", recentPostDate);
+				// Set IST
+				forumPost.setPostTime(Utils.convertDatetoIST(formattedDate));	
+			}
+			else {
+				forumPost.setPostTime("");
+			}
 			outputPosts.add(forumPost);
 			topic.setForumPosts(outputPosts);
 		}

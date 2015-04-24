@@ -1,14 +1,18 @@
 package com.dost.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class Utils {
 
+	private static final String patternString = "yyyy-MM-dd HH:mm:ss";
+	
 	public static String formatDate(Date date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return dateFormat.format(date);
@@ -28,6 +32,16 @@ public class Utils {
 	public static String formatDate(String format, Date date) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(format);
 		return dateFormat.format(date);
+	}
+
+	public static String formatDateBasedOnInputFormat(String format, String date) {
+		String outputDate = null;
+		try {
+			outputDate = new SimpleDateFormat("hh:mm a, dd MMMM yyyy").format(new SimpleDateFormat(format).parse(date));
+		} catch (ParseException pe) {
+			pe.printStackTrace();
+		}
+		return outputDate;
 	}
 	
 	public static Date formatDate(String format, String dateStr) {
@@ -76,5 +90,38 @@ public class Utils {
 	public static String generateUniqueToken() {
 		UUID uniqueId = UUID.randomUUID();
 		return uniqueId.toString();
+	}
+	
+	public static Date convertDatetoIST(Date inputDate) {
+		Date returnDate = null;
+		try {
+		    DateFormat utcFormat = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
+		    utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+		    DateFormat indianFormat = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
+		    indianFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+		    Date timestamp = utcFormat.parse(formatDate(inputDate));
+		    String output = indianFormat.format(timestamp);
+		    returnDate = formatDate(output);
+		}
+		catch (ParseException pe) {
+			pe.printStackTrace();
+		}
+		return returnDate;
+	}
+	
+	public static String convertDatetoIST(String inputDate) {
+		String returnDate = null;
+		try {
+		    DateFormat utcFormat = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
+		    utcFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+		    DateFormat indianFormat = new SimpleDateFormat("hh:mm a, dd MMMM yyyy");
+		    indianFormat.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+		    Date timestamp = utcFormat.parse(inputDate);
+		    returnDate = indianFormat.format(timestamp);
+		}
+		catch (ParseException pe) {
+			pe.printStackTrace();
+		}
+		return returnDate;
 	}
 }

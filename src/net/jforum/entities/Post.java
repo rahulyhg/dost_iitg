@@ -45,6 +45,8 @@ package net.jforum.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.dost.util.Utils;
+
 import net.jforum.view.forum.common.ViewCommon;
 
 /**
@@ -354,7 +356,8 @@ public class Post implements Serializable
 			this.formatedTime = ViewCommon.formatDate(this.time);
 		}
 		
-		return this.formatedTime;
+		//return this.formatedTime;
+		return Utils.convertDatetoIST(this.formatedTime);
 	}
 
 	/**
