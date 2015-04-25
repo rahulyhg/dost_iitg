@@ -14,7 +14,29 @@
 	<script type="text/javascript" src="${contextPath}/templates/${templateName}/js/watch.js?${startupTime}"></script>
 </#if>
 
-<script type="text/javascript">
+<script>
+
+$.ajax({
+	 url : "/dost/api/forums/checkForAccess",
+	 success : function(data){ 
+		 
+		 var response = data
+		 if( response == "false" ){
+			 $("#post").css("display", "none") ;		
+			 var hostname = $(location).attr('host');
+			 var loginLink = hostname.match("localhost") ? "/dost/login" : "/login" ;
+		 	$(".login_btn").attr("href", loginLink ) ;
+		 	$(".login_btn").html("Login to reply");
+		 	$(".login_btn").removeClass("icon_new_topic btn btn-primary btn-large" ) ;
+		 	$(".login_btn").css("color","#428bca") ;
+		 	$(".disclaimer_discussions + div" ).css( "margin-top", "11px" ) ;
+		 			
+	 	}
+	 }
+});
+
+
+
 <!--
 <#include "js/karma.js">
 <#include "js/utils.js"/>
@@ -245,7 +267,9 @@
 						-->
 						</script>
 	
-						
+						<#if !logged>
+							<a class="pull_left login_btn" href="" rel="nofollow" style="margin-left:320px;">Login to reply</a>
+						</#if>
 						<form action="${JForumContext.encodeURL("/jforum")}" method="post" name="post" id="post" onsubmit="return validatePostForm(this);" enctype="multipart/form-data" accept-charset="${encoding}">
 							<input type="hidden" name="action" value="insertSave" />
 							<input type="hidden" name="module" value="posts" />

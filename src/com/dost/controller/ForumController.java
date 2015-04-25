@@ -8,7 +8,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import net.jforum.SessionFacade;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,6 +76,24 @@ public class ForumController {
 		return forumList;
 	}
 
+	@RequestMapping(value = "/forums/checkForAccess", method = RequestMethod.GET)
+	@ResponseBody
+	public Boolean checkForUserAccess( HttpServletRequest request ) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(!(auth instanceof AnonymousAuthenticationToken)){ return true ; }
+		
+		if(Utils.showSignUpPage(request)) {
+			return true ;
+		} else {
+			return false ; 
+		}
+
+	}
+
+	
+	
 	private String latestDate(List<String> postDates) {
 		Collections.sort(postDates, new Comparator<String>() {
 			DateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");

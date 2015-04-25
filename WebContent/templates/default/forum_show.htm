@@ -27,6 +27,21 @@
 			
 		});
 
+		$.ajax({
+			 url : "/dost/api/forums/checkForAccess",
+			 success : function(data){ 
+				 if( !data ){
+					var hostname = $(location).attr('host');
+					var loginLink = hostname.match("localhost") ? "/dost/login" : "/login" ;
+				 	$(".login_btn").attr("href", loginLink ) ;
+				 	$(".login_btn").html("Login to create discussion");
+				 	$(".login_btn").removeClass("icon_new_topic btn btn-primary btn-large" ) ;
+				 	$(".login_btn").css("color","#428bca") ;
+				 	$(".pageHeading + div").css( "margin-top", "11px" ) ;
+			 	}
+			 }
+		});
+
 		
 		/*end of searchBar for Discussion topics*/
 	});
