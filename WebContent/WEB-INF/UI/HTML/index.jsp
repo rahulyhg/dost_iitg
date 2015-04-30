@@ -24,6 +24,9 @@ uri="http://www.springframework.org/security/tags"%>
 <script src="${pageContext.request.contextPath}/resources/JS/jquery.plugin.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/JS/jquery.more.js" type="text/javascript"></script>
 
+
+
+
 <script>
 $( document ).ready(function() {
 	
@@ -39,25 +42,45 @@ $( document ).ready(function() {
 	});
 	/*end of FAQ listing on index page*/
 	/*Discussion listing on index page*/
-	$.getJSON("/dost/api/topics/count/4", function(discussionTopic) {	
-		$("#discussions .loadingIndex").hide();
-		for (var i = 0 ; i < discussionTopic.length; i++) {
-			$("#discussions ul").append('<li class="eachDiscussion">'+
-			'<a style="display:block" href="posts/list/' + discussionTopic[i].topicId + '.page">'+
-			'<div class="wrapper" >'+ discussionTopic[i].topicTitle +
-			'</div>'+
-			'</a>'+
-			'<span class="secondary_information">Last updated: '+discussionTopic[i].forumPosts[0].postTime+'</span>'+	
-			'</li>');	
-		}
-	});
-	/*end of discussion listing on index page*/
-	/*Showing Ellipsis - dotdotdot plugin*/
-	setTimeout(function(){
-		$('.wrapper').more({length: 120});
-	},10000);
-	/*End of showing ellipsis*/
-	/*for showing counter*/
+
+	$.ajax({
+	 url : "/dost/api/forums/checkForAccess",
+	 success : function(data){ 
+		 if( !data ){
+	 		$("#discussions .loadingIndex").hide();
+			var hostname = $(location).attr('host');
+			var loginLink = hostname.match("localhost") ? "/dost/login" : "/login" ;
+	
+			$("#discussions .card_heading").attr("href", "#" ) ;		
+			$("#discussions ul").append('<li class="eachDiscussion">Looks like you are outside IIT Guwahati campus ' + 
+					                      ' <br/><a href="'+ loginLink +'" >Login to view discussion</li>' );
+	 	}else{
+	 		$.getJSON("/dost/api/topics/count/4", function(discussionTopic) {	
+	 			$("#discussions .loadingIndex").hide();
+
+	 			for (var i = 0 ; i < discussionTopic.length; i++) {
+	 				$("#discussions ul").append('<li class="eachDiscussion">'+
+	 				'<a style="display:block" href="posts/list/' + discussionTopic[i].topicId + '.page">'+
+	 				'<div class="wrapper" >'+ discussionTopic[i].topicTitle +
+	 				'</div>'+
+	 				'</a>'+
+	 				'<span class="secondary_information">Last updated: '+discussionTopic[i].forumPosts[0].postTime+'</span>'+	
+	 				'</li>');	
+	 			}
+	 		});
+	 		
+	 		/*end of discussion listing on index page*/
+	 		/*Showing Ellipsis - dotdotdot plugin*/
+	 		setTimeout(function(){
+	 			$('.wrapper').more({length: 120});
+	 		},10000);
+	 		/*End of showing ellipsis*/
+	 		/*for showing counter*/ 		
+	 	}
+	 }
+});
+	
+	
 	$.getJSON('/dost/api/users/count', function(count) {
 		$("#counter").append(count.count + ' people already seeking help from special friends!');;
 	});
@@ -87,6 +110,7 @@ $( document ).ready(function() {
 
 <body class="container-fluid   theme-default welcome">
 	<jsp:include page="includes/header.jsp"></jsp:include>
+
 	<div class=" row-fluid welcomePage">
 		<sec:authorize access="!hasRole('ROLE_ADMIN')">
 			<div class="bannerSignup bannerLarge">
