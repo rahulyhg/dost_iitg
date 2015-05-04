@@ -364,9 +364,16 @@
 	
 	
 	/*each card*/
+	.disclaimer_discussion{
+		  font-size: 0.8em;
+		  margin-top: 10px;
+		  font-style: italic;
+		  font-family: georgia;	
+	}
+	
 	.exploration_option{
 		margin-top: 10px;
-		height: 300px;
+		height: 340px;
 		border-top: 3px solid #FECA12;
 	}
 	.exploration_option:hover{
@@ -407,9 +414,12 @@
 	#discussions .details_box, #faqs .details_box, #quotes .details_box, #destressing .details_box, #articles  .details_box{
 		overflow: hidden;
 		line-height: 1.5;
-		max-height: 12em;
+		max-height: 15em;
 		position:relative;
 		padding-left:0;
+	}
+	#discussions .details_box{
+		max-height: 12em;
 	}
 	#discussions .details_box:after, #faqs .details_box:after, #quotes .details_box:after, #destressing .details_box:after, #articles  .details_box:after {
 			content:"...";
@@ -590,7 +600,7 @@
 	.theme-default .media{height:auto;
 	text-overflow:ellipsis;
 	-o-text-overflow: ellipsis; 
-        white-space: nowrap;
+        white-space: normal;
         overflow: hidden;}
        
    .media-body span{  
