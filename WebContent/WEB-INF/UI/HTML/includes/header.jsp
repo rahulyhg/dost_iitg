@@ -4,7 +4,7 @@
 
 <script>
 $.ajax({
-	 url : "/dost/api/forums/checkForAccess",
+	 url : "/api/forums/checkForAccess",
 	 success : function(data){ 
 		 if( !data ){
 			$(".menuItems #discussions").css("display", "none") ;
