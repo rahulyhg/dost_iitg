@@ -44,7 +44,7 @@ $( document ).ready(function() {
 	/*Discussion listing on index page*/
 
 	$.ajax({
-	 url : "/dost/api/forums/checkForAccess",
+	 url : "/api/forums/checkForAccess",
 	 success : function(data){ 
 		 if( !data ){
 	 		$("#discussions .loadingIndex").hide();
