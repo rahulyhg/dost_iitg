@@ -151,7 +151,7 @@ $( document ).ready(function() {
 		<div class="container">
 		<ul>
 			<li class="exploration_option well col-md-4" id="discussions">
-				<a class="card_heading" href="${pageContext.request.contextPath}/forums/show/1.page">
+				<a class="card_heading" href="${pageContext.request.contextPath}/forums/show/6.page">
 					<h3 class="categoryName">DISCUSSIONS</h3>
 					<img height="42px " src="${pageContext.request.contextPath}/resources/img/support-discussion.png">
 				</a>
@@ -160,6 +160,8 @@ $( document ).ready(function() {
 						<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" alt="Loader" />
 					</li>	
 				</ul>
+				<div class="disclaimer_discussion">The discussion is opinion of individual users of the portal. IIT Guwahati does not endorse or takes any responsibility about discussions on the portal in any form</div>
+				
 			</li>
 			<li class="exploration_option well col-md-4" id="faqs">
 				<a class="card_heading" href="${pageContext.request.contextPath}/faqs">
@@ -180,10 +182,14 @@ $( document ).ready(function() {
 				<a class="quotes_list" href="${pageContext.request.contextPath}/quotes">
 				<ul class="details_box">
 					<li>
-						I may not be there yet, but I am closer than I was yesterday.
+						It always seems impossible, until it is done.
 					</li>
 					<li>
-						Do Not Pray For An Easy Life, Pray For The Strength To Endure A Difficult One.
+						The Only Person You Should Try To Be Better Than Is The Person You Were Yesterday.
+					</li>
+					<li>Not to Have Tried Is The True Failure</li>
+					<li>
+						The Only Person You Should Try To Be Better Than Is The Person You Were Yesterday.
 					</li>
 					<li>
 						A bird sitting on a tree is never afraid of the branch breaking because her trust is not on the branch but on it's own wings					
@@ -191,11 +197,12 @@ $( document ).ready(function() {
 					<li>
 						You have to fight to reach your dream, you have to sacrifice and work hard for it
 					</li>
-					<li>
-						Our greatest weekness lies in giving up. The more certain way to succeed is always to try just one more time  <span class="secondary_information">~Thomas A Edison</span>
-					</li>
+					
 					<li>
 						If God gives you a dream, he gives you an ability to achieve it.
+					</li>
+					<li>
+						Our greatest weekness lies in giving up. The more certain way to succeed is always to try just one more time  <span class="secondary_information">~Thomas A Edison</span>
 					</li>
 				</ul>
 				</a>
